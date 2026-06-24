@@ -1,0 +1,24 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+
+\renewcommand\qedsymbol{OE$\Delta$}
+
+\begin{document}
+\begin{theorem}
+    $\mathbb{R}$ is an ordered field with the Least Upper Bound Property
+\end{theorem}
+\begin{proof}
+    Begin with the proof that $\mathbb{R}$ is an ordered field.
+    
+    For $\mathbb{R}$ to be an ordered field, it must be a field, it must be an ordered set, and it must satisfy the following:
+    \begin{enumerate}[label=(\roman*)]
+        \item   For all $a, b,$ and $c$ in $\mathbb{R}$, if $a < b$, then $a + c < b + c$.
+        \item   If $a \leq b$ and $c \geq 0$, then $ac \leq bc$.
+    \end{enumerate}
+\end{proof}
+\end{document}
