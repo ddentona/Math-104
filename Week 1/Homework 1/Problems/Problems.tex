@@ -1,0 +1,171 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+%% code from mathabx.sty and mathabx.dcl
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+\DeclareMathAccent{\wideparen}{0}{mathx}{"75}
+
+\def\cs#1{\texttt{\char`\\#1}}
+
+\allowdisplaybreaks
+
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\im}{im}
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\0}{\mathbf{0}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\loc}{\text{loc}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\x}{\mathbf{x}}
+\DeclareMathOperator{\y}{\mathbf{y}}
+\DeclareMathOperator{\z}{\mathbf{z}}
+
+\title{Math 104 Homework 1}
+\author{Due Date: Friday, July 3 at 11:59pm}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent\textbf{Instructions:} Submit pdf solutions in LaTeX (preferred), or \textit{neatly} handwritten. 
+Unless otherwise stated, you may cite any result from class or from Ch 1. of Rudin's book, but all other assertions you make must be proved rigorously. At the top of your submission, please write down the names of the other students you collaborated with and any outside sources you consulted.
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+
+    \item 
+    Let $S$ be the set \{rock, paper, scissors\}. Define a binary operation $\ast: S \times S \to S$ via
+    \begin{equation*}
+        x \ast y = 
+        \begin{cases}
+            \text{the winner of a \href{https://en.wikipedia.org/wiki/Rock_paper_scissors}{rock-paper-scissors} game between $x$ and $y$}, & \text{ if } x \neq y\\
+            x, & \text{ if } x = y.
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}
+        \item 
+        Prove that $\ast$ is a commutative operation on $S$.
+
+        \item 
+        Prove that $\ast$ is \underline{not} an associative operation on $S$.
+    \end{enumerate}
+
+    \vspace{0.5cm}
+    
+    \item 
+    Let $F$ be an ordered field with additive identity $0$ and multiplicative identity $1$.
+    \begin{enumerate}
+        \item
+        Using \textbf{only} the field and ordered field axioms, prove that if $a, b \in F$ with $a > 0$ and $0 < b < 1$, then $0 < ab < a$.
+        
+        \item 
+        Using \textbf{only} the field axioms, prove that if $a, b, c, d \in F$, then $((a + b) + c) + d = d + (c + (b + a)) = ((d + c) + b) + a$.
+    \end{enumerate} 
+
+    \vspace{0.5cm}
+
+    \item 
+     Let $F$ be a field with order $<$. Recall from class that $(F, <)$ is called an \textit{ordered field} if the following axioms are satisfied:
+    
+    (i) For all $a, b, c \in F$ with $a \leq b$, we have $a + c \leq b + c$.
+
+        
+    (ii) For all $a, b, c \in F$ with $a \leq b$ and $0 \leq c$, we have $ac \leq bc$.\\
+    
+    \begin{enumerate}
+        \item 
+        Prove that axiom (ii) is \textit{equivalent} to the axiom
+
+        (ii)' For all $a, b \in F$ with $a > 0$ and $b > 0$, we have $ab > 0$\\ 
+
+        That is, prove that (ii) is true if and only if (ii)' is true. This means that whether we use (ii) or (ii)' in our definition of an ordered field is irrelevant.\\
+
+        \item 
+        Define a relation $\prec$ on $\mathbb{Q}$ by declaring $a \prec b$ if and only if $b < a$ in the usual order on $\mathbb{Q}$. Prove that $\prec$ is an order on $\mathbb{Q}$ and that axiom (i) is true for $\prec$, but that axiom (ii) fails. Thus $(\mathbb{Q}, \prec)$ is an ordered set but not an ordered field.
+        
+    \end{enumerate}
+
+    \textit{Note:} The LaTeX commands for $\prec$, $\preceq$, $\succ$, and $\succeq$ are \verb|\prec|, \verb|\preceq|, \verb|\succ|, and \verb|\succeq|, respectively.
+    
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $S \subset \mathbb{R}$ be nonempty and bounded from above. Let $a = \sup S$.
+    \begin{enumerate}
+        \item 
+        Show that, for any real $\epsilon > 0$, there is $x \in S$ with $x > a - \epsilon$.
+
+        \item 
+        Suppose $a \notin S$. Show that, for any real $\epsilon > 0$, there are infinitely many elements of $S$ in the open interval $(a - \epsilon, a)$.
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    For an integer $m \geq 2$, we define $\mathbb{Z}/m\mathbb{Z}$ to be the set $\{0, 1, \dots, m - 1\}$, together with the operations of addition and multiplication modulo $m$. That is, to add two elements of $m$, we add them as we normally would and then take the remainder upon division by $m$. Multiplication is defined similarly. Thus, in $\mathbb{Z}/5\mathbb{Z}$ for example, we have $2 - 4 = 3$ and $4 \cdot 4 = 1$.\\
+
+    You may assume that all of the axioms for addition, multiplication, and distributivity from fields also hold in $\mathbb{Z}/m\mathbb{Z}$ (with $0$ and $1$ as the identities), \textit{except} for the axiom
+
+    (\ast) every nonzero element has a multiplicative inverse
+
+    which is the subject of this problem.
+    \begin{enumerate}
+        \item 
+        Show that if $m$ is a composite number, then axiom $(\ast)$ fails.
+
+        \item 
+        Show that if $m$ is a prime number, then axiom $(\ast)$ holds. That is, $\mathbb{Z}/p\mathbb{Z}$ is a field with only finitely many elements!
+    \end{enumerate}
+    \textit{Hint for part (b):} You may use \textit{B\'ezout's identity} from number theory: if $a, b \in \mathbb{Z}$ are coprime then there are $x, y \in \mathbb{Z}$ so that $ax + by = 1$. Then use that for a prime $p$, the integers $1, 2, \dots, p - 1$ are all coprime to $p$. You may also use the \textit{Euclidean division theorem}: namely if $b$ is a positive integer, then any $a \in \mathbb{Z}$ may be written uniquely as $a = bq + r$, where $0 \leq r < b$.
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $F$ be a finite field with identities $0$ and $1$.
+    \begin{enumerate}
+        \item 
+        Show that there is an integer $n \geq 2$ so that $\underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = 0$. (\textit{Hint}: by the pigeonhole principle, at least two different sums of the form $1 + 1 + \cdots + 1$ must be equal)\\
+
+        \item 
+        By using the fact that $\underbrace{1 + 1 + \cdots + 1}_{ab \text{ times}} = (\underbrace{1 + 1 + \cdots + 1}_{a \text{ times}})(\underbrace{1 + 1 + \cdots + 1}_{b \text{ times}})$ for $a, b \geq 2$, show that the \textit{smallest} possible integer $n$ from part (a) is prime.\\
+
+        \item 
+        Using part (a), show that there are no finite ordered fields.
+        
+    \end{enumerate}
+    
+    
+\end{enumerate}
+
+
+
+\end{document}     

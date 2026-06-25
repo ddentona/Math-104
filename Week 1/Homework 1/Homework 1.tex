@@ -1,0 +1,218 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+
+\newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
+
+\begin{document}
+\renewcommand\qedsymbol{OE$\Delta$}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\andtxt}{\text{ and }}
+\newcommand{\mathif}{\text{if }}
+\newcommand{\seq}[2][n]{\ensuremath{(#2 _{#1})}}
+
+\section{Exercise 1}
+    Let $S$ be the set \{rock, paper, scissors\}. Define a binary operation $\ast: S \times S \to S$ via
+    \begin{equation*}
+        x \ast y = 
+        \begin{cases}
+            \text{the winner of a rock-paper-scissors game between $x$ and $y$}, & \text{ if } x \neq y\\
+            x, & \text{ if } x = y.
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Prove that $\ast$ is a commutative operation on $S$.
+
+        \item 
+        Prove that $\ast$ is \underline{not} an associative operation on $S$.
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+    \begin{proof}
+        Commutativity means that $x \ast y = y \ast x$.
+
+        There are two cases: when $x = y$ and $x \neq y$.
+        Begin with the former.
+        If $x = y$, $x \ast y = x$ and $y \ast x = y$.
+        By the transistive property, since $x \ast y = x$ and $x = y$, $x \ast y = y$.
+        Also by the transistive property, since $x \ast y = y$ and $y \ast x = y$, $x \ast y = y \ast x$.
+        Ergo, if $x = y$, $x \ast y$ is commutative.
+
+        Now the case where $x \neq y$.
+        Without loss of generality, suppose that $x$ has the advantage over $y$ (i.e. $x$ is rock when $y$ is scissors, $x$ is scissors when $y$ is paper, etc.).
+        In this case, $x$ will always beat $y$ in a game of ro-sham-bo, so $x \ast y = x$.
+        Meanwhile, $y \ast x$ also results in a game of ro-sham-bo, which $x$ has the advantage in and will win, so $y \ast x = x$.
+        Since $x \ast y = x$ and $y \ast x = x$, by the transistive property, $x \ast y = y \ast x$.
+
+        Ergo, $\ast$ is a commutative operation on $S$.
+    \end{proof}
+
+    \subsection{Solution (b)}
+    \begin{proof}[Proof by Counterexample]
+        For the associative property to hold, it must be the case that for any $r, p,$ and $s$ in $S$, $(r \ast p) \ast s = r \ast (p \ast s)$.
+        Suppose that $r = \text{rock}$, $p = \text{paper}$, and $s = \text{scissors}$.
+        We can perform the internal operations on them.
+        Start with $(r \ast p) \ast s$.
+        \begin{equation}
+            (r \ast p) \ast s = p \ast s = s = \text{scissors}
+        \end{equation}
+        Then, $r \ast (p \ast s)$.
+        \begin{equation}
+            r \ast (p \ast s) = r \ast s = r = \text{rock}
+        \end{equation}
+
+        For associativity to hold, it would require that $s = r$, meaning $\text{scissors} = \text{rock}$, which is expressly not true.
+        That acts as a conterexample, so associativity does not hold.
+    \end{proof}
+\pagebreak
+
+\section{Exercise 2}
+    Let $F$ be an ordered field with additive identity $0$ and multiplicative identity $1$.
+    \begin{enumerate}[label=(\alph*)]
+        \item
+        Using \textbf{only} the field and ordered field axioms, prove that if $a, b \in F$ with $a > 0$ and $0 < b < 1$, then $0 < ab < a$.
+        
+        \item 
+        Using \textbf{only} the field axioms, prove that if $a, b, c, d \in F$, then $((a + b) + c) + d = d + (c + (b + a)) = ((d + c) + b) + a$.
+    \end{enumerate} 
+
+    \subsection{Solution (a)}
+    \begin{proof}
+        The multiplicative ordered field axiom states that if for some $a$ and $b$ in $F$, $a \leq b$ and $c \geq 0$, then $ac \leq bc$.
+        
+        Since $0 < b$ and $0 < a$, $0 \leq b$ and $0 \leq a$.
+        In the same vein, since $b < 1$, $b \leq 1$.
+        
+        By the multiplicative axiom, $0 \cdot a \leq ab$ and $ab \leq a$.
+        
+        We proved that $0 \cdot x = 0$ in class, so $0 \cdot a = 0$ and $0 \geq ab$.
+
+        We proved in class that if $x \neq 0$ and $y \neq 0$, then $xy \neq 0$.
+        Since $0 < a$, $a \neq 0$.
+        Since $0 < b$, $b \neq 0$.
+        Therefore, $ab \neq 0$.
+        Since $0 \leq ab$ and $0 \neq ab$, $0 < ab$.
+
+        We proved in class that if $x \neq 0$ and $xy = xz$, then $y = z$.
+        Its contrapositive is that if $y \neq z$, then $x = 0$ or $xy \neq xz$.
+        Since $b < 1$, $b \neq 1$.
+        This means that either $a = 0$ or $ab \neq a$.
+        Since $a \neq 0$, $ab \neq a$.
+
+        $ab \leq a$ and $ab \neq a$, so $ab < a$.
+
+        Since $0 < ab$ and $ab < a$, $0 < ab < a$.
+    \end{proof}
+
+\subsection{Solution (b)}
+    \begin{proof}
+        Our first half of the proof will consist of a long series of equalities, all of which are justified by the commutative property.
+        The commutative property of addition says that $a + b = b + a$.
+        \begin{align}
+            ((a + b) + c) + d   &=  ((b + a) + c) + d\\
+                &=  (c + (b + a)) + d\\
+                &=  d + (c + (b + a))
+        \end{align}
+        Therefore, $((a + b) + c) + d = d + (c + (b + a))$.
+
+        The second half of the proof will consist of a long series of equalities, all of which are justified by the associative property.
+        The associative property of addition says that $(a + b) + c = a + (b + c)$, or equivalently that $a + b + c$ is unambiguous.
+        \begin{align}
+            d + (c + (b + a))   &=  (d + c) + (b + a)\\
+                &=  ((d + c) + b) + a
+        \end{align}
+        Therefore, $d + (c + (b + a)) = ((d + c) + b) + a$.
+
+        Ergo, $((a + b) + c) + d = d + (c + (b + a)) = ((d + c) + b) + a$.
+    \end{proof}
+\pagebreak
+
+\section{Exercise 3}
+    Let $F$ be a field with order $<$. Recall from class that $(F, <)$ is called an \textit{ordered field} if the following axioms are satisfied:
+    \begin{enumerate}[label=(\roman*)]
+        \item   For all $a, b, c \in F$ with $a \leq b$, we have $a + c \leq b + c$.
+        \item   For all $a, b, c \in F$ with $a \leq b$ and $0 \leq c$, we have $ac \leq bc$.
+    \end{enumerate}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Prove that axiom (ii) is \textit{equivalent} to the axiom
+
+        (ii)' For all $a, b \in F$ with $a > 0$ and $b > 0$, we have $ab > 0$
+
+        That is, prove that (ii) is true if and only if (ii)' is true. This means that whether we use (ii) or (ii)' in our definition of an ordered field is irrelevant.
+
+        \item 
+        Define a relation $\prec$ on $\mathbb{Q}$ by declaring $a \prec b$ if and only if $b < a$ in the usual order on $\mathbb{Q}$. Prove that $\prec$ is an order on $\mathbb{Q}$ and that axiom (i) is true for $\prec$, but that axiom (ii) fails. Thus $(\mathbb{Q}, \prec)$ is an ordered set but not an ordered field.
+    \end{enumerate}
+
+    \textit{Note:} The LaTeX commands for $\prec$, $\preceq$, $\succ$, and $\succeq$ are \verb|\prec|, \verb|\preceq|, \verb|\succ|, and \verb|\succeq|, respectively.
+
+    \subsection{Solution (a)}
+    \begin{proof}
+        First the forward direction.
+        
+        Take (ii), and suppose we set $a = 0$, rename $a$ to $b$, and rename $c$ to $b$.
+        This may be confusing, but what we have now is the following:
+
+        (ii) For all $a, b \in F$ with $0 \leq a$ and $0 \leq b$, we have $0b \leq ab$.\\
+        Since this applies for all $a$ and $b$ in $F$, including those that are not equal to $0$, we can set the rule of only considering cases where $a \neq 0$ and $b \neq 0$.
+        Thereby, we can replace the $\leq$ signs with just $<$.
+
+        (ii) For all $a, b \in F$ with $0 < a$ and $0 < b$, we have $0b < ab$.\\
+        We proved in class that $0x = 0$.
+        Therefore, $0b = 0$ and we can replace $0b$ with just $0$.
+        We can also turn the inequalities around.
+
+        (ii) For all $a, b \in F$ with $a > 0$ and $b > 0$, we have $ab > 0$.\\
+        This gets us to (ii)'.
+
+        Now for the backwards direction.
+    \end{proof}
+
+\pagebreak
+\section{Exercise 4}
+    Let $S \subset \mathbb{R}$ be nonempty and bounded from above. Let $a = \sup S$.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Show that, for any real $\epsilon > 0$, there is $x \in S$ with $x > a - \epsilon$.
+
+        \item 
+        Suppose $a \notin S$. Show that, for any real $\epsilon > 0$, there are infinitely many elements of $S$ in the open interval $(a - \epsilon, a)$.
+    \end{enumerate}
+
+\section{Exercise 5}
+    For an integer $m \geq 2$, we define $\mathbb{Z}/m\mathbb{Z}$ to be the set $\{0, 1, \dots, m - 1\}$, together with the operations of addition and multiplication modulo $m$. That is, to add two elements of $m$, we add them as we normally would and then take the remainder upon division by $m$. Multiplication is defined similarly. Thus, in $\mathbb{Z}/5\mathbb{Z}$ for example, we have $2 - 4 = 3$ and $4 \cdot 4 = 1$.
+
+    You may assume that all of the axioms for addition, multiplication, and distributivity from fields also hold in $\mathbb{Z}/m\mathbb{Z}$ (with $0$ and $1$ as the identities), \textit{except} for the axiom
+
+    ($\ast$) every nonzero element has a multiplicative inverse
+
+    which is the subject of this problem.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Show that if $m$ is a composite number, then axiom $(\ast)$ fails.
+
+        \item 
+        Show that if $m$ is a prime number, then axiom $(\ast)$ holds. That is, $\mathbb{Z}/p\mathbb{Z}$ is a field with only finitely many elements!
+    \end{enumerate}
+    \textit{Hint for part (b):} You may use \textit{B\'ezout's identity} from number theory: if $a, b \in \mathbb{Z}$ are coprime then there are $x, y \in \mathbb{Z}$ so that $ax + by = 1$. Then use that for a prime $p$, the integers $1, 2, \dots, p - 1$ are all coprime to $p$. You may also use the \textit{Euclidean division theorem}: namely if $b$ is a positive integer, then any $a \in \mathbb{Z}$ may be written uniquely as $a = bq + r$, where $0 \leq r < b$.
+
+\section{Exercise 6}
+    Let $F$ be a finite field with identities $0$ and $1$.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Show that there is an integer $n \geq 2$ so that $\underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = 0$. (\textit{Hint}: by the pigeonhole principle, at least two different sums of the form $1 + 1 + \cdots + 1$ must be equal)
+
+        \item 
+        By using the fact that $\underbrace{1 + 1 + \cdots + 1}_{ab \text{ times}} = (\underbrace{1 + 1 + \cdots + 1}_{a \text{ times}})(\underbrace{1 + 1 + \cdots + 1}_{b \text{ times}})$ for $a, b \geq 2$, show that the \textit{smallest} possible integer $n$ from part (a) is prime.
+
+        \item 
+        Using part (a), show that there are no finite ordered fields.
+        
+    \end{enumerate}
+\end{document}
