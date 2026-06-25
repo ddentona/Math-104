@@ -4,7 +4,9 @@
 \usepackage{amsthm}
 \usepackage{enumitem}
 
-\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem}{Theorem}
+\newcommand{\cut}[1]{\ensuremath{#1^\star}}
+\newcommand{\mbbR}{\ensuremath{\mathbb{R}}}
 
 \renewcommand\qedsymbol{OE$\Delta$}
 
@@ -13,12 +15,85 @@
     $\mathbb{R}$ is an ordered field with the Least Upper Bound Property
 \end{theorem}
 \begin{proof}
-    Begin with the proof that $\mathbb{R}$ is an ordered field.
+    \textbf{Part 1: $\mathbb{R}$ is an ordered field.}
     
     For $\mathbb{R}$ to be an ordered field, it must be a field, it must be an ordered set, and it must satisfy the following:
     \begin{enumerate}[label=(\roman*)]
         \item   For all $a, b,$ and $c$ in $\mathbb{R}$, if $a < b$, then $a + c < b + c$.
         \item   If $a \leq b$ and $c \geq 0$, then $ac \leq bc$.
     \end{enumerate}
+
+    These are already a lot, and each of them can be expanded, so for organizational purposes, this will be organized as a nested list.
+    \begin{enumerate}
+        \item   \mbbR\ is a Field
+        \begin{enumerate}
+            \item   Additive
+            \begin{enumerate}
+                \item   There is an element $0$ in $\mathbb{R}$ such that $a + 0 = 0 + a = a$ for all $a$ in $\mathbb{R}$.
+                \item   Addition is \underline{associative}: for any $a, b,$ and $c$ in $\mathbb{R}$, $a + (b + c) = (a + b) + c$, so $a + b + c$ is unambiguous.
+                \item   Addition is \underline{commutative}: for all $a, b$ in $\mathbb{R}$, $a + b = b + a$.
+                \item   Addition has \underline{inverses}: for all $a$ in \mbbR, there exists some $b$ in \mbbR\ such that $a + b = 0$. $b$ is denoted as $-a$.
+            \end{enumerate}
+            \item   Multiplicative
+            \begin{enumerate}
+                \item   There is an element $1$ in $\mathbb{R}$ such that $a \cdot 1 = 1 \cdot a = a$ for all $a$ in $\mathbb{R}$.
+                \item   Multiplication is \underline{associative}: for any $a, b,$ and $c$ in $\mathbb{R}$, $a \cdot (b \cdot c) = (a \cdot b) \cdot c$, so $a b c$ is unambiguous.
+                \item   Multiplication is \underline{commutative}: for all $a, b$ in $\mathbb{R}$, $a \cdot b = b \cdot a$.
+                \item   Multiplication has \underline{inverses}: for all $a$ in \mbbR\ such that $a \neq 0$, there exists some $b$ in \mbbR\ such that $a \cdot b = 1$. $b$ is denoted as $a^{-1}$.
+            \end{enumerate}
+            \item   For all $a, b$, and $c$ in \mbbR, $a \cdot (b + c) = a \cdot b + a \cdot c$.
+        \end{enumerate}
+        \item   \mbbR\ is an ordered set: \mbbR\ has a relation $<$ such that:
+        \begin{enumerate}
+            \item   Exactly one of $a < b$, $a = b$, and $b < a$ is true.
+            \item   If $a < b$ and $b < c$, then $a < c$.
+        \end{enumerate}
+        \item   For all $a, b,$ and $c$ in $\mathbb{R}$, if $a < b$, then $a + c < b + c$.
+        \item   If $a \leq b$ and $c \geq 0$, then $ac \leq bc$.
+    \end{enumerate}
+
+    We can go through these one by one.
+    Before we begin, recall the definition of the real numbers, that \mbbR\ is the set of cuts.
+    A cut is a subset $\alpha$ of $\mathbb{Q}$ satisfying:
+    \begin{enumerate}
+        \item   $\alpha \neq \emptyset$ and $\alpha \neq \mathbb{Q}$.
+        \item   If $p$ is in $\alpha$ and $q < p$, then $q$ is in $\alpha$.
+        \item   If $p$ is in $\alpha$, then there exists some $r$ in $\alpha$ such that $p < r$.
+    \end{enumerate}
+    
+    \begin{center}
+        \textit{1.a.i: There is an element $0$ in $\mathbb{R}$ such that $a + 0 = 0 + a = a$ for all $a$ in $\mathbb{R}$.}
+    \end{center}
+        Let's call the additive identity $0^\star$\footnote{For any $x$, $x^\star = \{p \in \mathbb{Q} : p < x\}$}.
+        We can also define the operation $+$ for cuts $\alpha$ and $\beta$.
+        \begin{equation}
+            \alpha + \beta = \left\{ r + s : r \in \alpha, s \in \beta \right\}
+        \end{equation}
+
+        In this case, we can set $\beta = 0^\star$.
+        \begin{equation}
+            \alpha + 0^\star = \left\{ r + s : r \in \alpha, s \in \cut{0} \right\}
+        \end{equation}
+
+        Apply the associative property to the set definition.
+        \begin{equation}
+            \alpha + 0^\star = \left\{ s + r : s \in \cut{0}, r \in \alpha \right\} = \cut{0} + \alpha
+        \end{equation}
+
+        By the definition of the cuts, we can also make some statements about $r$ and $s$.
+        \begin{enumerate}
+            \item   For all $s$ in \cut{0}, $s < 0$.
+            \item   By the reflexive property, for all $r$ in $\alpha$, $r = r$.
+        \end{enumerate}
+        Add both of these together.
+        \begin{equation}
+            r + s < r + 0 = r
+        \end{equation}
+
+        Since for all $r$ in $\alpha$ and $s$ in \cut{0}, $r + s < r$.
+        This means every $r + s$ in $\alpha + \cut{0}$ is in $\alpha$.
+        This means that $\alpha \leq \alpha + \cut{0}$.
+
+        In order to prove that $\alpha \geq \alpha + \cut{0}$, we begin with some term $p$ in $\alpha + \cut{0}$, which is equal to the sum $r + s$ of terms $r$ in $\alpha$ and $s$ in \cut{0}.
 \end{proof}
 \end{document}
