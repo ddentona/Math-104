@@ -154,24 +154,38 @@
 
     \subsection{Solution (a)}
     \begin{proof}
-        First the forward direction.
+        First the forward direction, meaning (ii) implies (ii)'.
         
-        Take (ii), and suppose we set $a = 0$, rename $a$ to $b$, and rename $c$ to $b$.
-        This may be confusing, but what we have now is the following:
+        Take (ii), and suppose we set $a = 0$, rename $b$ to $a$, and rename $c$ to $b$.
+        This may be confusing, but what we end up with is the following:
 
-        (ii) For all $a, b \in F$ with $0 \leq a$ and $0 \leq b$, we have $0b \leq ab$.\\
-        Since this applies for all $a$ and $b$ in $F$, including those that are not equal to $0$, we can set the rule of only considering cases where $a \neq 0$ and $b \neq 0$.
-        Thereby, we can replace the $\leq$ signs with just $<$.
-
-        (ii) For all $a, b \in F$ with $0 < a$ and $0 < b$, we have $0b < ab$.\\
+        \begin{quote}
+            (ii) For all $a, b \in F$ with $0 \leq a$ and $0 \leq b$, we have $0b \leq ab$.
+        \end{quote}
+        
         We proved in class that $0x = 0$.
         Therefore, $0b = 0$ and we can replace $0b$ with just $0$.
-        We can also turn the inequalities around.
+        \begin{quote}
+            (ii) For all $a, b \in F$ with $0 \leq a$ and $0 \leq b$, we have $0 \leq ab$.
+        \end{quote}
 
-        (ii) For all $a, b \in F$ with $a > 0$ and $b > 0$, we have $ab > 0$.\\
-        This gets us to (ii)'.
+        Since this applies for all $a$ and $b$ in $F$, including those that are not equal to $0$, we can set the rule of only considering cases where $a \neq 0$ and $b \neq 0$.
+        Furthermore, we proved in class that if $x \neq 0$ and $y \neq 0$, then $xy \neq 0$.
+        Since $a \neq 0$ and $b \neq 0$, $ab \neq 0$
+        Thereby, we can replace the $\leq$ signs with just $<$.
+        \begin{quote}
+            (ii) For all $a, b \in F$ with $a > 0$ and $b > 0$, we have $ab > 0$.
+        \end{quote}
 
+        This gets us to (ii)'.\\
         Now for the backwards direction.
+        
+        Since $a > 0$ and $b > 0$, without loss of generality, $0 < a \leq b$.
+    \end{proof}
+
+    \subsection{Solution (b)}
+    \begin{proof}
+        We start by proving that for all $a, b,$ and $c$ in $F$ with $a \preceq b$, we have $a + c \preceq b + c$.
     \end{proof}
 
 \pagebreak
