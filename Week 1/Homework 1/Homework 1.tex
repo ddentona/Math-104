@@ -233,11 +233,82 @@
 
     \subsection{Solution (b)}
     \begin{proof}
-        We start by proving that for all $a, b,$ and $c$ in $\mathbb{Q}$ with $a \preceq b$, we have $a + c \preceq b + c$.
-        That is to say, for all $a, b,$ and $c$ in $\mathbb{Q}$ with $a \geq b$, we have $a + c \geq b + c$.
-        As in the textbook, let us define $r < s$ in $\mathbb{Q}$ to mean that $r - s$ is a positive rational number.
-    \end{proof}
+        The textbook says that $\mathbb{Q}$ is an ordered set if $r > s$ is defined to mean that $r - s$ is a positive rational number.
+        I will start by using this to prove that $\mathbb{Q}$ is an ordered field.
 
+        Every number $q$ in $\mathbb{Q}$ can be written in terms of one integer $a$ and one natural number $b$ in the form $q = \frac{a}{b}$.
+        Let there be three rational numbers $\frac{a}{b}$, $\frac{c}{d}$, and $\frac{e}{f}$ such that $\frac{a}{b} < \frac{c}{d}$.
+        Cross-multiply these fractions, bearing in mind that $b$ and $d$ are both positive non-zero integers, to get $ad < bc$.
+        Mutiply both sides by $f^2$ to get $adf^2 < bcf^2$.
+        Add the integer $bdef$ to both sides to get $adf^2 + bdef < bcf^2 + bdef$.
+        Apply the distributive property by $df$ on the left side and $bf$ on the right side to get $df(af + be) < bf(cf + de)$.
+        Divide both sides by $bf$ and $df$ to get $\frac{af + be}{bf} < \frac{cf + de}{df}$.
+        Separate both fractions into two and cancel out terms to get $\frac{a}{b} + \frac{e}{f} < \frac{c}{d} + \frac{e}{f}$.
+        This means that the rational numbers satisfy the first ordered field axiom.
+
+        Let there be three rational numbers $\frac{a}{b}$, $\frac{c}{d}$, and $\frac{e}{f}$ such that $\frac{a}{b} \leq \frac{c}{d}$ and $\frac{e}{f} \geq 0$.
+        Since $\frac{e}{f} \geq 0$, we can multiply both sides by $f$ to get $\frac{ef}{f} \geq 0f$.
+        Since we established in class that $0f = 0$, $\frac{ef}{f} \geq 0$.
+        By the multiplicative inverse, $\frac{f}{f} = 1$, so $\frac{ef}{f} = e \cdot 1 \geq 0$.
+        By the multiplicative identity, $e \cdot 1 = e \geq 0$.
+        Therefore, $e \geq 0$ and $f > 0$, and both are integers.
+        Multiply both sides of $e \geq 0$ by $f$ to get $ef \geq 0f = 0$ by what was established in class.
+        Therefore, $ef \geq 0$.
+        Take our initial inequality of equations $\frac{a}{b} \leq \frac{c}{d}$ and cross-multiply to get $ad \leq bc$.
+        Multiply both sides by $ef$ to get $adef \leq bcef$.
+        Divide both sides by $bf$ and $df$ to get $\frac{ae}{bf} \leq \frac{ce}{df}$.
+        These fractions can be separated to find $\frac{a}{b} \cdot \frac{e}{f} \leq \frac{c}{d} \cdot \frac{e}{f}$.
+        This means that the rational numbers satisfy the first ordered field axiom, and by extension that the rational number are an ordered field.
+
+        We start by proving that $\prec$ is an order on $\mathbb{Q}$.
+        We know that either $a < b$, $a = b$, or $a > b$.
+        Based on that and that $a > b$ means $a \prec b$, we find that either $a \succ b$, $a = b$, or $a \prec b$.\footnote{Could expand on this entire paragraph.}
+        Next, suppose that $a \succ b$ and $b \succ c$.
+        This means that $a < b$ and $b < c$. 
+        We know from the first ordered field axiom that if $a < b$ and $b < c$, then $a < c$, so in this case $a < c$.
+        Because of that, we can say that $a \succ c$.
+        In total, if $a \succ b$ and $b \succ c$, then $a \succ c$.
+        This all means that $\prec$ is an order on $\mathbb{Q}$.
+
+        Next, we prove that for all $a, b,$ and $c$ in $\mathbb{Q}$ with $a \preceq b$, we have $a + c \preceq b + c$.
+        That is to say, for all $a, b,$ and $c$ in $\mathbb{Q}$ with $a \geq b$, we have $a + c \geq b + c$.
+        Take the first field axiom, applied to the rational numbers.
+        \begin{quote}
+            (i) For all $a, b, c \in \mathbb{Q}$ with $a \leq b$, we have $a + c \leq b + c$.
+        \end{quote}
+        Swap $a$ and $b$.
+        \begin{quote}
+            (i) For all $a, b, c \in \mathbb{Q}$ with $b \leq a$, we have $b + c \leq a + c$.
+        \end{quote}
+        Swap every $\leq$ with $\succeq$, the two being equivalent since $a \prec b$ if and only if $a > b$ and $a = b$ being possible either way.
+        \begin{quote}
+            (i) For all $a, b, c \in \mathbb{Q}$ with $b \succeq a$, we have $b + c \succeq a + c$.
+        \end{quote}
+        Ergo, axiom (i) is true for $\prec$.
+
+        Axiom (ii) can be proven impossible by counterexample.
+        First, we restate the axiom for $<$. 
+        \begin{quote}
+            (ii) For all $a, b, c \in F$ with $a \leq b$ and $0 \leq c$, we have $ac \leq bc$.
+        \end{quote}
+        Replace $<$ with $\prec$ and $\leq$ with $\preceq$.
+        \begin{quote}
+            (ii) For all $a, b, c \in F$ with $a \preceq b$ and $0 \preceq c$, we have $ac \preceq bc$.
+        \end{quote}
+        Based on the definition of $\prec$, we can replace $a \preceq b$ with $a \geq b$, $0 \preceq c$ with $0 \geq c$, and $ac \preceq bc$ with $ac \geq bc$.
+        \begin{quote}
+            (ii) For all $a, b, c \in F$ with $a \geq b$ and $0 \geq c$, we have $ac \geq bc$.
+        \end{quote}
+        Suppose that $a = 2$, $b = 1$, and $c = -1$.
+        Since $2 \geq 1$, $a \geq b$.
+        Since $0 \geq -1$, $0 \geq c$.
+        $ac$ is equal to $-2$ and $bc$ is equal to $-1$.
+        Since $-2 < -1$, $ac < bc$, which means that $ac \ngeq bc$, which contradicts the second field axiom.
+        As such, axiom (ii) fails.
+
+        Ergo, $(\mathbb{Q}, \prec)$ is an ordered set but not an ordered field.
+    \end{proof}
+    
 \pagebreak
 \section{Exercise 4}
     Let $S \subset \mathbb{R}$ be nonempty and bounded from above. Let $a = \sup S$.
@@ -249,6 +320,30 @@
         Suppose $a \notin S$. Show that, for any real $\epsilon > 0$, there are infinitely many elements of $S$ in the open interval $(a - \epsilon, a)$.
     \end{enumerate}
 
+    \subsection{Solution (a)}
+    \begin{proof}[Proof by Contradiction]
+        Suppose for contradiction that, for any real $\epsilon > 0$, there does not exist $x \in S$ with $x > a - \epsilon$.
+        This means that, for all $x \in S$, $x \leq a - \epsilon$.
+        This means that $a - \epsilon$ is an upper bound of $S$.
+        
+        We know that $\epsilon > 0$.
+        Add $a$ to both sides of $S$, which through the first ordered field axiom and the fact that $\mathbb{R}$ is an ordered field means that $a + \epsilon > a$.
+        By the additive inverse property of fields, there exists some $-\epsilon$ such that $\epsilon + (-\epsilon) = 0$.
+        Add $-\epsilon$ to both sides of $a + \epsilon > a$ to get $a + \epsilon - \epsilon > a - \epsilon$.
+        By the additive inverse property of fields, $a + \epsilon - \epsilon = a > a - \epsilon$.
+
+        Therefore, there exists an upper bound of $S$ that is less than $a$ in the form of $a - \epsilon$.
+        Therefore, $a$ is not the least upper bound of $S$.
+        This contradicts that $a$ is the least upper bound of $S$, so our initial assumption must be false.
+        Ergo, for any real $\epsilon > 0$, there is $x \in S$ with $x > a - \epsilon$.
+    \end{proof}
+
+    \subsection{Solution (b)}
+    \begin{proof}
+        An infinite number of elements in the interval means that the elements can be mapped onto the natural numbers or a set with a larger cardinality.
+    \end{proof}
+
+\pagebreak
 \section{Exercise 5}
     For an integer $m \geq 2$, we define $\mathbb{Z}/m\mathbb{Z}$ to be the set $\{0, 1, \dots, m - 1\}$, together with the operations of addition and multiplication modulo $m$. That is, to add two elements of $m$, we add them as we normally would and then take the remainder upon division by $m$. Multiplication is defined similarly. Thus, in $\mathbb{Z}/5\mathbb{Z}$ for example, we have $2 - 4 = 3$ and $4 \cdot 4 = 1$.
 
