@@ -158,7 +158,6 @@
         
         Take (ii), and suppose we set $a = 0$, rename $b$ to $a$, and rename $c$ to $b$.
         This may be confusing, but what we end up with is the following:
-
         \begin{quote}
             (ii) For all $a, b \in F$ with $0 \leq a$ and $0 \leq b$, we have $0b \leq ab$.
         \end{quote}
@@ -171,7 +170,7 @@
 
         Since this applies for all $a$ and $b$ in $F$, including those that are not equal to $0$, we can set the rule of only considering cases where $a \neq 0$ and $b \neq 0$.
         Furthermore, we proved in class that if $x \neq 0$ and $y \neq 0$, then $xy \neq 0$.
-        Since $a \neq 0$ and $b \neq 0$, $ab \neq 0$
+        Since $a \neq 0$ and $b \neq 0$, $ab \neq 0$.
         Thereby, we can replace the $\leq$ signs with just $<$.
         \begin{quote}
             (ii) For all $a, b \in F$ with $a > 0$ and $b > 0$, we have $ab > 0$.
@@ -181,11 +180,62 @@
         Now for the backwards direction.
         
         Since $a > 0$ and $b > 0$, without loss of generality, $0 < a \leq b$.
+        Focus on the latter two terms, $a \leq b$.
+        Part (i) tells us we can add $-a$, the additive inverse of $a$, to all sides and end up with $a - a \leq b - a$.
+        By the additive inverse axiom, we know that $a - a = 0$.
+        Therefore, $0 \leq b - a$.'
+        Let there also be some $0 \leq c$.
+        From here, we bifurcate our proof between (1) $0 < b - a$ and $0 < c$, (2) $0 < b - a$ and $0 = c$, (3) $0 = b - a$ and $0 < c$, and (4) $0 = b - a$ and $0 = c$ cases.
+
+        (1) First, $0 < b - a$ and $0 < c$.
+        By the axiom (ii)', since $0 < b - a$ and $0 < c$, $0 < c(b - a)$.
+        By the distributive property, $c(b - a) = bc - ac$, so $0 < bc - ac$.
+        The additive inverse axiom tells us that there exists some $-(-ac)$ such that $ac + (-(-ac)) = 0$.
+        Part (i) tells us we can add $-(-ac)$ to all sides, so $-(-ac) < bc - ac - (-ac)$.
+        In class, we proved that $-(-x) = x$, so $-(-ac) = ac$, which we can replace in the equation to get $ac < bc - ac + ac$.
+        The commutative property lets us say that $ac < bc + ac - ac$.
+        By the additive inverse axiom, $ac - ac = 0$.
+        Therefore, $ac < bc + 0$.
+        By the additive identity, $bc + 0 = bc$, so $ac < bc$, and by extension $ac \leq bc$.
+
+        (2) Second, $0 < b - a$ and $0 = c$.
+        If we multiply $(b - a)$ by $c$, it is the equivalent to multiplying $(b - a)$ by $0$.
+        This means that $c(b - a) = 0(b - a)$.
+        In class, we proved that for all $x$, $0x = 0$.
+        This means that $c(b - a) = 0(b - a) = 0$.
+        The distributive property says that $c(b - a) = bc - ac$.
+        Putting this together, we find $bc - ac = 0$.
+        We can add $-(-ac)$, rewritten as $ac$, to both sides to find $bc - ac + ac = ac$.
+        By the commutative property, $bc + ac - ac = ac$.
+        By the additive identity axion, $bc = ac$, and by extension $ac \leq bc$.
+
+        (3) Third, $0 = b - a$ and $0 < c$.
+        If we multiply $(b - a)$ by $c$, it is the equivalent to multiplying $c$ by $0$.
+        This means that $c(b - a) = c \cdot 0$.
+        By the commutative property fo multiplication, $c(b - a) = (b - a)c$ and $c \cdot 0 = 0c$, so $(b - a)c = 0c$.
+        In class, we proved that for all $x$, $0x = 0$.
+        This means that $(b - a)c = 0c = 0$.
+        The distributive property says that $(b - a)c = bc - ac$.
+        Putting this together, we find $bc - ac = 0$.
+        We can add $-(-ac)$, rewritten as $ac$, to both sides to find $bc - ac + ac = ac$.
+        By the commutative property, $bc + ac - ac = ac$.
+        By the additive identity axion, $bc = ac$, and by extension $ac \leq bc$.
+
+        (4) Last, $0 = b - a$ and $0 = c$.
+        We can add $-(-a)$, which we proved in class is equal to $a$, to $0 = b - a$ to get $a = b - a + a$.
+        The commutative property tells us that $a = b + a - a$.
+        The additive inverse axiom says that $a = b + 0$.
+        The additive identity axiom says that $b = b + 0$, so $a = b$.
+        Multiply both sides by $c$ to get $ac = bc$, and by extension $ac \leq bc$.
+
+        Ergo, this proves that if $a \leq b$ and $c \geq 0$, $ac \leq bc$.
     \end{proof}
 
     \subsection{Solution (b)}
     \begin{proof}
-        We start by proving that for all $a, b,$ and $c$ in $F$ with $a \preceq b$, we have $a + c \preceq b + c$.
+        We start by proving that for all $a, b,$ and $c$ in $\mathbb{Q}$ with $a \preceq b$, we have $a + c \preceq b + c$.
+        That is to say, for all $a, b,$ and $c$ in $\mathbb{Q}$ with $a \geq b$, we have $a + c \geq b + c$.
+        As in the textbook, let us define $r < s$ in $\mathbb{Q}$ to mean that $r - s$ is a positive rational number.
     \end{proof}
 
 \pagebreak
