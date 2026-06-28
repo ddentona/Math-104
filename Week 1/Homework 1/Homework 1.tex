@@ -403,6 +403,7 @@
     
     \subsection{Solution (b)}
     \begin{proof}
+        For the multiplicative identity to hold in set $\mathbb{Z}/p\mathbb{Z}$ for prime $p$, for all integers $b$ with $0 < b < p$, there must exist some integers $x$ and $y$ with $0 < y < p$ such that, in the set of all integers, $by = px + 1$.
         Before we completely prove this, we prove that any integer multiplied by 10 ends in a zero.
 
             For any integer $S$, $k$ digits long, we can write it as $S = \sum_{i = 0}^{k} d_i \times 10^i$, where every $d_i$ is in the set $\{0, 1, 2, \dots, 9\}$.
@@ -415,6 +416,34 @@
         Recall B\'ezout's identity, which says that if integers $a$ and $b$ are coprime, then there exist integers $x$ and $y$ such that $ax + by = 1$.
         In our set $\mathbb{Z}/p\mathbb{Z}$, $p$ is prime, so it is coprime with every number in the set $\{1, 2, \dots, p - 1\}$.
         Set $a$ to be equal to $p$, and suppose $b$ is in the set $\{1, 2, \dots, p - 1\}$.
+        This means that there exist integers $x$ and $y$ such that $px + by = 1$.
+        Without loss of generality, if we replace $x$ with $-x$ and use the commutative property, we get $by - px = 1$.
+        Adding $px$ (the additive inverse of $-px$) to both sides, we get $by - px + px = 1 + px$.
+        The commutative property tells us that $by + px - px = px + 1$.
+        The definition of the additive inverse tells us that $by + 0 = px + 1$.
+        The additive identity tells us that $by = px + 1$.
+        In the system $\mathbb{Z}/p\mathbb{Z}$, $p \equiv 0$.
+        By extension, this means that for any integer $n$, $np \equiv 0$.
+        Add $1$ to both sides to find that for any integer $n$, $np + 1 \equiv 1$.
+        Suppose that $n = x$.
+        This means that $xp + 1 \equiv 1$.
+        By the commutative property, $px + 1 \equiv 1$.
+        In the system $\mathbb{Z}/p\mathbb{Z}$, since $by = px + 1$, $by \equiv px + 1$.
+        Transistively, this means that $by \equiv 1$.
+        If we can ensure that this would hold in a case where $0 < y < p$, then we can prove the axiom holds.
+
+        If $by < p$, that already means that $y < p$, so we will not be considering that.
+        If $by = p$, that means that either $y < p$ or $y = p$, so we will not be considering the former and for the latter, $by \equiv 0$ in the system $\mathbb{Z}/p\mathbb{Z}$.
+        Suppose that $p < by$.
+        We already know that $b < p$.
+        By the archimedean principle, there is an integer $j$ such that $kb < p < (k + 1)b$.
+        Multiplying everything by $y$, we find that $kby < py < (k + 1)by$.
+        Add the additive inverse of $kby$ to all sides to find that $kby - kby < py - kby < (k + 1)by - kby$.
+        By the distributive property, $(k + 1)by = kby + by$, meaning $kby - kby < py - kby < kby + by - kby$.
+        By the commutative property, $kby - kby < py - kby < kby - kby + by$.
+        By the additive inverse, $0 < py - kby < by$.
+        By the distributive property, $0 < (p - kb)y < by$.
+        This means that there is some integer $p - kb$ such that 
     \end{proof}
 
 \pagebreak
