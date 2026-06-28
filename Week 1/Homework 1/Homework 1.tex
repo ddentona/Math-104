@@ -386,8 +386,26 @@
     \subsection{Solution (a)}
     \begin{proof}
         Having a multiplicative inverse in a set means that for any number $a$ in that set there exists some number $a^{-1}$ also in that set for which $a \cdot a^{-1} = 1$.
+        If $m$ is a composite number, that means that there exists some two other integers $j$ and $k$ greater than or equal to $2$ such that $m = j \cdot k$.
+
+        Without loss of generality, focus on $j$.
+        We know that $j \ge 2$.
+        Since $2 > 1$, by the transistive property (if $j > 2$, otherwise just substitution), $j > 1$.
+        If we add this to, for any $n \geq 0$, $njk = njk$ (which comes from the reflexive property), we get $njk + j > njk + 1$.
+        By the distributive property, $j(nk + 1) > njk + 1$.
+        We also know that $1 > 0$, which can be added to $njk = njk$ to get $njk + 1 > njk + 0 = njk$.
+        Putting these together, we get $j(nk + 1) > njk + 1 > njk$.
+
+        This tells us that $njk + 1$ will always be between $njk$ and $njk + j$, which are consecutive multiples of $j$, but will not be equal to either of them so long as $j \geq 2$.
+        Taking the modulus of this past statement of base $jk$, we find that $1$ will always be between $0$ and $j$, which are consecutive multiples of $j$, but will not be equal to either of them so long as $j \geq 2$.
+        Ergo, in $\mathbb{Z}/m\mathbb{Z}$ where $m$ is composite, the axiom ($\ast$) will fail.
     \end{proof}
     
+    \subsection{Solution (b)}
+    \begin{proof}
+        
+    \end{proof}
+
 \pagebreak
 \section{Exercise 6}
     Let $F$ be a finite field with identities $0$ and $1$.

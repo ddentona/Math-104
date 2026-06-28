@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1782608654.88364 "/Users/denton/Documents/other/Math 104/Week 1/Homework 1/Homework 1.tex" "Homework 1.pdf" "Homework 1" 1782608655.29567 0
-  "/Users/denton/Documents/other/Math 104/Week 1/Homework 1/Homework 1.tex" 1782608654.70791 23216 0a9e1fa2470de322d1da248d7305bccb ""
+["pdflatex"] 1782613299.57186 "/Users/denton/Documents/other/Math 104/Week 1/Homework 1/Homework 1.tex" "Homework 1.pdf" "Homework 1" 1782613299.992 0
+  "/Users/denton/Documents/other/Math 104/Week 1/Homework 1/Homework 1.tex" 1782613298.96925 24498 2e7ba916fa347bce36ad4a435340b96f ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -67,8 +67,8 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1752176730 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "Homework 1.aux" 1782608655.24732 1565 0595c0d3e9510ee1ff440a1d9fd7f1e9 "pdflatex"
-  "Homework 1.tex" 1782608654.70791 23216 0a9e1fa2470de322d1da248d7305bccb ""
+  "Homework 1.aux" 1782613299.94516 1670 8fc0706f952f0869bddea8867f3a692b "pdflatex"
+  "Homework 1.tex" 1782613298.96925 24498 2e7ba916fa347bce36ad4a435340b96f ""
   (generated)
   "Homework 1.aux"
   "Homework 1.log"
