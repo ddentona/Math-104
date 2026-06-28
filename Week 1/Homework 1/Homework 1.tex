@@ -341,6 +341,28 @@
     \subsection{Solution (b)}
     \begin{proof}
         An infinite number of elements in the interval means that the elements can be mapped onto the natural numbers or a set with a larger cardinality.
+
+        We can define a set $Z$ recursively. 
+        Suppose that the first element of $Z$, denoted $\zeta_0$, is equal to $a - \epsilon$.
+        As established in part (a), there exists some $x$ in $S$ with $x > a - \epsilon$.
+        We can create a new set $X$ and call the $x$ in $S$ with $x > a - \epsilon$, $x_1$.
+        Since $a$ is the least upper bound of $S$, it is an upper bound of $S$, meaning that because $x_0$ is in $S$, $x_1 < a$.
+        
+        Now, suppose that we have element $n$ (in the natural numbers) of $x$, denoted $x_n$, which is an element of $S$.
+        Since $x_n$ is an element of $S$ and $a$ is an upper bound of $S$, $x_n < a$.
+        Add the additive inverse of $x_n$, $-x_n$, to both sides, which due to the first ordered field axiom becomes $x_n - x_n < a - x_n$.
+        By the additive inverse definition, $x_n - x_n = 0$, so $0 < a - x_n$.
+        Since $\mathbb{R}$ is a field and fields are closed under addition, $a - x_n$ is a real number.
+        We can denote $a - x_n$ as $\zeta_n$.
+        Since $\zeta_n$ is real and greater than $0$, it is possible that some new $\epsilon = \zeta_n$.
+        Now take $a - \zeta_n$.
+        As established in part (a), there exists some $x$ in $S$ with $x > a - \zeta_n$.
+        We can call the $x$ in $S$ with $x > a - \zeta_n$ that we just discovered existed $x_{n + 1}$.
+
+        This pairs up our subset of the set of elements of $S$ in the open interval $(a - \epsilon, a)$ with the natural numbers.
+        This means that the cardinality of the natural numbers is less than or equal to the cardinality of the set of elements of $S$ in the open interval $(a - \epsilon, a)$.
+        The cardinality of the natural numbers is countably infinite.
+        Ergo, the cardinality of the set of elements of $S$ in the open interval $(a - \epsilon, a)$ is infinite.
     \end{proof}
 
 \pagebreak
@@ -361,6 +383,12 @@
     \end{enumerate}
     \textit{Hint for part (b):} You may use \textit{B\'ezout's identity} from number theory: if $a, b \in \mathbb{Z}$ are coprime then there are $x, y \in \mathbb{Z}$ so that $ax + by = 1$. Then use that for a prime $p$, the integers $1, 2, \dots, p - 1$ are all coprime to $p$. You may also use the \textit{Euclidean division theorem}: namely if $b$ is a positive integer, then any $a \in \mathbb{Z}$ may be written uniquely as $a = bq + r$, where $0 \leq r < b$.
 
+    \subsection{Solution (a)}
+    \begin{proof}
+        Having a multiplicative inverse in a set means that for any number $a$ in that set there exists some number $a^{-1}$ also in that set for which $a \cdot a^{-1} = 1$.
+    \end{proof}
+    
+\pagebreak
 \section{Exercise 6}
     Let $F$ be a finite field with identities $0$ and $1$.
     \begin{enumerate}[label=(\alph*)]
