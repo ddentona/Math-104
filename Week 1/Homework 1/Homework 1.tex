@@ -499,9 +499,10 @@
     \end{proof}
 
     \subsection{Solution (b)}
-    \begin{proof}[Proof by Contradiction]
-        Suppose for contradiction that $n$ is composite.
-        This means that there exists some two integers $a$ and $b$ such that $n = ab$ and (without loss of generality) $1 < a \leq b < n$.
+    \begin{proof}
+        Suppose that $\underbrace{1 + \dots + 1}_{n \text{ times}} = 0$.
+        There exists some two integers $a$ and $b$ such that $n = ab$ and (without loss of generality between $a$ and $b$) $1 \leq a \leq b \leq n$.
+        If $n$ is prime, then one of $a$ or $b$ is equal to $1$, and the other is equal to $n$.
 
         Take the case of $\underbrace{1 + \dots + 1}_{n \text{ times}}$.
         By the fact we are given and our earlier statement that $n = ab$, we can say that $\underbrace{1 + \dots + 1}_{n \text{ times}} = \underbrace{1 + \dots + 1}_{ab \text{ times}} = \underbrace{(1 + \dots + 1)}_{a \text{ times}} \underbrace{(1 + \dots + 1)}_{b \text{ times}}$.
