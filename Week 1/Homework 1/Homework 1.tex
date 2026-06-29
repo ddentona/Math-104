@@ -428,22 +428,23 @@
         Suppose that $n = x$.
         This means that $xp + 1 \equiv 1$.
         By the commutative property, $px + 1 \equiv 1$.
-        In the system $\mathbb{Z}/p\mathbb{Z}$, since $by = px + 1$, $by \equiv px + 1$.
+        In the system $\mathbb{Z}/p\mathbb{Z}$, since $by = px + 1$, $by \equiv px + 1 \mod p$.
         Transistively, this means that $by \equiv 1$.
         If we can ensure that this would hold in a case where $0 < y < p$, then we can prove the axiom holds.
 
-        If $by < p$, that already means that $y < p$, so we will not be considering that.
-        If $by = p$, that means that either $y < p$ or $y = p$, so we will not be considering the former and for the latter, $by \equiv 0$ in the system $\mathbb{Z}/p\mathbb{Z}$.
-        Suppose that $p < by$.
-        We already know that $b < p$.
-        By the archimedean principle, there is an integer $j$ such that $kb < p < (k + 1)b$.
-        Multiplying everything by $y$, we find that $kby < py < (k + 1)by$.
-        Add the additive inverse of $kby$ to all sides to find that $kby - kby < py - kby < (k + 1)by - kby$.
-        By the distributive property, $(k + 1)by = kby + by$, meaning $kby - kby < py - kby < kby + by - kby$.
-        By the commutative property, $kby - kby < py - kby < kby - kby + by$.
-        By the additive inverse, $0 < py - kby < by$.
-        By the distributive property, $0 < (p - kb)y < by$.
-        This means that there is some integer $p - kb$ such that 
+        Since there is the requirement of $b < p$, we can multiply both sides by $y$ to find that $by < py$.
+        We want $y < p$. 
+        We can multiply both sides of the inequality by $b$ to find that we want $by < bp$.
+        If $y < p$ already, we're in good company and the rest of this proof is moot.
+        If not, we can multiply both sides of $y < p$ by $p$ (which is a positive integer) to find that we want $py < p^2$.
+        Since $by < py$ and we want it to be that $py < p^2$, transistively it is true that $by < py < p^2$.
+        By the Euclidean division theorem, because both $by$ and $bp$ are positive integers, $by$ can be written uniquely as $by = bp q + r$.
+        By the additive inverse, $by - bp q = r$.
+        By the distributive property, $b(y - pq) = r$, so there is an integer multiple of $p$ that is equal to $r$ and furthermore less than $bp$.
+        Furthermore, since $pqy$ is an integer multiple of $p$ and $by$, and we previously established that it would not change that adding or subtracting a multiple of $p$ from an integer would not change its congruency modulo $p$, so we can safely say that $b(y - pq) \equiv 1 \mod p$.
+        That means that if we set $y' = y - pq$, then $by' < bp$, by extension $y' < p$, and $by' \equiv 1 \mod p$.
+        Therefore, in the set $\mathbb{Z}/p\mathbb{Z}$, $by' = 1$.
+        Ergo, axiom ($\ast$) holds.
     \end{proof}
 
 \pagebreak
@@ -460,4 +461,6 @@
         Using part (a), show that there are no finite ordered fields.
         
     \end{enumerate}
+
+    \subsection{Solution (a)}
 \end{document}
