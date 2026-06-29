@@ -463,4 +463,49 @@
     \end{enumerate}
 
     \subsection{Solution (a)}
+    \begin{proof}
+        The key term here is finite.
+        This means that the cardinality of $F$ is some finite number $k$.
+        $F$ being a field, a field axiom says that it is closed under addition.
+        We know that $1$, being the multiplicative identity, is contained in $F$.
+        The additive identity $0$ is also contained in $F$.
+
+        We can prove by induction that any sum $\underbrace{1 + \dots + 1}_{n \text{ times}}$ is in $F$.
+            The base case is where $n = 1$ and the sum is just $1$, which we know is in $F$.
+            The inductive step coems first from $\underbrace{1 + \dots + 1}_{n \text{ times}}$, which we assume is in $F$.
+            Add $1$ (in $F$) to this and we get $\underbrace{1 + \dots + 1}_{n \text{ times}} + 1$, which is in $F$ because $F$ is a field, which is closed under addition.
+            $\underbrace{1 + \dots + 1}_{n \text{ times}} + 1$ can be rewritten as $\underbrace{1 + \dots + 1}_{n + 1 \text{ times}}$.
+            Ergo, $\underbrace{1 + \dots + 1}_{n \text{ times}}$ being in $F$ implies $\underbrace{1 + \dots + 1}_{n + 1 \text{ times}}$ being in $F$.
+
+        $F$ is finite, and therfore by the Pigeonhole Principle, there must be two sums of the forms $\underbrace{1 + \dots + 1}_{m \text{ times}}$ and $\underbrace{1 + \dots + 1}_{n \text{ times}}$ such that $m \neq n$ where $\underbrace{1 + \dots + 1}_{m \text{ times}} = \underbrace{1 + \dots + 1}_{n \text{ times}}$.
+        Without loss of generality, suppose that $m > n$.
+            This is possible because $m$ and $n$ are integers, which are ordered.
+        By the additive inverse axiom, there exists some $-\left( \underbrace{1 + \dots + 1}_{n \text{ times}} \right)$ such that $\underbrace{1 + \dots + 1}_{n \text{ times}} - \left( \underbrace{1 + \dots + 1}_{n \text{ times}} \right) = 0$.
+        We can add this inverse to the earlier inequality to find that $\underbrace{1 + \dots + 1}_{m \text{ times}} - \left( \underbrace{1 + \dots + 1}_{n \text{ times}} \right) = \underbrace{1 + \dots + 1}_{n \text{ times}} - \left( \underbrace{1 + \dots + 1}_{n \text{ times}} \right)$.
+        By the earlier additive inverse, $\underbrace{1 + \dots + 1}_{m \text{ times}} - \left( \underbrace{1 + \dots + 1}_{n \text{ times}} \right) = 0$.
+            We can distribute the negatives in the second term to get $\underbrace{1 + \dots + 1}_{m \text{ times}} + \left( \underbrace{-1 - \dots - 1}_{n \text{ times}} \right) = 0$.
+            Since $m > n$, we can pair up every number from the latter term with one from the former term, ending up with $\underbrace{(1 - 1) + \dots + (1 - 1)}_{n \text{ times}} + \underbrace{1 + \dots + 1}_{m - n \text{ times}} = 0$.
+            By the additive inverse, $1 - 1 = 0$, so $\underbrace{0 + \dots + 0}_{n \text{ times}} + \underbrace{1 + \dots + 1}_{m - n \text{ times}} = 0$.
+            The additive identity tells us that $a + 0 = 0 + a = a$, so we can say that $\underbrace{1 + \dots + 1}_{m - n \text{ times}} = 0$.
+        
+        Since $m > n$, $m - n > 0$.
+            Integers being closed under addition, $m - n$ would have to be an integer.
+            Therefore, since $m - n > 0$, the minimum possible integer it could be is $1$, so $m - n \geq 1$.
+        Now, suppose that $m - n = 1$.
+        That would mean that $0 = \underbrace{1 + \dots + 1}_{m - n \text{ times}} = \underbrace{1 + \dots + 1}_{1 \text{ time}} = 1$.
+        This would mean that $1 = 0$, which is impossible in a field, so so $m - n \neq 1$.
+        The next smallest integer that $m - n$ could be is $2$, so $m - n \geq 2$.
+        Ergo, for integer $p = m - n \geq 2$, $\underbrace{1 + \dots + 1}_{p \text{ times}} = 0$.
+    \end{proof}
+
+    \subsection{Solution (b)}
+    \begin{proof}[Proof by Contradiction]
+        Suppose for contradiction that $n$ is composite.
+        This means that there exists some two integers $a$ and $b$ such that $n = ab$ and (without loss of generality) $1 < a \leq b < n$.
+
+        Take the case of $\underbrace{1 + \dots + 1}_{n \text{ times}}$.
+        By the fact we are given and our earlier statement that $n = ab$, we can say that $\underbrace{1 + \dots + 1}_{n \text{ times}} = \underbrace{1 + \dots + 1}_{ab \text{ times}} = \underbrace{(1 + \dots + 1)}_{a \text{ times}} \underbrace{(1 + \dots + 1)}_{b \text{ times}}$.
+        We can say that $\underbrace{1 + \dots + 1}_{a \text{ times}} = \alpha$ and $\underbrace{1 + \dots + 1}_{b \text{ times}} = \beta$.
+        Therefore, $\underbrace{(1 + \dots + 1)}_{a \text{ times}} \underbrace{(1 + \dots + 1)}_{b \text{ times}} = \alpha \beta$.
+    \end{proof}
 \end{document}
