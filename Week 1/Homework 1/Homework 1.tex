@@ -499,14 +499,62 @@
     \end{proof}
 
     \subsection{Solution (b)}
-    \begin{proof}
-        Suppose that $\underbrace{1 + \dots + 1}_{n \text{ times}} = 0$.
-        There exists some two integers $a$ and $b$ such that $n = ab$ and (without loss of generality between $a$ and $b$) $1 \leq a \leq b \leq n$.
+    \begin{proof}[Proof by Contradiction]
+        Suppose for contradiction that $n$ is composite. 
+        Suppose also that $n$ is the smallest integer such that $\underbrace{1 + \dots + 1}_{n \text{ times}} = 0$.
+        There exists some two integers $a$ and $b$ such that $n = ab$ and (without loss of generality between $a$ and $b$) $1 < a \leq b < n$.
         If $n$ is prime, then one of $a$ or $b$ is equal to $1$, and the other is equal to $n$.
 
         Take the case of $\underbrace{1 + \dots + 1}_{n \text{ times}}$.
         By the fact we are given and our earlier statement that $n = ab$, we can say that $\underbrace{1 + \dots + 1}_{n \text{ times}} = \underbrace{1 + \dots + 1}_{ab \text{ times}} = \underbrace{(1 + \dots + 1)}_{a \text{ times}} \underbrace{(1 + \dots + 1)}_{b \text{ times}}$.
         We can say that $\underbrace{1 + \dots + 1}_{a \text{ times}} = \alpha$ and $\underbrace{1 + \dots + 1}_{b \text{ times}} = \beta$.
         Therefore, $\underbrace{(1 + \dots + 1)}_{a \text{ times}} \underbrace{(1 + \dots + 1)}_{b \text{ times}} = \alpha \beta$.
+
+        In class, we proved that if $x \neq 0$ and $y \neq 0$, then $xy \neq 0$.
+        The contrapositive of this says that if $xy = 0$, then $x = 0$ or $y = 0$.
+        Since $\alpha \beta = 0$, then $\alpha = 0$ or $\beta = 0$.
+        This means that either $\underbrace{1 + \dots + 1}_{a \text{ times}} = 0$ or $\underbrace{1 + \dots + 1}_{b \text{ times}} = 0$.
+
+        According to the textbook, the rationals are an ordered field (p.7).
+        That means that if $x > 0$ and $y < z$, then $xy < xz$ (p.8).
+        We know that $b \geq 2$, meaning $b > 1$.
+        We also know that $a \geq 2$ meaning $a > 0$.
+        Therefore, $a < ab$.
+        We can use the same logic with swapped variables to show that $b < ab$.
+        We earlier established that either $\underbrace{1 + \dots + 1}_{a \text{ times}} = 0$ or $\underbrace{1 + \dots + 1}_{b \text{ times}} = 0$.
+        Since both $a$ and $b$ are less than $ab$ and $n = ab$, that means that there is some number $c$ (which is either $a$ or $b$) less than $n$ such that $\underbrace{1 + \dots + 1}_{c \text{ times}} = 0$.
+        This contradicts that $n$ is the \textit{smallest} integer for which the property holds.
+        Therefore, $n$ cannot be composite.
+        Ergo, $n$ is prime.
+
+        The reason that this does not work when $n$ is prime is that the only integer divisors of $n$ are $1$ and $n$.
+        It cannot be that $\underbrace{1 + \dots + 1}_{1 \text{ time}} = 0$ because $\underbrace{1 + \dots + 1}_{1 \text{ time}} = 1$, which would mean that $1 = 0$, cannot be true.
+        If $\underbrace{1 + \dots + 1}_{n \text{ times}} = 0$, that is just circular logic, so it's already true and gives us no new information.
+    \end{proof}
+
+    \subsection{Solution (c)}
+    \begin{proof}[Proof by Contradiction]
+        Suppose for contradiction that $F$ is an ordered field.
+        Since an ordered field is an ordered set which satisfies a handful of axioms, that means $F$ is an ordered set.
+
+        In part (a), we proved that in a finite field, there exists some number $n \geq 2$ such that $\underbrace{1 + \dots + 1}_{n \text{ times}} = 0$.
+        Part (b) established that there is a smallest integer $n$ where that is the case.
+        Associatively, $\underbrace{1 + \dots + 1}_{n \text{ times}}$ is equal to $\underbrace{1 + \dots + 1}_{n - 1 \text{ times}} + 1$.
+
+        One of the axioms of the ordered fields is that if $x, y,$ and $z$ are in $F$ and $y < z$, then $x + y < x + z$.
+        We can prove by induction that $0 < \underbrace{1 + \dots + 1}_{n \text{ times}}$.
+        We know that $0 < 1$, which acts as our base case.
+        For the inductive step, we assume that $0 < \underbrace{1 + \dots + 1}_{k \text{ times}}$ and add $\underbrace{1 + \dots + 1}_{n \text{ times}}$ to both sides of $0 < 1$.
+        We end up with $0 + \underbrace{1 + \dots + 1}_{k \text{ times}} < 1 + \underbrace{1 + \dots + 1}_{k \text{ times}}$.
+        By the commutative property and the additive identity being $0$, $\underbrace{1 + \dots + 1}_{k \text{ times}} < \underbrace{1 + \dots + 1}_{k \text{ times}} + 1$.
+        We previously established that $\underbrace{1 + \dots + 1}_{k \text{ times}} + 1 = \underbrace{1 + \dots + 1}_{k + 1 \text{ times}}$.
+        Transistively, this means $0 < \underbrace{1 + \dots + 1}_{k + 1 \text{ times}}$.
+        Therefore, for all natural numbers $k$ (which integers $k \geq 2$ is a subset of), $0 < \underbrace{1 + \dots + 1}_{k \text{ times}}$.
+
+        Suppose now that for some $n \geq 2$, $0 = \underbrace{1 + \dots + 1}_{n \text{ times}}$, which we established as possible in part (a).
+        According to our inductive proof, for that $n \geq 2$, $0 < \underbrace{1 + \dots + 1}_{n \text{ times}}$.
+        Both of these being true contradicts the first axiom of the ordered sets, which says that one and only one of the statements in the set $\{x < y, x = y, y < x\}$ is true.
+        Therefore, our initial assumption is false.
+        Ergo, $F$ is not an ordered field and no finite ordered field exists.
     \end{proof}
 \end{document}
