@@ -7,13 +7,30 @@
 \usepackage{multicol}
 
 \newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
+\title{Homework \#1\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
+\date{July 3, 2026}
+\author{Donald Aingworth IV}
 
 \begin{document}
 \renewcommand\qedsymbol{OE$\Delta$}
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\andtxt}{\text{ and }}
+\newcommand{\Ais}{\ensuremath{\overset{A}{=}}}
+\newcommand{\Cis}{\ensuremath{\overset{C}{=}}}
 \newcommand{\mathif}{\text{if }}
 \newcommand{\seq}[2][n]{\ensuremath{(#2 _{#1})}}
+\newcommand{\zz}[1]{$\mathbb{Z}/ #1 \mathbb{Z}$}
+
+\maketitle
+
+In this homework, we make a handful of assumptions about the integers.
+I was verbally told that any assumptions about integers necessary can be made.
+I have made the following assumptions about integers:
+\begin{enumerate}
+    \item   The integers are ordered.
+    \item   The integers are closed under addition and multiplication.
+    \item   $2 > 1 > 0$
+\end{enumerate}
 
 \section{Exercise 1}
     Let $S$ be the set \{rock, paper, scissors\}. Define a binary operation $\ast: S \times S \to S$ via
@@ -82,27 +99,100 @@
     \end{enumerate} 
 
     \subsection{Solution (a)}
+    \textbf{Alvin's Proposition:} If $x + y = x + z$, then $y = z$.
+    \begin{proof}
+        Suppose that (\ref{eq:2.a.A.1}) is true.
+        \begin{equation}
+            \label{eq:2.a.A.1}
+            x + y = x + z
+        \end{equation}
+        By the additive axiom, there exists some $w$ in $F$ such that $w + x = x + w = 0$.
+        Therefore, we can add $w$ to both sides of (\ref{eq:2.a.A.1}).
+        \begin{equation}
+            \label{eq:2.a.A.2}
+            w + (x + y) = w + (x + z)
+        \end{equation}
+        Use the associative property of addition to consolidate every $(w + x)$ together.
+        \begin{equation}
+            \label{eq:2.a.A.3}
+            (w + x) + y = (w + x) + z
+        \end{equation} 
+        We stated earlier that $w + x = x + w = 0$, so $(w + x) + y = 0 + y$ and $(w + x) + z = 0 + z$.
+        Therefore, $0 + y = 0 + z$.
+        By the definition of the aditive identity, $0 + y = y$ and $0 + z = z$.
+        Therefore, $y = z$.
+    \end{proof}
+    \textbf{Betty's Proposition:} $0 \cdot x = 0$.
+    \begin{proof}
+        Let $x \in F$.
+        Take $0 \cdot x + 0 \cdot x$.
+        By the commutative property, $0 \cdot x + 0 \cdot x = x \cdot 0 + x \cdot 0$.
+        The distributive axiom allows us to combine like terms, so $0 \cdot x + 0 \cdot x = x(0 + 0)$.
+        
+        The definition of the additive identity is that $a + 0 = a$.
+        If we say that $a = 0$, then $0 + 0 = 0$.
+        Therefore, $0 \cdot x + 0 \cdot x = x \cdot 0$.
+        By the commutative property, $0 \cdot x + 0 \cdot x = 0 \cdot x$.
+        By the definition of the additive identity, $0 \cdot x + 0 \cdot x = 0 \cdot x + 0$.
+
+        Note that $0 \cdot x = 0 \cdot x$.
+        Alvin's Proposition tells us that if $x + y = x + z$, then $y = z$.
+        Applying that to $0 \cdot x + 0 \cdot x = 0 \cdot x + 0$, we can say that $0 \cdot x = 0$.
+    \end{proof}
+    \textbf{Chuck's Proposition:} If $a \neq 0$ and $b \neq 0$ then $ab \neq 0$.
+    \begin{proof}[Proof by Contradiction]
+        Suppose that $x = 0$ and $y = 0$.
+        Suppose for contradiction that $xy = 0$.
+        
+        From the definition of the multiplicative inverse, $x \cdot x^{-1} = 1$ and $y \cdot y^{-1} = 1$.
+        Multiply the former by $y \cdot y^{-1}$ on both sides to find that $(x \cdot x^{-1})(y \cdot y^{-1}) = y \cdot y^{-1}$, which transistively tells us that $(x \cdot x^{-1})(y \cdot y^{-1}) = 1$.
+        The following series of equalities are all justified by the associative property (denoted $\Ais$) and the commutative property (denoted $\Cis$).
+        \begin{align}
+            1   =   
+            (x \cdot x^{-1})(y \cdot y^{-1})    &\Ais   ((x \cdot x^{-1}) \cdot y) \cdot y^{-1}
+                \Cis    [x \cdot (x^{-1} \cdot y)] \cdot y^{-1}\\
+                &\Ais   [x \cdot (y \cdot x^{-1})] \cdot y^{-1}
+                \Cis    [(x \cdot y) \cdot x^{-1}] \cdot y^{-1}
+        \end{align}
+
+        From our initial assumption, we know that $xy = 0$.
+        Therefore, $1 = [0 \cdot x^{-1}] \cdot y^{-1} = 0 \cdot y^{-1} = 0$.
+        This would mean that $0 = 1$, which contradicts that $0 \neq 1$.
+        Ergo, $xy \neq 0$
+    \end{proof}
+    \textbf{Derek's Proposition:} If $x \neq 0$ and $xy = xz$ then $y = z$.
+    \begin{proof}
+        Suppose that $x \neq 0$ and $xy = xz$.
+        By the multiplicative axiom, there exists some $w$ in $F$ such that $xw = wx = 1$.
+        Multiply $xy = xz$ by $w$ and get $w(xy) = w(xz)$.
+        The commutative property tells us that $(wx)y = (wx)z$.
+        We can replace each $wx$ with $1$ since $wx = 1$ to get $1 \cdot y = 1 \cdot z$.
+        By the definition of the multiplicative identity, $1 \cdot x = x$, so $y = z$.
+    \end{proof}
+
+    \textbf{\underline{Now for the proof requested:}} If $a, b \in F$ with $a > 0$ and $0 < b < 1$, then $0 < ab < a$.
     \begin{proof}
         The multiplicative ordered field axiom states that if for some $a$ and $b$ in $F$, $a \leq b$ and $c \geq 0$, then $ac \leq bc$.
         
         Since $0 < b$ and $0 < a$, $0 \leq b$ and $0 \leq a$.
         In the same vein, since $b < 1$, $b \leq 1$.
         
-        By the multiplicative axiom, $0 \cdot a \leq ab$ and $ab \leq a$.
+        By the multiplicative ordered field axiom, $0 \cdot a \leq ab$ and $ab \leq a$.
         
-        We proved that $0 \cdot x = 0$ in class, so $0 \cdot a = 0$ and $0 \geq ab$.
+        By Betty's Proposition, $0 \cdot x = 0$, so $0 \cdot a = 0$ and $0 \geq ab$.
 
-        We proved in class that if $x \neq 0$ and $y \neq 0$, then $xy \neq 0$.
+        Chuck's Proposition says that if $x \neq 0$ and $y \neq 0$, then $xy \neq 0$.
         Since $0 < a$, $a \neq 0$.
         Since $0 < b$, $b \neq 0$.
         Therefore, $ab \neq 0$.
         Since $0 \leq ab$ and $0 \neq ab$, $0 < ab$.
 
-        We proved in class that if $x \neq 0$ and $xy = xz$, then $y = z$.
+        Derek's Proposition says that if $x \neq 0$ and $xy = xz$, then $y = z$.
         Its contrapositive is that if $y \neq z$, then $x = 0$ or $xy \neq xz$.
         Since $b < 1$, $b \neq 1$.
-        This means that either $a = 0$ or $ab \neq a$.
-        Since $a \neq 0$, $ab \neq a$.
+        This means that either $a = 0$ or $ab \neq a \cdot 1$.
+        Since $a \neq 0$, it would have to be that $ab \neq a \cdot 1$.
+        By the definition of the multiplicative identity, $a \cdot 1 = a$, so $ab \neq a$.
 
         $ab \leq a$ and $ab \neq a$, so $ab < a$.
 
@@ -111,7 +201,7 @@
 
 \subsection{Solution (b)}
     \begin{proof}
-        Our first half of the proof will consist of a long series of equalities, all of which are justified by the commutative property.
+        Our first half of the proof will consist of a series of equalities, all of which are justified by the commutative property.
         The commutative property of addition says that $a + b = b + a$.
         \begin{align}
             ((a + b) + c) + d   &=  ((b + a) + c) + d\\
@@ -120,7 +210,7 @@
         \end{align}
         Therefore, $((a + b) + c) + d = d + (c + (b + a))$.
 
-        The second half of the proof will consist of a long series of equalities, all of which are justified by the associative property.
+        The second half of the proof will consist of a series of equalities, all of which are justified by the associative property.
         The associative property of addition says that $(a + b) + c = a + (b + c)$, or equivalently that $a + b + c$ is unambiguous.
         \begin{align}
             d + (c + (b + a))   &=  (d + c) + (b + a)\\
@@ -128,7 +218,7 @@
         \end{align}
         Therefore, $d + (c + (b + a)) = ((d + c) + b) + a$.
 
-        Ergo, $((a + b) + c) + d = d + (c + (b + a)) = ((d + c) + b) + a$.
+        Ergo, transistively, $((a + b) + c) + d = d + (c + (b + a)) = ((d + c) + b) + a$.
     \end{proof}
 \pagebreak
 
@@ -169,9 +259,10 @@
         \end{quote}
 
         Since this applies for all $a$ and $b$ in $F$, including those that are not equal to $0$, we can set the rule of only considering cases where $a \neq 0$ and $b \neq 0$.
+        This lets us replace $0 \leq a$ and $0 \leq b$ with $0 < a$ and $0 < b$ respectively. 
         Furthermore, we proved in class that if $x \neq 0$ and $y \neq 0$, then $xy \neq 0$.
-        Since $a \neq 0$ and $b \neq 0$, $ab \neq 0$.
-        Thereby, we can replace the $\leq$ signs with just $<$.
+        Since $a \neq 0$ and $b \neq 0$, then $ab \neq 0$.
+        Thereby, we can replace all the $\leq$ signs with $<$ signs.
         \begin{quote}
             (ii) For all $a, b \in F$ with $a > 0$ and $b > 0$, we have $ab > 0$.
         \end{quote}
@@ -181,24 +272,24 @@
         
         Since $a > 0$ and $b > 0$, without loss of generality, $0 < a \leq b$.
         Focus on the latter two terms, $a \leq b$.
-        Part (i) tells us we can add $-a$, the additive inverse of $a$, to all sides and end up with $a - a \leq b - a$.
+        The ordered field axiom (i) tells us we can add $-a$, the additive inverse of $a$, to all sides and end up with $a - a \leq b - a$.
         By the additive inverse axiom, we know that $a - a = 0$.
         Therefore, $0 \leq b - a$.'
         Let there also be some $0 \leq c$.
         From here, we bifurcate our proof between (1) $0 < b - a$ and $0 < c$, (2) $0 < b - a$ and $0 = c$, (3) $0 = b - a$ and $0 < c$, and (4) $0 = b - a$ and $0 = c$ cases.
 
-        (1) First, $0 < b - a$ and $0 < c$.
-        By the axiom (ii)', since $0 < b - a$ and $0 < c$, $0 < c(b - a)$.
+        \textbf{Case 1: $0 < b - a$ and $0 < c$.}
+        By ordered field axiom (ii)', since $0 < b - a$ and $0 < c$, $0 < c(b - a)$.
         By the distributive property, $c(b - a) = bc - ac$, so $0 < bc - ac$.
         The additive inverse axiom tells us that there exists some $-(-ac)$ such that $ac + (-(-ac)) = 0$.
-        Part (i) tells us we can add $-(-ac)$ to all sides, so $-(-ac) < bc - ac - (-ac)$.
+        Ordered field axiom (i) tells us we can add $-(-ac)$ to all sides, so $-(-ac) < bc - ac - (-ac)$.
         In class, we proved that $-(-x) = x$, so $-(-ac) = ac$, which we can replace in the equation to get $ac < bc - ac + ac$.
         The commutative property lets us say that $ac < bc + ac - ac$.
         By the additive inverse axiom, $ac - ac = 0$.
         Therefore, $ac < bc + 0$.
         By the additive identity, $bc + 0 = bc$, so $ac < bc$, and by extension $ac \leq bc$.
 
-        (2) Second, $0 < b - a$ and $0 = c$.
+        \textbf{Case 2: $0 < b - a$ and $0 = c$.}
         If we multiply $(b - a)$ by $c$, it is the equivalent to multiplying $(b - a)$ by $0$.
         This means that $c(b - a) = 0(b - a)$.
         In class, we proved that for all $x$, $0x = 0$.
@@ -209,60 +300,63 @@
         By the commutative property, $bc + ac - ac = ac$.
         By the additive identity axion, $bc = ac$, and by extension $ac \leq bc$.
 
-        (3) Third, $0 = b - a$ and $0 < c$.
+        \textbf{Case 3: $0 = b - a$ and $0 < c$.}
         If we multiply $(b - a)$ by $c$, it is the equivalent to multiplying $c$ by $0$.
         This means that $c(b - a) = c \cdot 0$.
-        By the commutative property fo multiplication, $c(b - a) = (b - a)c$ and $c \cdot 0 = 0c$, so $(b - a)c = 0c$.
+        By the commutative property of multiplication, $c(b - a) = (b - a)c$ and $c \cdot 0 = 0c$, so $(b - a)c = 0c$.
         In class, we proved that for all $x$, $0x = 0$.
         This means that $(b - a)c = 0c = 0$.
         The distributive property says that $(b - a)c = bc - ac$.
         Putting this together, we find $bc - ac = 0$.
-        We can add $-(-ac)$, rewritten as $ac$, to both sides to find $bc - ac + ac = ac$.
+        We can add $-(-ac)$, which we proved in class is equal to and can be rewritten as $ac$, to both sides to find $bc - ac + ac = ac$.
         By the commutative property, $bc + ac - ac = ac$.
-        By the additive identity axion, $bc = ac$, and by extension $ac \leq bc$.
+        By the additive inverse axiom, $ac - ac = 0$, so $bc + 0 = ac$.
+        By the additive identity axiom, $bc + 0 = bc$, so $bc = ac$, and by extension $ac \leq bc$.
 
-        (4) Last, $0 = b - a$ and $0 = c$.
+        \textbf{Case 4: $0 = b - a$ and $0 = c$.}
         We can add $-(-a)$, which we proved in class is equal to $a$, to $0 = b - a$ to get $a = b - a + a$.
         The commutative property tells us that $a = b + a - a$.
         The additive inverse axiom says that $a = b + 0$.
         The additive identity axiom says that $b = b + 0$, so $a = b$.
         Multiply both sides by $c$ to get $ac = bc$, and by extension $ac \leq bc$.
 
-        Ergo, this proves that if $a \leq b$ and $c \geq 0$, $ac \leq bc$.
+        With all cases satisfied, this proves that if $a \leq b$ and $c \geq 0$, $ac \leq bc$.
     \end{proof}
 
     \subsection{Solution (b)}
     \begin{proof}
         The textbook says that $\mathbb{Q}$ is an ordered set if $r > s$ is defined to mean that $r - s$ is a positive rational number.
-        I will start by using this to prove that $\mathbb{Q}$ is an ordered field.
+        The textbook also says (on page 7) that the rational numbers are an ordered field.
 
-        Every number $q$ in $\mathbb{Q}$ can be written in terms of one integer $a$ and one natural number $b$ in the form $q = \frac{a}{b}$.
-        Let there be three rational numbers $\frac{a}{b}$, $\frac{c}{d}$, and $\frac{e}{f}$ such that $\frac{a}{b} < \frac{c}{d}$.
-        Cross-multiply these fractions, bearing in mind that $b$ and $d$ are both positive non-zero integers, to get $ad < bc$.
-        Mutiply both sides by $f^2$ to get $adf^2 < bcf^2$.
-        Add the integer $bdef$ to both sides to get $adf^2 + bdef < bcf^2 + bdef$.
-        Apply the distributive property by $df$ on the left side and $bf$ on the right side to get $df(af + be) < bf(cf + de)$.
-        Divide both sides by $bf$ and $df$ to get $\frac{af + be}{bf} < \frac{cf + de}{df}$.
-        Separate both fractions into two and cancel out terms to get $\frac{a}{b} + \frac{e}{f} < \frac{c}{d} + \frac{e}{f}$.
-        This means that the rational numbers satisfy the first ordered field axiom.
+        % Every number $q$ in $\mathbb{Q}$ can be written in terms of one integer $a$ and one natural number $b$ in the form $q = \frac{a}{b}$.
+        % Let there be three rational numbers $\frac{a}{b}$, $\frac{c}{d}$, and $\frac{e}{f}$ such that $\frac{a}{b} < \frac{c}{d}$.
+        % Cross-multiply these fractions, bearing in mind that $b$ and $d$ are both positive non-zero integers, to get $ad < bc$.
+        % Mutiply both sides by $f^2$ to get $adf^2 < bcf^2$.
+        % Add the integer $bdef$ to both sides to get $adf^2 + bdef < bcf^2 + bdef$.
+        % Apply the distributive property by $df$ on the left side and $bf$ on the right side to get $df(af + be) < bf(cf + de)$.
+        % Divide both sides by $bf$ and $df$ to get $\frac{af + be}{bf} < \frac{cf + de}{df}$.
+        % Separate both fractions into two and cancel out terms to get $\frac{a}{b} + \frac{e}{f} < \frac{c}{d} + \frac{e}{f}$.
+        % This means that the rational numbers satisfy the first ordered field axiom.
 
-        Let there be three rational numbers $\frac{a}{b}$, $\frac{c}{d}$, and $\frac{e}{f}$ such that $\frac{a}{b} \leq \frac{c}{d}$ and $\frac{e}{f} \geq 0$.
-        Since $\frac{e}{f} \geq 0$, we can multiply both sides by $f$ to get $\frac{ef}{f} \geq 0f$.
-        Since we established in class that $0f = 0$, $\frac{ef}{f} \geq 0$.
-        By the multiplicative inverse, $\frac{f}{f} = 1$, so $\frac{ef}{f} = e \cdot 1 \geq 0$.
-        By the multiplicative identity, $e \cdot 1 = e \geq 0$.
-        Therefore, $e \geq 0$ and $f > 0$, and both are integers.
-        Multiply both sides of $e \geq 0$ by $f$ to get $ef \geq 0f = 0$ by what was established in class.
-        Therefore, $ef \geq 0$.
-        Take our initial inequality of equations $\frac{a}{b} \leq \frac{c}{d}$ and cross-multiply to get $ad \leq bc$.
-        Multiply both sides by $ef$ to get $adef \leq bcef$.
-        Divide both sides by $bf$ and $df$ to get $\frac{ae}{bf} \leq \frac{ce}{df}$.
-        These fractions can be separated to find $\frac{a}{b} \cdot \frac{e}{f} \leq \frac{c}{d} \cdot \frac{e}{f}$.
-        This means that the rational numbers satisfy the first ordered field axiom, and by extension that the rational number are an ordered field.
+        % Let there be three rational numbers $\frac{a}{b}$, $\frac{c}{d}$, and $\frac{e}{f}$ such that $\frac{a}{b} \leq \frac{c}{d}$ and $\frac{e}{f} \geq 0$.
+        % Since $\frac{e}{f} \geq 0$, we can multiply both sides by $f$ to get $\frac{ef}{f} \geq 0f$.
+        % Since we established in class that $0f = 0$, $\frac{ef}{f} \geq 0$.
+        % By the multiplicative inverse, $\frac{f}{f} = 1$, so $\frac{ef}{f} = e \cdot 1 \geq 0$.
+        % By the multiplicative identity, $e \cdot 1 = e \geq 0$.
+        % Therefore, $e \geq 0$ and $f > 0$, and both are integers.
+        % Multiply both sides of $e \geq 0$ by $f$ to get $ef \geq 0f = 0$ by what was established in class.
+        % Therefore, $ef \geq 0$.
+        % Take our initial inequality of equations $\frac{a}{b} \leq \frac{c}{d}$ and cross-multiply to get $ad \leq bc$.
+        % Multiply both sides by $ef$ to get $adef \leq bcef$.
+        % Divide both sides by $bf$ and $df$ to get $\frac{ae}{bf} \leq \frac{ce}{df}$.
+        % These fractions can be separated to find $\frac{a}{b} \cdot \frac{e}{f} \leq \frac{c}{d} \cdot \frac{e}{f}$.
+        % This means that the rational numbers satisfy the first ordered field axiom, and by extension that the rational number are an ordered field.
 
         We start by proving that $\prec$ is an order on $\mathbb{Q}$.
-        We know that either $a < b$, $a = b$, or $a > b$.
-        Based on that and that $a > b$ means $a \prec b$, we find that either $a \succ b$, $a = b$, or $a \prec b$.\footnote{Could expand on this entire paragraph.}
+        We know that either $a < b$, $a = b$, or $b < a$.
+        $a < b$ means $a \succ b$. 
+        $b < a$ means $b \succ a$.
+        This tells us that either $a \succ b$, $a = b$, or $b \succ a$.
         Next, suppose that $a \succ b$ and $b \succ c$.
         This means that $a < b$ and $b < c$. 
         We know from the first ordered field axiom that if $a < b$ and $b < c$, then $a < c$, so in this case $a < c$.
@@ -276,11 +370,14 @@
         \begin{quote}
             (i) For all $a, b, c \in \mathbb{Q}$ with $a \leq b$, we have $a + c \leq b + c$.
         \end{quote}
-        Swap $a$ and $b$.
+        Swap $a$ and $b$, without loss of generality.
         \begin{quote}
             (i) For all $a, b, c \in \mathbb{Q}$ with $b \leq a$, we have $b + c \leq a + c$.
         \end{quote}
-        Swap every $\leq$ with $\succeq$, the two being equivalent since $a \prec b$ if and only if $a > b$ and $a = b$ being possible either way.
+        If $b < a$, then $b \succ a$.
+        Therefore, if $b < a$ or $b = a$, then $b \succ a$ or $b = a$.
+        Therefore, if $b \leq a$, then $b \succeq a$.
+        Therefore, we can swap every $\leq$ with $\succeq$.
         \begin{quote}
             (i) For all $a, b, c \in \mathbb{Q}$ with $b \succeq a$, we have $b + c \succeq a + c$.
         \end{quote}
@@ -328,7 +425,7 @@
         
         We know that $\epsilon > 0$.
         Add $a$ to both sides of $S$, which through the first ordered field axiom and the fact that $\mathbb{R}$ is an ordered field means that $a + \epsilon > a$.
-        By the additive inverse property of fields, there exists some $-\epsilon$ such that $\epsilon + (-\epsilon) = 0$.
+        By the additive inverse property of fields ($\mathbb{R}$ included), there exists some $-\epsilon$ such that $\epsilon + (-\epsilon) = 0$.
         Add $-\epsilon$ to both sides of $a + \epsilon > a$ to get $a + \epsilon - \epsilon > a - \epsilon$.
         By the additive inverse property of fields, $a + \epsilon - \epsilon = a > a - \epsilon$.
 
@@ -342,22 +439,31 @@
     \begin{proof}
         An infinite number of elements in the interval means that the elements can be mapped onto the natural numbers or a set with a larger cardinality.
 
-        We can define a set $Z$ recursively. 
-        Suppose that the first element of $Z$, denoted $\zeta_0$, is equal to $a - \epsilon$.
+        We can define a set $E$ recursively. 
+        Suppose that the first element of $E$, denoted $e_0$, is equal to $\epsilon$.
         As established in part (a), there exists some $x$ in $S$ with $x > a - \epsilon$.
         We can create a new set $X$ and call the $x$ in $S$ with $x > a - \epsilon$, $x_1$.
-        Since $a$ is the least upper bound of $S$, it is an upper bound of $S$, meaning that because $x_0$ is in $S$, $x_1 < a$.
+        Since $a$ is the least upper bound of $S$, it is an upper bound of $S$, meaning that because $x_1$ is in $S$, $x_1 < a$.
         
         Now, suppose that we have element $n$ (in the natural numbers) of $x$, denoted $x_n$, which is an element of $S$.
         Since $x_n$ is an element of $S$ and $a$ is an upper bound of $S$, $x_n < a$.
-        Add the additive inverse of $x_n$, $-x_n$, to both sides, which due to the first ordered field axiom becomes $x_n - x_n < a - x_n$.
+        Add the additive inverse of $x_n$, $-x_n$, to both sides, which the first ordered field axiom lets us do, and we get $x_n - x_n < a - x_n$.
         By the additive inverse definition, $x_n - x_n = 0$, so $0 < a - x_n$.
         Since $\mathbb{R}$ is a field and fields are closed under addition, $a - x_n$ is a real number.
-        We can denote $a - x_n$ as $\zeta_n$.
-        Since $\zeta_n$ is real and greater than $0$, it is possible that some new $\epsilon = \zeta_n$.
-        Now take $a - \zeta_n$.
-        As established in part (a), there exists some $x$ in $S$ with $x > a - \zeta_n$.
-        We can call the $x$ in $S$ with $x > a - \zeta_n$ that we just discovered existed $x_{n + 1}$.
+        We can denote $a - x_n$ as $e_n$.
+        Since $e_n$ is real and greater than $0$, it is possible that some new $\epsilon = e_n$.
+        Now take $a - e_n$.
+        As established in part (a), there exists some $x$ in $S$ with $x > a - e_n$.
+        We can call the $x$ in $S$ with $x > a - e_n$ that we just discovered existed $x_{n + 1}$.
+        Therefore, $x_{n + 1} > a - e_n$.
+        Substitute in the definition of $e_n = a - x_n$ to get $x_{n + 1} > a - (a - x_n)$.
+            By the commutative property, $a - (a - x_n) = a - a + x_n = (a - a) + x_n$.
+            By the additive inverse axiom, $a - a + x_n = 0 + x_n$.
+            By the additive identity axiom, $0 + x_n = x_n$.
+        Putting everything together transistively, $x_{n + 1} > x_n$.
+        This guarantees that every $x_{n + 1}$ is distinct from $x_n$.
+        Transistively, this inequality also proves that $x_{n + 1}$ is distinct from every other element of $X$.
+        Furthermore, since $a$ is an upper bound of $S$, for every $x_n$, $x_n < a$.
 
         This pairs up our subset of the set of elements of $S$ in the open interval $(a - \epsilon, a)$ with the natural numbers.
         This means that the cardinality of the natural numbers is less than or equal to the cardinality of the set of elements of $S$ in the open interval $(a - \epsilon, a)$.
@@ -384,66 +490,72 @@
     \textit{Hint for part (b):} You may use \textit{B\'ezout's identity} from number theory: if $a, b \in \mathbb{Z}$ are coprime then there are $x, y \in \mathbb{Z}$ so that $ax + by = 1$. Then use that for a prime $p$, the integers $1, 2, \dots, p - 1$ are all coprime to $p$. You may also use the \textit{Euclidean division theorem}: namely if $b$ is a positive integer, then any $a \in \mathbb{Z}$ may be written uniquely as $a = bq + r$, where $0 \leq r < b$.
 
     \subsection{Solution (a)}
+        Within this and the next proof, there is a proposition about equalities in \zz{m} that should be made. 
+
+    \textbf{Gabby's Proposition: } For some $a$ in \zz{m} and any integer $n$, $nm + a = a$ within \zz{m}.
+    \begin{proof}
+        Take $nm$.
+        By the Euclidean Division Theorem, if $b$ is a positive integer, then any $a$ in $\mathbb{Z}$ may be written uniquely as $a = bq + r$ for $0 \leq r < b$.
+        This would therefore apply to $nm$ for $b = m$, so $nm = nm + r$.
+        By the definition of the additive identity, $nm = nm + 0$.
+        Transisistively, this means $nm + 0 = nm + r$.
+        By Alvin's Proposition (see Exercise 2, also proven in class), that means $r = 0$, so the remainder of $nm$ upon division by $m$ is $0$.
+        That means that in \zz m, $nm = 0$.
+        Add $a$ to both sides to get that $nm + a = a$ in \zz m.
+    \end{proof}
+
+    Now for the proof that if $m$ is a composite number, then axiom $(\ast)$ fails.
     \begin{proof}
         Having a multiplicative inverse in a set means that for any number $a$ in that set there exists some number $a^{-1}$ also in that set for which $a \cdot a^{-1} = 1$.
         If $m$ is a composite number, that means that there exists some two other integers $j$ and $k$ greater than or equal to $2$ such that $m = j \cdot k$.
 
         Without loss of generality, focus on $j$.
         We know that $j \ge 2$.
-        Since $2 > 1$, by the transistive property (if $j > 2$, otherwise just substitution), $j > 1$.
+        Since $2 > 1$, by the transistive property (if $j > 2$, substitution if $j = 2$), $j > 1$.
         If we add this to, for any $n \geq 0$, $njk = njk$ (which comes from the reflexive property), we get $njk + j > njk + 1$.
         By the distributive property, $j(nk + 1) > njk + 1$.
-        We also know that $1 > 0$, which can be added to $njk = njk$ to get $njk + 1 > njk + 0 = njk$.
+        We also know that $1 > 0$, which can be added to $njk = njk$ to get $njk + 1 > njk + 0$.
+        By the additive identity axiom, $njk + 0 = njk$, so $njk + 1 > njk$.
         Putting these together, we get $j(nk + 1) > njk + 1 > njk$.
 
         This tells us that $njk + 1$ will always be between $njk$ and $njk + j$, which are consecutive multiples of $j$, but will not be equal to either of them so long as $j \geq 2$.
-        Taking the modulus of this past statement of base $jk$, we find that $1$ will always be between $0$ and $j$, which are consecutive multiples of $j$, but will not be equal to either of them so long as $j \geq 2$.
+        Taking the modulus of this past statement of base $jk$, we wind up with $j > 1 > 0$, showing that in $\mathbb{Z}/m\mathbb{Z}$, $1$ will always be between $0$ and $j$, which are consecutive multiples of $j$, but will not be equal to either of them so long as $j \geq 2$.
         Ergo, in $\mathbb{Z}/m\mathbb{Z}$ where $m$ is composite, the axiom ($\ast$) will fail.
     \end{proof}
     
     \subsection{Solution (b)}
     \begin{proof}
         For the multiplicative identity to hold in set $\mathbb{Z}/p\mathbb{Z}$ for prime $p$, for all integers $b$ with $0 < b < p$, there must exist some integers $x$ and $y$ with $0 < y < p$ such that, in the set of all integers, $by = px + 1$.
-        Before we completely prove this, we prove that any integer multiplied by 10 ends in a zero.
-
-            For any integer $S$, $k$ digits long, we can write it as $S = \sum_{i = 0}^{k} d_i \times 10^i$, where every $d_i$ is in the set $\{0, 1, 2, \dots, 9\}$.
-            Multiply the entire number by 10, and we find that $10 S = 10 \sum_{i = 0}^{k} d_i \times 10^{i} = \sum_{i = 0}^{k} d_i \times 10^{i+1}$.
-            The first value in our new sum is $d_0 \times 10^1$. 
-            Since $i$ only increases from there, the exponent of $10$ only increases and never reaches the ones digit.
-            Therefore, we can rewrite our sum as $10S = \sum_{i = 0}^{k} d_i \times 10^{i+1} + 0 \times 10^0$.
-            Ergo, the new number ends in zero.
 
         Recall B\'ezout's identity, which says that if integers $a$ and $b$ are coprime, then there exist integers $x$ and $y$ such that $ax + by = 1$.
         In our set $\mathbb{Z}/p\mathbb{Z}$, $p$ is prime, so it is coprime with every number in the set $\{1, 2, \dots, p - 1\}$.
         Set $a$ to be equal to $p$, and suppose $b$ is in the set $\{1, 2, \dots, p - 1\}$.
         This means that there exist integers $x$ and $y$ such that $px + by = 1$.
-        Without loss of generality, if we replace $x$ with $-x$ and use the commutative property, we get $by - px = 1$.
+        Without loss of generality and for the sake of cleanliness, if we replace every instance of $x$ with $-x$ and use the commutative property, we get $by - px = 1$.
         Adding $px$ (the additive inverse of $-px$) to both sides, we get $by - px + px = 1 + px$.
         The commutative property tells us that $by + px - px = px + 1$.
         The definition of the additive inverse tells us that $by + 0 = px + 1$.
         The additive identity tells us that $by = px + 1$.
-        In the system $\mathbb{Z}/p\mathbb{Z}$, $p \equiv 0$.
-        By extension, this means that for any integer $n$, $np \equiv 0$.
-        Add $1$ to both sides to find that for any integer $n$, $np + 1 \equiv 1$.
-        Suppose that $n = x$.
-        This means that $xp + 1 \equiv 1$.
-        By the commutative property, $px + 1 \equiv 1$.
-        In the system $\mathbb{Z}/p\mathbb{Z}$, since $by = px + 1$, $by \equiv px + 1 \mod p$.
-        Transistively, this means that $by \equiv 1$.
+        By Gabby's Proposition, $px + 1 = 1$ within \zz{m}.
+        Transistively, this means that $by = 1$ within \zz{m}.
         If we can ensure that this would hold in a case where $0 < y < p$, then we can prove the axiom holds.
 
         Since there is the requirement of $b < p$, we can multiply both sides by $y$ to find that $by < py$.
-        We want $y < p$. 
-        We can multiply both sides of the inequality by $b$ to find that we want $by < bp$.
+        We want to find some $y < p$. 
+        We can multiply both sides of the inequality by positive nonzero integer $b$ to find that we want to find some $y$ such that $by < bp$.
         If $y < p$ already, we're in good company and the rest of this proof is moot.
-        If not, we can multiply both sides of $y < p$ by $p$ (which is a positive integer) to find that we want $py < p^2$.
-        Since $by < py$ and we want it to be that $py < p^2$, transistively it is true that $by < py < p^2$.
-        By the Euclidean division theorem, because both $by$ and $bp$ are positive integers, $by$ can be written uniquely as $by = bp q + r$.
+        If not, then $y \geq p$, which we can multiply by $b$ (which is a positive integer) to find that we have $by \geq bp$.
+        By the Euclidean division theorem, because both $by$ and $bp$ are positive integers, $by$ can be written uniquely as $by = bp q + r$ for some integer $q$ where $r < bp$.
         By the additive inverse, $by - bp q = r$.
-        By the distributive property, $b(y - pq) = r$, so there is an integer multiple of $p$ that is equal to $r$ and furthermore less than $bp$.
-        Furthermore, since $pqy$ is an integer multiple of $p$ and $by$, and we previously established that it would not change that adding or subtracting a multiple of $p$ from an integer would not change its congruency modulo $p$, so we can safely say that $b(y - pq) \equiv 1 \mod p$.
-        That means that if we set $y' = y - pq$, then $by' < bp$, by extension $y' < p$, and $by' \equiv 1 \mod p$.
-        Therefore, in the set $\mathbb{Z}/p\mathbb{Z}$, $by' = 1$.
+        Since $r \geq 0$, $by - bp q \geq 0$.
+        By the distributive property, $b(y - pq) = r$, so there is an integer multiple of $b$ that is equal to $r$.
+        Since $b(y - pq) = r$ and $r < bp$, then $b(y - pq) < bp$.
+        $bpq$ is a multiple of $p$ and $bq$, with $bq$ being an integer because integers are closed under multiplication.
+        By the same argument, $-bpq$ is an integer multiple of $p$.
+        We have established that in \zz{p}, $by = 1$.
+        Therefore, by Gabby's proposition, we can safely say that in \zz{p}, $by - bpq = 1$.
+        By the distributive property, $b(y - pq) = 1$ in \zz{p}.
+        That means that if we set $y' = y - pq$, then $by' < bp$, by extension $y' < p$, and $by' = 1$ in \zz{p}.
         Ergo, axiom ($\ast$) holds.
     \end{proof}
 
@@ -463,6 +575,19 @@
     \end{enumerate}
 
     \subsection{Solution (a)}
+    \textbf{Irwin's Proposition: } Any sum of the form $\underbrace{1 + \dots + 1}_{n \text{ times}}$ is in $F$.
+    \begin{proof}[Proof by Induction]
+        The base case is where $n = 1$ and the sum is just $1$, which we know is in $F$.
+        
+        The inductive step comes first from $\underbrace{1 + \dots + 1}_{n \text{ times}}$, which we assume is in $F$.
+        Add $1$ (in $F$) to this and we get $\underbrace{1 + \dots + 1}_{n \text{ times}} + 1$, which is in $F$ because $F$ is a field, which is closed under addition.
+        $\underbrace{1 + \dots + 1}_{n \text{ times}} + 1$ can be rewritten as $\underbrace{1 + \dots + 1}_{n + 1 \text{ times}}$.
+        Ergo, $\underbrace{1 + \dots + 1}_{n \text{ times}}$ being in $F$ implies $\underbrace{1 + \dots + 1}_{n + 1 \text{ times}}$ being in $F$.
+
+        Therefore, any sum $\underbrace{1 + \dots + 1}_{n \text{ times}}$ is in $F$.
+    \end{proof}
+
+    Now we prove that there is an integer $n \geq 2$ so that $\underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = 0$.
     \begin{proof}
         The key term here is finite.
         This means that the cardinality of $F$ is some finite number $k$.
@@ -470,13 +595,7 @@
         We know that $1$, being the multiplicative identity, is contained in $F$.
         The additive identity $0$ is also contained in $F$.
 
-        We can prove by induction that any sum $\underbrace{1 + \dots + 1}_{n \text{ times}}$ is in $F$.
-            The base case is where $n = 1$ and the sum is just $1$, which we know is in $F$.
-            The inductive step coems first from $\underbrace{1 + \dots + 1}_{n \text{ times}}$, which we assume is in $F$.
-            Add $1$ (in $F$) to this and we get $\underbrace{1 + \dots + 1}_{n \text{ times}} + 1$, which is in $F$ because $F$ is a field, which is closed under addition.
-            $\underbrace{1 + \dots + 1}_{n \text{ times}} + 1$ can be rewritten as $\underbrace{1 + \dots + 1}_{n + 1 \text{ times}}$.
-            Ergo, $\underbrace{1 + \dots + 1}_{n \text{ times}}$ being in $F$ implies $\underbrace{1 + \dots + 1}_{n + 1 \text{ times}}$ being in $F$.
-
+        Irwin's Proposition says that any sum of the form $\underbrace{1 + \dots + 1}_{n \text{ times}}$ is in $F$. 
         $F$ is finite, and therfore by the Pigeonhole Principle, there must be two sums of the forms $\underbrace{1 + \dots + 1}_{m \text{ times}}$ and $\underbrace{1 + \dots + 1}_{n \text{ times}}$ such that $m \neq n$ where $\underbrace{1 + \dots + 1}_{m \text{ times}} = \underbrace{1 + \dots + 1}_{n \text{ times}}$.
         Without loss of generality, suppose that $m > n$.
             This is possible because $m$ and $n$ are integers, which are ordered.

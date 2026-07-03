@@ -1,0 +1,161 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+%% code from mathabx.sty and mathabx.dcl
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+\DeclareMathAccent{\wideparen}{0}{mathx}{"75}
+
+\def\cs#1{\texttt{\char`\\#1}}
+
+\allowdisplaybreaks
+
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\im}{im}
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\0}{\mathbf{0}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\loc}{\text{loc}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\x}{\mathbf{x}}
+\DeclareMathOperator{\y}{\mathbf{y}}
+\DeclareMathOperator{\z}{\mathbf{z}}
+
+\title{Math 104 Homework 2}
+\author{Due Date: Friday, July 10 at 11:59pm}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent\textbf{Instructions:} Submit pdf solutions in LaTeX (preferred), or \textit{neatly} handwritten. 
+Unless otherwise stated, you may cite any result from class or from Rudin's book, but all other assertions you make must be proved rigorously. At the top of your submission, please write down the names of the other students you collaborated with and any outside sources you consulted.
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item 
+    Let $S$ be the set of all \textit{binary sequences}, that is $S = \{(x_1, x_2, x_3, \dots ) : x_j \in \{0, 1\} \text{ for all } j\}$. 
+    \begin{enumerate}
+        \item 
+        Using Cantor's diagonalization argument, show that $S$ is uncountable.
+
+        \item 
+        Let $T \subset S$ be the set of all binary sequences with \textit{finite support}, that is let $T = \{(x_1, x_2, x_3, \dots) \in S : \text{only finitely many of the $x_j$ are nonzero}\}.$ Show that $T$ is countable.
+        
+        \textit{Hint:} Let $S_n = \{(x_1, x_2, x_3, \dots ) \in S : x_j = 0$ \text{ for all } $j \geq n + 1\}$.
+        
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $(X, d)$ be a metric space. For a subset $E \subset X$, define the \textit{closure} of $E$, denoted $\overline{E}$, to be $E \cup E'$.
+    \begin{enumerate}
+        \item 
+        Show that $\overline{E}$ is closed, and that $\overline{E} = E$ if and only if $E$ is closed.
+
+        \item 
+        Show that $\overline{E}$ is the \textit{smallest} closed set containing $E$ in the following sense: if $F$ is closed and $E \subset F$, then $\overline{E} \subset F$.
+
+        \item 
+        Show that $\overline{E}$ is the intersection of all closed subsets of $X$ containing $E$.
+
+        \item 
+        Show that for any $E, F \subset X$, we have $\overline{E \cup F} = \overline{E} \cup \overline{F}$ (this is much easier if you use part (b)).
+
+        \item 
+        Define the \textit{closed ball of radius $r$ centered at $x$} to be $D_r(x) = \{y \in X : d(y, x) \leq r\}$. Show that $D_r(x)$ is closed and that $\overline{B_r(x)} \subset D_r(x)$ (using part (b) is again much simpler here).
+        
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $S$ be the set of all four letter strings of letters (which we will call \textit{words}). Thus $S = \{\text{abcd, eeee, math, wyzx, ...}\}$. Define a function $d$ which takes in two words and outputs the number of positions at which they differ. So for example, $d(\text{math, cats}) = 2$ and $d(\text{abcd}, \text{dcba}) = 4$.
+
+    \begin{enumerate}
+        \item
+        Show that $(S, d)$ is a metric space (this is called the \textit{Hamming metric}).
+
+        \item 
+        In $(S, d)$, consider the sets
+        \begin{align*}
+            B_2(\text{aaaa}) &= \{s \in S : d(s, \text{aaaa}) < 2)\} \quad \text{ and }\\[5pt] D_2(\text{aaaa}) &= \{s \in S : d(s, \text{aaaa}) \leq 2)\}.
+        \end{align*}
+        Is it true that the closure of $B_2(\text{aaaa})$ equals $D_2(\text{aaaa})$? Using the results from Problem 2 will make things easier.
+        
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $E = \mathbb{Q} \cap [0, 1]$, viewed as a subset of $(\mathbb{R}, d)$, where $d$ is the usual metric.
+    \begin{enumerate}
+        \item 
+        Find an open cover of $E$ that has no finite subcover, and conclude that $E$ is not compact. (\textit{Hint:} pick an irrational number $r \in [0, 1]$ to help you.)
+
+        \item 
+        Find a set $A \subset E$ (other than $\varnothing$ or $E$) that is clopen w.r.t. the subspace metric on $(E, d)$, and conclude that $E$ is not connected. You may again find picking an irrational $r \in [0, 1]$ helpful.
+
+        \item 
+        With respect to $(\mathbb{R}, d)$, is the set $A$ you chose in part (b) open, closed, both, or neither? Explain.
+        
+    \end{enumerate} 
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $(X, d)$ be an arbitrary metric space.
+    \begin{enumerate}
+        \item 
+        Show that a finite union of compact sets in $(X, d)$ is compact. Is this also true for arbitrary unions? Prove or give a counterexample.
+
+        \item 
+        Show that a set $K \subset (X, d)$ is compact if and only if every cover of $K$ \textit{consisting of open balls} has a finite subcover. (\textit{Hint:} For the trickier direction, given an open cover $\{U_\alpha\}_{\alpha \in A}$ of $K$, make a new cover that consists of all of the open balls contained in some $U_\alpha$.)
+
+        \item 
+        Show that compact $K \subset (X, d)$ have the following property: for all $\epsilon > 0$, there is a finite set $\{x_1, \dots, x_n\} \subset K$ so that each $y \in K$ is within distance $\epsilon$ of some $x_j$.
+        
+    \end{enumerate}
+
+
+
+    
+    
+    
+    
+    
+    
+    
+\end{enumerate}
+
+
+
+\end{document}     
