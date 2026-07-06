@@ -1,0 +1,403 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{tikz}
+
+% Load hyperref to automatically generate the PDF outline from structural tags
+\usepackage[pdftex, bookmarks=true, bookmarksnumbered=true]{hyperref}
+
+% Optional: Use the bookmark package for faster rendering and advanced control
+\usepackage{bookmark} 
+
+\newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
+\title{Homework \#1\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
+\date{July 10, 2026}
+\author{Donald Aingworth IV}
+
+\begin{document}
+\renewcommand\qedsymbol{OE$\Delta$}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\andtxt}{\text{ and }}
+\newcommand{\Ais}{\ensuremath{\overset{A}{=}}}
+\newcommand{\Cis}{\ensuremath{\overset{C}{=}}}
+\newcommand{\closure}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\encircle}[1]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle, draw, inner sep=1pt] (char) {#1};%
+  }%
+}
+\newcommand{\mathif}{\text{if }}
+\newcommand{\seq}[2][n]{\ensuremath{(#2 _{#1})}}
+\newcommand{\zz}[1]{$\mathbb{Z}/ #1 \mathbb{Z}$}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+\section{Problem 1}
+    Let $S$ be the set of all \textit{binary sequences}, that is $S = \{(x_1, x_2, x_3, \dots ) : x_j \in \{0, 1\} \text{ for all } j\}$. 
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Using Cantor's diagonalization argument, show that $S$ is uncountable.
+
+        \item 
+        Let $T \subset S$ be the set of all binary sequences with \textit{finite support}, that is let \\$T = \{(x_1, x_2, x_3, \dots) \in S : \text{only finitely many of the $x_j$ are nonzero}\}.$ Show that $T$ is countable.
+        
+        \textit{Hint:} Let $S_n = \{(x_1, x_2, x_3, \dots ) \in S : x_j = 0$ \text{ for all } $j \geq n + 1\}$.
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+    \textbf{Alvin's Proposition: } Define $r: \{0, 1\} \to \{0, 1\}$ where $r(n) = \begin{cases} 0 &\text{ if } n = 1\\1 &\text{ if } n = 0 \end{cases}$.
+    For any $x \in \{0, 1\}$, $x \neq r(x)$.
+    \begin{proof}[Proof by Cases]
+        We consider the cases of $x = 0$ and $x = 1$.
+
+        \textbf{\underline{Case 1: x = 0.}}
+        If $x = 0$, then $r(x) = r(0) = 1$.
+        Therefore, $x \neq r(x)$.
+
+        \textbf{\underline{Case 2: x = 1.}}
+        If $x = 1$, then $r(x) = r(1) = 0$.
+        Therefore, $x \neq r(x)$.
+
+        Ergo, for any $x \in \{0, 1\}$, $x \neq r(x)$.
+    \end{proof}
+    This proof is done through Cantor's Diagonalization Argument, which is a proof by contradiction.
+    \begin{proof}[Proof by Contradiction]
+        Suppose for contradiction that $S$ is countable.
+        That means that we can enumerate the members of $S$.
+        We can tabulate these.
+        \begin{center}
+            \begin{tabular}{ c  c  c  c  c  c  c }
+                $S_1 =$ &($x_{11}$,  &$x_{12}$,   &$x_{13}$,   &$x_{14}$,   &$x_{15}$,   &\dots )\\
+                $S_2 =$ &($x_{21}$,  &$x_{22}$,   &$x_{23}$,   &$x_{24}$,   &$x_{25}$,   &\dots )\\
+                $S_3 =$ &($x_{31}$,  &$x_{32}$,   &$x_{33}$,   &$x_{34}$,   &$x_{35}$,   &\dots )\\
+                $S_4 =$ &($x_{41}$,  &$x_{42}$,   &$x_{43}$,   &$x_{44}$,   &$x_{45}$,   &\dots )\\
+                $S_5 =$ &($x_{51}$,  &$x_{52}$,   &$x_{53}$,   &$x_{54}$,   &$x_{55}$,   &\dots )\\
+                $\vdots$&$\vdots$   &$\vdots$   &$\vdots$   &$\vdots$   &$\vdots$   &$\ddots$
+            \end{tabular}
+        \end{center}
+        
+        Note the binary sequence elements which can be written in our enumeration as $x_{jj}$ for some natural number $j$.
+        \begin{center}
+            \begin{tabular}{ c  c  c  c  c  c  c }
+                $S_1 =$ &(\encircle{$x_{11}$},  &$x_{12}$,   &$x_{13}$,   &$x_{14}$,   &$x_{15}$,   &\dots )\\
+                $S_2 =$ &($x_{21}$,  &\encircle{$x_{22}$},   &$x_{23}$,   &$x_{24}$,   &$x_{25}$,   &\dots )\\
+                $S_3 =$ &($x_{31}$,  &$x_{32}$,   &\encircle{$x_{33}$},   &$x_{34}$,   &$x_{35}$,   &\dots )\\
+                $S_4 =$ &($x_{41}$,  &$x_{42}$,   &$x_{43}$,   &\encircle{$x_{44}$},   &$x_{45}$,   &\dots )\\
+                $S_5 =$ &($x_{51}$,  &$x_{52}$,   &$x_{53}$,   &$x_{54}$,   &\encircle{$x_{55}$},   &\dots )\\
+                $\vdots$&$\vdots$   &$\vdots$   &$\vdots$   &$\vdots$   &$\vdots$   &$\ddots$
+            \end{tabular}
+        \end{center}
+
+        Let's create a new binary sequence $S_\alpha$.
+        Define $r: \{0, 1\} \to \{0, 1\}$ where $r(n) = \begin{cases} 0 &\text{ if } n = 1\\1 &\text{ if } n = 0 \end{cases}$.
+        By Alvin's Proposition, for any $x \in \{0, 1\}$, $x \neq r(x)$.
+        Take each element written in our enumeration as $x_{jj}$ for some natural number $j$. 
+        Define each member $x_{\alpha j}$ of $S$ as $r(x_{jj})$.
+        \begin{equation}
+            S_\alpha    =   (x_{\alpha 1}, x_{\alpha 2}, x_{\alpha 3}, x_{\alpha 4}, x_{\alpha 5}, \dots)
+                        =   (r(x_{11}), r(x_{22}), r(x_{33}), r(x_{44}), r(x_{55}), \dots)
+        \end{equation}
+
+        Since for any $x \in \{0, 1\}$, $x \neq r(x)$, that means that for any natural number $k$, $x_{kk} \neq x_{\alpha k}$.
+        Therefore, for any binary sequence $S_k$, there exists some element $x_{kk}$ that is different from its respective element $x_{\alpha k}$ of $S_\alpha$.
+        That means that $S_\alpha$ is a member of $S$ that differs from each $S_k$ by at last one digit.
+        That means that $S_{\alpha}$ cannot occur in our enumeration.
+        This contradicts that $S$ is the set of all binary sequences.
+        Therefore, our initial assumption is false and $S$ is uncountable. 
+    \end{proof}
+
+    \subsection{Solution (b)}
+    \begin{proof}
+        Recall that the rational numbers are countable.
+        This means that if we can map the binary sequences onto the rational numbers, we can prove that they are countable.
+        
+        Since only finitely many of $x_j$ are nonzero, there is a point $n > 0$ beyond which for all $j > n$, $x_j = 0$.
+        Take any element $t$ in $T$ such that $t = (x_1, x_2, \dots)$.
+        We can define a number $N < 1$, turning every $x_j$ into a digit.
+        Since for all $j > n$, $x_j = 0$, there is a terminal point in $N$ beyond which every subsequent digit would be $0$.
+        \begin{equation}
+            N = 0.x_1 x_2 x_3 \dots x_{n - 1} x_n 0000\dots
+        \end{equation}
+
+        We can multiply both sides of $N$ by $10^n$.
+        This allows us to shift the desimal point to just after $x_n$.
+        \begin{align}
+            N \times 10^n   &=  10^n \times 0.x_1 x_2 x_3 \dots x_{n - 1} x_n 0000\dots\\
+                &=  x_1 x_2 x_3 \dots x_{n - 1} x_n .0000\dots
+        \end{align}
+        
+        Since it has nothing but $0$ past the decimal point, that means that $N \times 10^n$ is a natural number.
+        Furthermore, since $n > 0$, $10^n$ is a natural number.
+        We can divide both sides by $10^n$.
+        \begin{gather}
+            \frac{N \times 10^n}{10^n} = \frac{x_1 x_2 x_3 \dots x_{n - 1} x_n .0000\dots}{10^n}\\
+            N   =   \frac{x_1 x_2 x_3 \dots x_{n - 1} x_n}{10^n}
+        \end{gather}
+
+        Therefore, $N$ is an integer over a natural number, meaning that it is a rational number.
+        In order to establish that this is an injection, we must establish that for $s$ and $t$ in $T$ where $s \neq t$, then $N_s \neq N_t$.
+        If $s \neq t$, then there is a smallest number $k$ where $s_k \neq t_k$.
+        That leads to digit $k$ of $N_s$ not being equal to digit $k$ of $N_t$.
+        This means that $N_s \neq N_k$.
+
+        This establishes an injection from the binary sequences into the rational numbers.
+        Therefore, because the rational numbers are countable, $T$ is countable.
+    \end{proof}
+
+    \pagebreak
+
+\section{Problem 2}
+    Let $(X, d)$ be a metric space. For a subset $E \subset X$, define the \textit{closure} of $E$, denoted $\overline{E}$, to be $E \cup E'$.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Show that $\overline{E}$ is closed, and that $\overline{E} = E$ if and only if $E$ is closed.
+
+        \item 
+        Show that $\overline{E}$ is the \textit{smallest} closed set containing $E$ in the following sense: if $F$ is closed and $E \subset F$, then $\overline{E} \subset F$.
+
+        \item 
+        Show that $\overline{E}$ is the intersection of all closed subsets of $X$ containing $E$.
+
+        \item 
+        Show that for any $E, F \subset X$, we have $\overline{E \cup F} = \overline{E} \cup \overline{F}$ (this is much easier if you use part (b)).
+
+        \item 
+        Define the \textit{closed ball of radius $r$ centered at $x$} to be $D_r(x) = \{y \in X : d(y, x) \leq r\}$. Show that $D_r(x)$ is closed and that $\overline{B_r(x)} \subset D_r(x)$ (using part (b) is again much simpler here).
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+        First we prove that $\overline{E}$ is closed.
+        \begin{proof}
+            We do this by proving that the complement of \closure{E} is open.
+            Take any $g$ in $\closure{E}^c$.
+            Since $\closure{E}$ is equal to the union of $E$ and the set of all its limit points, $g$ is neither a limit point of $E$ nor in $E$.
+            Not all $r > 0$ create an open ball $B_r(g)$ that has an intersection with \closure{E}.
+            That means that there exists some $r > 0$ such that the open ball $B_r(g)$ is a subset of $\closure{E}^c$.
+            This means that $\closure{E}^c$ is open.
+            Because a set is open if and only if its complement is closed, \closure{E} is closed.
+        \end{proof}
+        Next, we prove that $\closure{E} = E$ if $E$ is closed.
+        \begin{proof}
+            If $E$ is closed, that means that it contains all its limit points.
+            Recall that $\closure{E} = E \cup E'$, with $E'$ referring to the set of all limit points of $E$.
+            This means that $E'$ is a subset of $E$.
+            Therefore, $E \cup E'$ is equal to $E$.
+            Ergo, transistively, $\closure{E} = E$.
+        \end{proof}
+        Third, we prove that $E$ is closed if $\closure{E} = E$.
+        \begin{proof}
+            If $\closure{E} = E$, then $E$ is equal to the union of $E$ and the set of all its limit points $E'$.
+
+            Take any point $p$ in $E'$.
+            Since $p$ is in $E'$, that means $p$ is in the union of $E$ and $E'$.
+            Since $E$ is equal to the union of $E$ and $E'$, that means that $p$ is in $E$.
+            This means that if a point is a limit point of $E$, then it is in $E$.
+            That means that $E$ contains all of its limit points.
+            Ergo, $E$ is closed.
+        \end{proof}
+        Last, unification.
+        \begin{proof}
+            We know that $\closure{E} = E$ if $E$ is closed.
+            We know that $E$ is closed if $\closure{E} = E$.
+            Ergo, $\closure{E} = E$ if and only if $E$ is closed.
+        \end{proof}
+    
+    \subsection{Solution (b)}
+        \begin{proof}
+            We will prove that if $F$ is closed and $E$ is a subset of $F$, then \closure{E} is a subset of $F$.
+
+            Observe the limit points of $E$ (denoted $E'$), whether they exist or not.
+            Take any point $p$ in $E'$.
+            Since $p$ is a limit point of $E$, that means that for every $r > 0$, there exists an element $q$ in $E$ that is not equal to $p$ such that the open ball $B_r(p)$ contains $q$.
+            Since $E$ is a subset of $F$, this means that if $q$ is in $E$, then $q$ is also in $F$.
+            Therefore, for every $r > 0$, there exists an element $q$ in $F$ that is not equal to $p$ such that the open ball $B_r(p)$ contains $q$.
+            This means that $p$ is a limit point of $F$, and therefore that every limit point of $E$ is a limit point of $F$.
+            Since $F$ is closed, that means it contains all its limit points.
+            Therefore $E'$ is a subset of $F$.
+            Since $E$ and $E'$ are both subsets of $F$, that means their union is also a subset of $F$.
+            Since \closure{E} is the union of $E$ and $E'$, that means \closure{E} is a subset of $F$.
+        \end{proof}
+
+    \subsection{Solution (c)}
+        \begin{proof}
+            In part (b), we proved that if $F$ is closed and $E$ is a subset of $F$, then \closure{E} is a subset of $F$.
+            We also know that the intersection of any number of closed sets is also a closed set.
+            Supppose that we give the set of all closed subsets of $X$ containing $E$ the name $G$.
+
+            The only thing we know all the sets in $G$ have in common is that they contain $E$ as a subset. 
+            Therefore, we can say that the intersection of all elements of $G$ contains $E$ as a subset.
+            As proven in part (b), if a closed set has $E$ as a subset, then \closure{E} is a subset of the closed set.
+            Therefore, \closure{E} is a subset of the intersection of all elements of $G$.
+
+            Since $G$ is the collection of all closed subsets of $X$ and we have established that \closure{E} is both closed and a subset of $X$, we know that \closure{E} is an element of $G$.
+            By that, we know that if an element $p$ of $X$ is not in \closure{E}, it is not in the intersection of all elements of $G$.
+            Therefore, the intersection of all elements of $G$ is a subset of \closure{E}.
+
+            Since the intersection of all elements of $G$ is both a subset and superset of \closure{E}, that means the intersection of all elements of $G$ is equal to \closure{E}.
+        \end{proof}
+
+    \subsection{Solution (d)}
+        \textbf{Baron's Proposition:} $A \subset C$ and $B \subset C$ if and only if $A \cup B \subset C$.
+        \begin{proof}
+            First the forward direction.
+            Suppose that $A \subset C$ and $B \subset C$.
+            Any element in $A \cup B$ is either in $A$ or in $B$.
+            If it is in $A$, since $A \subset C$, it is also in $C$.
+            If it is in $B$, since $B \subset C$, it is also in $C$.
+            Either way, it is in $C$, so every element in $A \cup B$ is in $C$.
+            Therefore, $A \cup B$ is a subset of $C$.
+
+            Next the backwards direction.
+            Suppose that $A \cup B \subset C$.
+            Every element in $A$ is in $A \cup B$.
+            Since $A \cup B \subset C$, every element in $A$ is in $C$.
+            Similarly, every element in $B$ is in $A \cup B$.
+            Since $A \cup B \subset C$, every element in $B$ is in $C$.
+            Therefore, $A \subset C$ and $B \subset C$.
+
+            Ergo, $A \subset C$ and $B \subset C$ if and only if $A \cup B \subset C$.
+        \end{proof}
+
+        First, we demonstrate that \closure{E \cup F} is a subset of $\closure{E} \cup \closure{F}$.
+        \begin{proof}
+            Since the union of finite closed sets is also a closed set, $\closure{E} \cup \closure{F}$ is a closed set.
+            Since \closure{E} is equal to the union of $E$ and $E'$, then $E$ is a subset of \closure{E}.
+            This means that $E$ is a subset of $\closure{E} \cup \closure{F}$.
+            By a similar argument, $F$ is a subset of $\closure{E} \cup \closure{F}$.
+            Since $E$ and $F$ are both subsets of $\closure{E} \cup \closure{F}$, Baron's Proposition tells us that $E \cup F$ is a subset of $\closure{E} \cup \closure{F}$.
+            Since $\closure{E} \cup \closure{F}$ is a closed set, according to part (b), \closure{E \cup F} is also a subset of $\closure{E} \cup \closure{F}$.
+        \end{proof}
+
+        Next, we demonstrate that $\closure{E} \cup \closure{F}$ is a subset of \closure{E \cup F}.
+        \begin{proof}
+            First, we can write out \closure{E \cup F} in long form.
+            \begin{equation}
+                \closure{E \cup F} = (E \cup F) \cup (E \cup F)'
+            \end{equation}
+
+            Since it is written as a union including $E$, we can say that $E$ is a subset of \closure{E \cup F}.
+            Since \closure{E \cup F} is closed, by part (b), \closure{E} is a subset of \closure{E \cup F}.
+            By a similar argument, \closure{F} is a subset of \closure{E \cup F}.
+            
+            By Baron's Proposition, that means that $\closure{E} \cup \closure{F}$ is a subset of \closure{E \cup F}.
+        \end{proof}
+
+        Last, we combine the two subset statements.
+        \begin{proof}
+            We know that $\closure{E} \cup \closure{F}$ is a subset of \closure{E \cup F} and that \closure{E \cup F} is a subset of $\closure{E} \cup \closure{F}$.
+            Since each is a subset the other, that means that $\closure{E \cup F} = \closure{E} \cup \closure{F}$.
+        \end{proof}
+
+    \subsection{Solution (e)}
+        First we prove that $D_r(x)$ is closed.
+        \begin{proof}
+            Look at the difference between $B_r(x)$ and $D_r(x)$.
+            The difference is the cases where $d(y, x) = r$.
+        \end{proof}
+
+    \pagebreak
+
+\section{Problem 3}
+    Let $S$ be the set of all four letter strings of letters (which we will call \textit{words}). Thus $S = \{\text{abcd, eeee, math, wyzx, ...}\}$. Define a function $d$ which takes in two words and outputs the number of positions at which they differ. So for example, $d(\text{math, cats}) = 2$ and $d(\text{abcd}, \text{dcba}) = 4$.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item
+        Show that $(S, d)$ is a metric space (this is called the \textit{Hamming metric}).
+
+        \item 
+        In $(S, d)$, consider the sets
+        \begin{align*}
+            B_2(\text{aaaa}) &= \{s \in S : d(s, \text{aaaa}) < 2)\} \quad \text{ and }\\[5pt] D_2(\text{aaaa}) &= \{s \in S : d(s, \text{aaaa}) \leq 2)\}.
+        \end{align*}
+        Is it true that the closure of $B_2(\text{aaaa})$ equals $D_2(\text{aaaa})$? Using the results from Problem 2 will make things easier.
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+        A metric space consists of two parts: a set and a distance function.
+        The metric space is $S$.
+        The function is $d$.
+        We need to prove that the distance function satisfies three conditions:
+        \begin{enumerate}[label=(\alph*)]
+            \item   $d(p,q) > 0$ if $p \neq q$; $d(p,q) = 0$ if $p = q$
+            \item   $d(p,q) = d(q,p)$
+            \item   $d(p,q) \leq d(p,r) + d(r,q)$, for any $r$ in $S$
+        \end{enumerate}
+
+        Start with the first.
+        \begin{proof}
+            We can view words as a finite sequences of letters ($p = \{p_1, p_2, p_3, p_4\}$ and $q = \{q_1, q_2, q_3, q_4\}$).
+            We can view the distance function as an alteration of the discrete function ($f$).
+            \begin{gather}
+                f: X \to \{0, 1\}\\
+                f(a,b) = \begin{cases}
+                    0   &\text{if } x = y\\
+                    1   &\text{if } x \neq y
+                \end{cases}\\
+                d(p,q) = \sum_{i = 1}^{4} f(p_i, q_i)
+            \end{gather} 
+
+            Suppose that $p \neq q$.
+            Therefore, they differ in at least one position.
+            Since they differ in at least one position, the distance function would be greater than or equal to $1$.
+            Therefore, it would be greater than zero.
+
+            Suppose $p = q$.
+            There would be no positions in which the two differ.
+            \begin{equation}
+                d(p,q) = 0 + 0 + 0 + 0 = 0
+            \end{equation}
+            
+            Therefore, the first is satisfied.
+        \end{proof}
+
+        Then the second.
+        \begin{proof}
+            
+        \end{proof}
+
+    \pagebreak
+
+\section{Problem 4}
+    Let $E = \mathbb{Q} \cap [0, 1]$, viewed as a subset of $(\mathbb{R}, d)$, where $d$ is the usual metric.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Find an open cover of $E$ that has no finite subcover, and conclude that $E$ is not compact. (\textit{Hint:} pick an irrational number $r \in [0, 1]$ to help you.)
+
+        \item 
+        Find a set $A \subset E$ (other than $\varnothing$ or $E$) that is clopen w.r.t. the subspace metric on $(E, d)$, and conclude that $E$ is not connected. You may again find picking an irrational $r \in [0, 1]$ helpful.
+
+        \item 
+        With respect to $(\mathbb{R}, d)$, is the set $A$ you chose in part (b) open, closed, both, or neither? Explain.
+        
+    \end{enumerate}
+
+    \pagebreak
+
+\section{Problem 5}
+    Let $(X, d)$ be an arbitrary metric space.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Show that a finite union of compact sets in $(X, d)$ is compact. Is this also true for arbitrary unions? Prove or give a counterexample.
+
+        \item 
+        Show that a set $K \subset (X, d)$ is compact if and only if every cover of $K$ \textit{consisting of open balls} has a finite subcover. (\textit{Hint:} For the trickier direction, given an open cover $\{U_\alpha\}_{\alpha \in A}$ of $K$, make a new cover that consists of all of the open balls contained in some $U_\alpha$.)
+
+        \item 
+        Show that compact $K \subset (X, d)$ have the following property: for all $\epsilon > 0$, there is a finite set $\{x_1, \dots, x_n\} \subset K$ so that each $y \in K$ is within distance $\epsilon$ of some $x_j$.
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+    
+
+\end{document}

@@ -6,6 +6,12 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{multicol}
 
+% Load hyperref to automatically generate the PDF outline from structural tags
+\usepackage[pdftex, bookmarks=true, bookmarksnumbered=true]{hyperref}
+
+% Optional: Use the bookmark package for faster rendering and advanced control
+\usepackage{bookmark} 
+
 \newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
 \title{Homework \#1\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
 \date{July 3, 2026}
@@ -32,6 +38,9 @@ I have made the following assumptions about integers:
     \item   $2 > 1 > 0$
 \end{enumerate}
 
+\tableofcontents
+
+\pagebreak
 \section{Exercise 1}
     Let $S$ be the set \{rock, paper, scissors\}. Define a binary operation $\ast: S \times S \to S$ via
     \begin{equation*}
