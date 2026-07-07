@@ -14,7 +14,7 @@
 \usepackage{bookmark} 
 
 \newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
-\title{Homework \#1\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
+\title{Homework \#2\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
 \date{July 10, 2026}
 \author{Donald Aingworth IV}
 
@@ -300,10 +300,44 @@
     \subsection{Solution (e)}
         First we prove that $D_r(x)$ is closed.
         \begin{proof}
-            Look at the difference between $B_r(x)$ and $D_r(x)$.
-            The difference is the cases where $d(y, x) = r$.
+            For $D_r(x)$ to be closed, its complement would have to be open.
+            We can define its complement.
+            \begin{equation}
+                D_r(x)^c = \{ y \in X : d(y,x) > r \}
+            \end{equation}
+
+            Take any point $p$ in $D_r(x)^c$.
+            We know that $d(p,x) > r$.
+            That means that $d(p,x) - r > 0$.
+            Suppose that we create an open ball of radius $s = d(p,x) - r$.
+            \begin{equation}
+                B_s(p) = \{ y \in X : d(y,p) < d(p,x) - r\}
+            \end{equation}
+
+            If we can prove that $d(y,x) > r$ for any $y \in B_s(p)$, we can prove that the open ball is a subset of $D_r(x)^c$.
+            By the triangle inequality, with $x$ as our third point, $d(x,p) \leq d(y,x) + d(y,p)$.
+            This means that $d(y,x) \geq d(x,p) - d(y,p)$.
+            Since $d(p,x) > r$, we know $d(y,x) > d(x,p) - d(x,p) + r = r$.
+
+            Therefore, every point in $B_s(p)$ is in $D_r(x)^c$.
+            This means that $D_r(x)^c$ is open.
+            Ergo, $D_r(x)$ is closed.
         \end{proof}
 
+        We can now prove that $\closure{B_r(x)}$ is a subset of $D_r(x)$.
+        \begin{proof}
+            First, we prove that $B_r(x)$ is a subset of $D_r(x)$.
+            Take any point $y$ in $B_r(x)$.
+            We can say that $d(x,y) < r$.
+            That means that $d(x,y) \leq r$.
+            Therefore, $y$ is in $D_r(x)$.
+            This means that $B_r(x)$ is a subset of $D_r(x)$.
+
+            Part (b) tells us that if $F$ is closed and $E$ is a subset of $F$, then \closure{E} is a subset of $F$.
+            $D_r(x)$ is closed.
+            $B_r(x)$ is a subset of $D_r(x)$.
+            Therefore, \closure{B_r(x)} is a subset of $D_r(x)$.
+        \end{proof}
     \pagebreak
 
 \section{Problem 3}
