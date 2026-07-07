@@ -360,7 +360,7 @@
         A metric space consists of two parts: a set and a distance function.
         The metric space is $S$.
         The function is $d$.
-        We need to prove that the distance function satisfies three conditions:
+        We need to prove that the distance function satisfies three conditions for some $p$ and $q$ in $S$:
         \begin{enumerate}[label=(\alph*)]
             \item   $d(p,q) > 0$ if $p \neq q$; $d(p,q) = 0$ if $p = q$
             \item   $d(p,q) = d(q,p)$
@@ -394,11 +394,134 @@
             Therefore, the first is satisfied.
         \end{proof}
 
-        Then the second.
+        Now the second ($d(p,q) = d(q,p)$).
         \begin{proof}
+            Recall our equation for the distance function in $(S,d)$.
+            \begin{gather}
+                f: X \to \{0, 1\}\\
+                f(a,b) = \begin{cases}
+                    0   &\text{if } x = y\\
+                    1   &\text{if } x \neq y
+                \end{cases}\\
+                d(p,q) = \sum_{i = 1}^{4} f(p_i, q_i)
+            \end{gather} 
             
+            $f$ is commutative (since $x = y$ means $y = x$ and $x \neq y$ means $y \neq x$).
+            Therefore, we can say that $d(p,q) = \sum_{i = 1}^{4} f(p_i, q_i) = \sum_{i = 1}^{4} f(q_i, p_i) = d(q,p)$.
+            Ergo, $d(p,q) = d(q,p)$.
         \end{proof}
 
+        Now the third (the triangle inequality).
+        \begin{proof}
+            The triangle inequality says that for any $r$ in $S$, $d(p,q) \leq d(p,r) + d(r,q)$.
+            We can turn the two distance functions into the sums that we have described them as.
+            Since the functions are finite, we know we can use the associative property to combine them into one.
+            \begin{equation}
+                d(p,r) + d(r,q) = \sum_{i = 1}^{4} f(p_i, r_i) + \sum_{i = 1}^{4} f(r_i, q_i)
+                =   \sum_{i = 1}^{4} f(p_i, r_i) + f(r_i, q_i)
+            \end{equation}
+
+            For $r = \{r_1, r_2, r_3, r_4\}$, there are five possibilities for each letter in the sequence: 
+            \begin{enumerate}
+                \item   $r_i = p_i$ and $p_i \neq q_i$
+                \item   $r_i = q_i$ and $p_i \neq q_i$
+                \item   $p_i = q_i$ and $r_i \neq p_i$
+                \item   $r_i = p_i = q_i$
+                \item   $r_i \neq p_i$, $p_i \neq q_i$, and $r_i \neq q_i$
+            \end{enumerate}
+            We will prove that $f(p_i,q_i) \leq f(p_i, r_i) + f(r_i, q_i)$ in all four cases.
+
+            \textbf{Case 1: $r_i = p_i$ and $p_i \neq q_i$.}
+            Transistively, we can say that $r_i \neq q_i$.
+            $p_i \neq q_i$, so $f(p_i,q_i) = 1$.
+            $p_i = r_i$, so $f(p_i,r_i) = 0$.
+            $r_i \neq q_i$, so $f(p_i,q_i) = 1$.
+            Therefore,  $f(p_i, r_i) + f(r_i, q_i) = 1$, so $f(p_i,q_i) \leq f(p_i, r_i) + f(r_i, q_i)$.
+
+            \textbf{Case 2: $r_i = q_i$ and $p_i \neq q_i$.}
+            Transistively, we can say that $r_i \neq p_i$.
+            $p_i \neq q_i$, so $f(p_i,q_i) = 1$.
+            $q_i = r_i$, so $f(q_i,r_i) = 0$.
+            $p_i \neq r_i$, so $f(p_i,r_i) = 1$.
+            Therefore,  $f(p_i, r_i) + f(r_i, q_i) = 1$, so $f(p_i,q_i) \leq f(p_i, r_i) + f(r_i, q_i)$.
+
+            \textbf{Case 3: $p_i = q_i$ and $r_i \neq p_i$.}
+            Transistively, we can say that $r_i \neq q_i$.
+            $p_i = q_i$, so $f(p_i,q_i) = 0$.
+            $q_i \neq r_i$, so $f(p_i,r_i) = 1$.
+            $p_i \neq r_i$, so $f(p_i,r_i) = 1$.
+            Therefore,  $f(p_i, r_i) + f(r_i, q_i) = 2$, so $f(p_i,q_i) \leq f(p_i, r_i) + f(r_i, q_i)$.
+
+            \textbf{Case 4: $r_i = p_i = q_i$.}
+            $p_i = q_i$, so $f(p_i,q_i) = 0$.
+            $q_i = r_i$, so $f(p_i,r_i) = 0$.
+            $p_i = r_i$, so $f(p_i,r_i) = 0$.
+            Therefore,  $f(p_i, r_i) + f(r_i, q_i) = 0$, so $f(p_i,q_i) \leq f(p_i, r_i) + f(r_i, q_i)$.
+
+            \textbf{Case 5: $r_i \neq p_i$, $p_i \neq q_i$, and $r_i \neq q_i$.}
+            $p_i \neq q_i$, so $f(p_i,q_i) = 1$.
+            $q_i \neq r_i$, so $f(p_i,r_i) = 1$.
+            $p_i \neq r_i$, so $f(p_i,r_i) = 1$.
+            Therefore,  $f(p_i, r_i) + f(r_i, q_i) = 2$, so $f(p_i,q_i) \leq f(p_i, r_i) + f(r_i, q_i)$.
+
+            Since in every case, $f(p_i,q_i) \leq f(p_i, r_i) + f(r_i, q_i)$, we can say the same about their sum.
+            \begin{equation}
+                \sum_{i = 1}^{4} f(p_i,q_i) \leq \sum_{i = 1}^{4} f(p_i, r_i) + f(r_i, q_i)
+                    =   \sum_{i = 1}^{4} f(p_i, r_i) + \sum_{i = 1}^{4} f(r_i, q_i)
+            \end{equation}
+
+            We can replace the sums with the distance functions, so $d(p,q) \leq d(p,r) + d(r,q)$.
+        \end{proof}
+
+        Lastly, we consolidate this and formally prove that $(S,d)$ is a metric space.
+        \begin{proof}
+            A metric space consists of two parts: a set and a distance function.
+            The set is $S$.
+            The function is $d$.
+            We need to prove that the distance function satisfies three conditions for some $p$ and $q$ in $S$:
+            \begin{enumerate}[label=(\alph*)]
+                \item   $d(p,q) > 0$ if $p \neq q$; $d(p,q) = 0$ if $p = q$
+                \item   $d(p,q) = d(q,p)$
+                \item   $d(p,q) \leq d(p,r) + d(r,q)$, for any $r$ in $S$
+            \end{enumerate}
+
+            We have earlier established that the distance function satisfies all three conditions.
+            Ergo, $(S,d)$ is a metric space.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        I will use Problem 2, part (e).
+        It is false that the closure of $B_2(\text{aaaa})$ is equal to $D_2(\text{aaaa})$.
+        \begin{proof}
+            $D_2(\text{aaaa})$ fits the definition of a closed ball in $S$, which is found in the instructions for Problem 2. 
+
+            Take any $b$ in $B_2(\text{aaaa})$.
+            This means that $d(b, \text{aaaa}) < 2$.
+            Therefore, $d(b, \text{aaaa}) \leq 2$.
+            This means that $b$ is in $D_2(\text{aaaa})$.
+            Therefore, $B_2(\text{aaaa})$ is a subset of $D_2(\text{aaaa})$.
+
+            The issue comes when we consider the cases where $d(b, \text{aaaa}) = 2$.
+            We can prove that the cases where $d(b, \text{aaaa}) = 2$ are not limit points of $B_2(\text{aaaa})$.
+            In part (a), we showed that if $p \neq q$, then $d(p,q) \geq 1$.
+            We also showed that $d(p,q) = 0$ if $p = q$.
+            Take any point $b$ for which $d(b, \text{aaaa}) = 2$.
+            Suppose some ball of radius $r > 0$ around $b$ such that $r < 1$.
+            Since $d(p,q) \geq 1$ if $p \neq q$, then $p = q$ if $d(p,q) < 1$.
+            If $p = q$, then $d(p,q) = 0$.
+            Therefore, if $d(p,q) < 1$, then $d(p,q) = 0$.
+            If $d(p,q) < r$, then $d(p,q) < 1$.
+            Therefore, if $d(p,q) < r$, then $d(p,q) = 0$ and $p = q$.
+            This means that if $r < 1$, then the only point $p$ where $d(p,b) < r$ is when $p = b$.
+            Therefore, if $r < 1$, then $B_r(b)$ has no point in $B_2(\text{aaaa}) \backslash \{b\}$.
+            Therefore, $b$ is not a limit point of $B_2(\text{aaaa})$.
+            Therefore, the points $b$ where $d(b, \text{aaaa}) = 2$ are not limit points of $B_2(\text{aaaa})$.
+
+            Since the points $b$ where $d(b, \text{aaaa}) = 2$ are not limit points of $B_2(\text{aaaa})$, they are not in \closure{B_2(\text{aaaa})}.
+            However, if $d(b, \text{aaaa}) = 2$, then $d(b, \text{aaaa}) \leq 2$.
+            Therefore, the points are in $D_2(\text{aaaa})$ but not \closure{B_2(\text{aaaa})}.
+            Ergo, while it is a subset, $\closure{B_2(\text{aaaa})} \neq D_2(\text{aaaa})$.
+        \end{proof}
     \pagebreak
 
 \section{Problem 4}
@@ -414,6 +537,8 @@
         With respect to $(\mathbb{R}, d)$, is the set $A$ you chose in part (b) open, closed, both, or neither? Explain.
         
     \end{enumerate}
+    
+    \subsection{Solution (a)}
 
     \pagebreak
 
