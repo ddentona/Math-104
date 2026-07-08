@@ -539,6 +539,41 @@
     \end{enumerate}
     
     \subsection{Solution (a)}
+        \begin{proof}
+            Take an irrational number $r$ in the set $[0,1] \backslash \mathbb{Q}$. 
+
+            Let us create two sets of open intervals, and call them $L$ and $U$.
+            \begin{gather}
+                L = \left\{ \left( r - \frac{1}{n}, r - \frac{1}{n + 2} \right) \Big| n \in \mathbb{N} \right\}\\
+                U = \left\{ \left( r + \frac{1}{n + 2}, r + \frac{1}{n} \right) \Big| n \in \mathbb{N} \right\}
+            \end{gather}
+
+            Since they are made up of unions of open sets, the union of all elements of $L$ and $U$ are also open sets.
+
+            We can prove that $\bigcup_{n \in \mathbb{N}} L_n \cup \bigcup_{n \in \mathbb{N}} U_n$ is a cover of $[0,1] \cap \mathbb{Q}$.
+            Take any element of $[0,1] \cap \mathbb{Q}$ and call it $p$.
+            Since $r$ is irrational, it is not in $[0,1] \cap \mathbb{Q}$, so either $p < r$ or $p > r$.
+            We can prove that $p$ is in some element in $L$ or $U$ by cases.
+
+            \textbf{Case 1: $p < r$.}
+                Since $p \in [0,1]$, we know that $0 \leq p$.
+                Since $p < r$, $r - p > 0$.
+                By the Archimedean Principle, there is some natural number $n$ such that $\frac{1}{n} > r - p \geq \frac{1}{n + 1}$.
+                Since $\frac{1}{n} > \frac{1}{n+1}$ for all natural numbers $n$, $\frac{1}{n} > r - p > \frac{1}{n + 2}$.
+                Multiply everything by $-1$ (and flip all inequality signs\footnote{NTS: Prove that if $a < b$, then $-a > -b$.}) to find that $-\frac{1}{n} < p - r < -\frac{1}{n + 2}$.
+                Add $r$ to all sides to find that $r - \frac{1}{n} < p < r - \frac{1}{n + 2}$.
+                Therefore, $p$ is in $\left( r - \frac{1}{n}, r - \frac{1}{n + 2} \right)$ for some natural number $n$.
+
+            \textbf{Case 2: $p > r$.}
+                Since $p \in [0,1]$, we know that $1 \geq p$.
+                Since $p > r$, $p - r > 0$.
+                By the Archimedean Principle, there is some natural number $n$ such that $\frac{1}{n} > p - r \geq \frac{1}{n + 1}$.
+                Since $\frac{1}{n} > \frac{1}{n+1}$ for all natural numbers $n$, $\frac{1}{n} > r - p > \frac{1}{n + 2}$.
+                Add $r$ to all sides to find that $r + \frac{1}{n} > p > r + \frac{1}{n + 2}$.
+                Therefore, $p$ is in $\left( r + \frac{1}{n + 2}, r + \frac{1}{n} \right)$ for some natural number $n$.
+
+            That means that $\bigcup_{n \in \mathbb{N}} L_n \cup \bigcup_{n \in \mathbb{N}} U_n$ is a cover of $[0,1] \cap \mathbb{Q}$.
+        \end{proof}
 
     \pagebreak
 
