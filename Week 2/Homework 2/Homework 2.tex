@@ -624,10 +624,36 @@
 
     \subsection{Solution (b)}
         \begin{proof}[Proof by Counterexample]
-            Take the case of, for two irrational numbers $r$ and $s$ where $0 < r < s < 1$, $S = (r,s)$.
+            Take the case of, for the irrational number $r$ where $0 < r < 1$, $A = [0,r)$.
+            To prove this is clopen, we prove it is both open and closed.
             
-            \textbf{Case 1: $S$ is open}
-            Take any point $p$ in $S$.
+            \textbf{Case 1: $A$ is open.}
+                Take any point $p$ in $A$.
+                Create an open ball $B_s(p)$ in $E$ around $p$ of radius $s = r - p$, defined as $B_s(p) = \left\{ x \in E : d(x,p) < s \right\}$.
+                Since $r > p$, $s = r - p > 0$.
+                Since $d$ is the usual metric, this is the equivalent of saying that $\left| x - p \right| < r - p$.
+                Add $p$ to both sides to get $\left| x - p \right| + p < r$.
+                The triangle inequality tells us that $\left| x - p + p \right| = \abs{x} < r$.
+                Since for all $x$ in $E$, $x \geq 0$, then we can say $x = \abs{x}$, so $0 \leq x < r$.
+                Therefore, $x$ is in $A$.
+                That means $B_s(p)$ is in $A$.
+                This means that $A$ is open.
+
+            \textbf{Case 2: $A$ is closed.}
+                If $A$ is closed, then $A^c$ would be open.
+                $A$ is defined as $[0,r)$, so $A^c = [r,1]$.
+                Since $r$ is irrational, $E$ is a subset of the rational numbers, and $A$ is a subset of $E$, $r$ is not in $A$, so $A = (r,1]$.
+                Take any point $p$ in $A$.
+                Create an open ball $B_s(p)$ in $E$ around $p$ of radius $s = p - r$, defined as $B_s(p) = \left\{ x \in E : d(x,p) < s \right\}$.
+                Since $r < p$ and $p < 1$, $s = p - r < 1 - r$.
+                Since $d$ is the usual metric, this is the equivalent of saying that $\left| x - p \right| < p - r$.
+                Add $r$ to both sides to get $\left| x - p \right| + r < p$.
+                The triangle inequality tells us that $\left| x - p + p \right| = \abs{x} < r$.
+                Since for all $x$ in $E$, $x \geq 0$, then we can say $x = \abs{x}$, so $0 \geq x < r$.
+                Therefore, $x$ is in $A$.
+                That means $B_s(p)$ is in $A$.
+                This means that $A^c$ is open.
+                This means that $A$ is closed.
         \end{proof}
     \pagebreak
 
