@@ -552,6 +552,7 @@
             Since integers are closed under multiplication and addition, and the natural numbers are a subset of the integers, $mq + np$ is an integer, and $nq$ is a natural number.
             Therefore, $\frac{mq + np}{nq}$ is a rational number.
         \end{proof}
+        
         \textbf{Dylan's Proposition:}
             The sum of a rational number and an irrational number is an irrational number.
         \begin{proof}[Proof by Contradiction]
@@ -570,6 +571,7 @@
             This contradicts the fact that $r$ is irrational.
             Therefore our initial assumption is false and the sum of a rational number and an irrational number is an irrational number.
         \end{proof}
+        
         \textbf{Eddie's Proposition:}
             In an ordered field, if $a < b$, then $-a > -b$.
         \begin{proof}
@@ -577,6 +579,30 @@
             Add $-a - b$ to both sides to get $a - a - b < b - a - b$.
             By the additive inverse of both $a$ and $b$, $-b < -a$.
         \end{proof}
+        
+        \textbf{Frank's Proposition:}
+            $\abs{a} < b$ if and only if $-b < a < b$.
+        \begin{proof}
+            Suppose $\abs{a} < b$.
+            This divides us into two cases: $a \geq 0$ and $a < 0$.
+            
+            \textbf{Case 1: $a \geq 0$.}
+                If $a \geq 0$, there are two results.
+                First, through Eddie's Proposition and because $a \geq 0$, $-a \leq 0$.
+                Second, by the definition of the absolute value, $\abs{a} = a$, so $a < b$.
+                Also by Eddie's Proposition, $-b < -a$.
+                Transistively through all of these, $-b < -a \leq 0 \leq a < b$.
+                Shortening this, we get $-b < a < b$.
+
+            \textbf{Case 2: $a < 0$.}
+                There are two results from $a < 0$.
+                First, through Eddie's Proposition and because $a < 0$, $-a > 0$.
+                Second, by the definition of the absolute value, $\abs{a} = -a$, so $-a < b$.
+                Also by Eddie's Proposition, $-b < a$.
+                Transistively again, $-b < a < 0 < -a < b$.
+                Therefore, $-b < a < b$.
+        \end{proof}
+
         Now we prove the open cover problem.
         \begin{proof}
             Take an irrational number $r$ in the set $[0,1] \backslash \mathbb{Q}$. 
@@ -647,13 +673,42 @@
                 Create an open ball $B_s(p)$ in $E$ around $p$ of radius $s = p - r$, defined as $B_s(p) = \left\{ x \in E : d(x,p) < s \right\}$.
                 Since $r < p$ and $p < 1$, $s = p - r < 1 - r$.
                 Since $d$ is the usual metric, this is the equivalent of saying that $\left| x - p \right| < p - r$.
+                By Frank's proposition, $r - p < x - p < p - r$.
+                Add $p$ to all sides to find $r < x < 2p - r$, and we can focus on the former two terms.
                 Add $r$ to both sides to get $\left| x - p \right| + r < p$.
                 The triangle inequality tells us that $\left| x - p + p \right| = \abs{x} < r$.
-                Since for all $x$ in $E$, $x \geq 0$, then we can say $x = \abs{x}$, so $0 \geq x < r$.
-                Therefore, $x$ is in $A$.
-                That means $B_s(p)$ is in $A$.
+                Since for all $x$ in $E$, $x \leq 1$, then we can say $r < x \leq 1$.
+                Therefore, $x$ is in $A^c$.
+                That means $B_s(p)$ is in $A^c$.
                 This means that $A^c$ is open.
                 This means that $A$ is closed.
+
+            Therefore, $A$ is clopen and $A$ is not equal to either $E$ or $\varnothing$.
+            Since a set $E \subset \mathcal{X}$ is connected if the only clopen sets in $E$ are $E$ and $\varnothing$, $E$ is not connected.
+        \end{proof}
+
+    \subsection{Solution (c)}
+        In $(\mathbb{R}, d)$, $A$ is neither.
+        First we prove that it is not closed.
+        \begin{proof}[Proof by Counterexample]
+            For a set to be closed, it must contain all its limit points.
+            $r$ is a limit point of $A$ because for any $\varepsilon > 0$ where $\varepsilon < r$, $r - \varepsilon < r$ and $r - \varepsilon > 0$, so $0 < r - \varepsilon < r$, and the same applies to $\frac{\varepsilon}{2}$.
+            Since the rationals are dense in the reals, there is some rational number $q$ such that $r - \varepsilon < q < r$.
+            Therefore, for any open ball of radius $\varepsilon > 0$, $q$ is in $A$ and in the open ball.
+
+            Ergo, $\mathbb{Q} \cap [0,r)$ does not contain all its limit points.
+            This means that $A$ is not closed.
+        \end{proof}
+
+        Next, we prove that it is not open.
+        \begin{proof}[Proof by Counterexample]
+            If a set is open, then every point in it has an open ball around it also contained in the set.
+            Take the case of $0$.
+            $0$ is in $A$.
+            However, for any open ball of radius $\varepsilon > 0$, $-\frac{\varepsilon}{2}$ is in the open ball.
+            However, since $-\frac{\varepsilon}{2} < 0$, $-\frac{\varepsilon}{2}$ is not in $A$.
+            Therefore, there is no open ball of radius $\varepsilon$ in $\mathbb{R}$ centered at $0$ that is a subset of $A$.
+            Therefore, $A$ is not open.
         \end{proof}
     \pagebreak
 
@@ -670,8 +725,19 @@
         Show that compact $K \subset (X, d)$ have the following property: for all $\epsilon > 0$, there is a finite set $\{x_1, \dots, x_n\} \subset K$ so that each $y \in K$ is within distance $\epsilon$ of some $x_j$.
         
     \end{enumerate}
+        First, the finite union.
+        \begin{proof}
+            We will be using notations and names for the sake of improved comprehension.
 
-    \subsection{Solution (a)}
-    
+            A set is compact if and only if every open cover of it has a finite subcover.
+            Therefore, for any finite number of sets, their open covers all have finite subcovers.
+
+            Call the finite collection of $N$ compact sets we will take the union over $\{S_k\}_{k=1}^N$ and call their union $A$.
+            Take any open cover of $A$ called $C$.
+            Since $A$ is a union of all $\{S_k\}_{k=1}^N$, for any natural number $k < N$, $S_k$ is a subset of $A$.
+            Therefore, $C$ is also an open cover of $S_k$.
+            Since $S_k$ is compact, $C$ has a finite subcover of $S_k$.
+            Call that finite subcover $F_k$.
+        \end{proof}
 
 \end{document}
