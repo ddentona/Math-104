@@ -725,12 +725,15 @@
         Show that compact $K \subset (X, d)$ have the following property: for all $\epsilon > 0$, there is a finite set $\{x_1, \dots, x_n\} \subset K$ so that each $y \in K$ is within distance $\epsilon$ of some $x_j$.
         
     \end{enumerate}
+    
+    \subsection{Solution (a)}
         First, the finite union.
-        \begin{proof}
+        \begin{proof}[Proof by Construction]
             We will be using notations and names for the sake of improved comprehension.
+            For an open cover $C$ over a union of all sets in $\{S_k\}_{k=1}^N$, we will be constructing a finite subcover $G$.
 
             A set is compact if and only if every open cover of it has a finite subcover.
-            Therefore, for any finite number of sets, their open covers all have finite subcovers.
+            Therefore, since each $S_k$ is compact, $S_k$ has a finite subcover.
 
             Call the finite collection of $N$ compact sets we will take the union over $\{S_k\}_{k=1}^N$ and call their union $A$.
             Take any open cover of $A$ called $C$.
@@ -738,6 +741,48 @@
             Therefore, $C$ is also an open cover of $S_k$.
             Since $S_k$ is compact, $C$ has a finite subcover of $S_k$.
             Call that finite subcover $F_k$.
+            Therefore, for every set $S_k$, there is a finite subcover of $S_k$ taken from $C$ called $F_k$.
+
+            Take the union of $F_k$ for all natural numbers $k$ where $1 \leq k \leq N$ and call that union $G$.
+            Since each $F_k$ is finite and $N$ is finite, $\bigcup_{k = 1}^{N} F_k$ is finite a finite set.
+            For every $F_k$, since $G$ contains every element of $F_k$, $F_k$ is a subset of $G$.
+            Since $F_k \subset G \subset C$ and $F_k$ covers $S_k$, $G$ also covers $S_k$.
+            Since $G$ is a finite subcover of $C$ that covers every $S_k$ and $A$ is the union of every $S_k$, $G$ is a finite subcover over $A$.
+            This means $G$ is a finite subcover of $C$ over $A$.
+            Therefore, for every open cover $C$ over $A$, $A$ has a finite subcover.
+            Ergo, $A$ is compact.
         \end{proof}
 
+        For an arbitrary union, we can consider a case of infinite compact sets.
+        \begin{proof}[Proof by Counterexample]
+            Take $(X,d) = (\mathbb{R},d)$ and the set $S = \left\{ [n,n+1] \Big| n \in \mathbb{N} \right\}$.
+            By the Bolzano-Weistrass Theorem, since every element of $S$ is in $\mathbb{R}$ and is closed and bounded, they are all compact sets.
+            Take the union $A$ of all the sets in $S$.
+            The union therefore becomes $[1,\infty)$.
+            However, by the Bolzano-Weistrass theorem, since $[1,\infty)$ is not bounded, it is not compact.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        First we prove that if every cover of $K \subset (X,d)$ consisting of open balls has a finite subcover, then the set $K$ is compact.
+        \begin{proof}
+            
+        \end{proof}
+
+        Next, we prove that if $K \subset (X,d)$ is compact, then every cover of $K$ consisting of open balls has a finite subcover.
+        \begin{proof}
+            Let $K \subset (X,d)$ be compact.
+            Take any open cover of $K$ consisting of only open balls.
+            Since it is an open cover of $K$, it has an open subcover of $K$.
+            Therefore, every cover of $K$ consisting of open balls has a finite subcover of $K$.
+        \end{proof}
+
+    \subsection{Solution (c)}
+        This uses the statement proved in part (b).
+        \begin{proof}
+            We proved in part (b) that since $K$ is compact, every open cover of $K$ consisting of open balls has a finite subcover.
+            Suppose we take one of those finite subcovers of a cover consisting of open balls and call it $\{F_\alpha\}_{\alpha \in A}$.
+            Since it is a cover, for every $y \in K$, $y \in F_\alpha$ for some $\alpha$.
+
+            Every open ball $B_\varepsilon(x)$ is defined as $B_\varepsilon(x) = \left\{ y \in K \Big| d(y,x) < \varepsilon \right\}$.
+        \end{proof}
 \end{document}
