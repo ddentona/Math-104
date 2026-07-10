@@ -764,8 +764,26 @@
 
     \subsection{Solution (b)}
         First we prove that if every cover of $K \subset (X,d)$ consisting of open balls has a finite subcover, then the set $K$ is compact.
-        \begin{proof}
+        \begin{proof}[Proof by Construction]
+            Take any open cover of $K$ called $\mathcal{U}$.
+            Take any open set $U \in \mathcal{U}$.
+            By the definition of the open set, for any $x \in U$, there is some open ball of radius $r > 0$ centered around $x$ called $B_r(x)$ such that $x \in B_r(x) \subset U \in \mathcal{U}$. 
+            Therefore, every $x$ in $K$ is contained within some $B_r(x)$.
             
+            Take every $B_r(x)$ for every $U$ in $\mathcal{U}$ and form a new set, which we can call $\mathcal{B}$.
+            Since every element of $K$ is contained inside some open ball $B_r(x)$ in $\mathcal{B}$, and because every cover of $K$ consisting of open balls has a finite subcover, $\mathcal{B}$ has a finite subcover of $K$.
+            Call that finite subcover $\mathcal{F}$.
+
+            We have previously established that every $B_r(x)$ is a subset of some $U \in \mathcal{U}$.
+            Create a new set of open sets $F$.
+            For every $B_r(x)$ in $\mathcal{F}$, pick one and only one $U$ in $\mathcal{U}$ such that $B_r(x)$ is a subset of $U$ and add $U$ to $F$.
+            Therefore, $F$ has equal or lower cardinality than $\mathcal{F}$, so it is finite and is a subset of $\mathcal{U}$.
+
+            Since $\mathcal{F}$ is an open cover of $K$ and every $B_r(x)$ in $\mathcal{F}$ is a subset of some open set $U$ in $F$, $F$ is also an open cover of $K$.
+            Since $F$ is an open cover of $K$, is finite, and is a subset of $\mathcal{U}$, it is a finite open subcover of $\mathcal{U}$ over $K$.
+            
+            Therefore, every open cover of $K$ has a finite subcover.
+            Ergo, $K$ is compact.
         \end{proof}
 
         Next, we prove that if $K \subset (X,d)$ is compact, then every cover of $K$ consisting of open balls has a finite subcover.
@@ -777,12 +795,25 @@
         \end{proof}
 
     \subsection{Solution (c)}
+        % \textbf{Gerry's Proposition:}
+        %     Any open ball of radius $r$ can be expressed as 
+        % Now we prove the initial statement.
         This uses the statement proved in part (b).
-        \begin{proof}
-            We proved in part (b) that since $K$ is compact, every open cover of $K$ consisting of open balls has a finite subcover.
-            Suppose we take one of those finite subcovers of a cover consisting of open balls and call it $\{F_\alpha\}_{\alpha \in A}$.
-            Since it is a cover, for every $y \in K$, $y \in F_\alpha$ for some $\alpha$.
+        \begin{proof}[Proof by Construction]
+            Take any $\epsilon > 0$.
 
-            Every open ball $B_\varepsilon(x)$ is defined as $B_\varepsilon(x) = \left\{ y \in K \Big| d(y,x) < \varepsilon \right\}$.
+            Consider the collection $\mathcal{B}$ of open balls of radius $\epsilon$ defined as follows.
+            For every $x \in K$, create an open ball of radius $\epsilon$ centered at $x$ ($B_\epsilon(x)$) and add that open ball to $\mathcal{B}$.
+            Since every $x \in K$ is also in some open ball in $\mathcal{B}$ and every open ball is open, $\mathcal{B}$ is an open cover of $K$.
+
+            Since $K$ is compact, $\mathcal{B}$ has a finite subcover over $K$, which we can call $\mathcal{F}$.
+            Take the set of the center of every open ball $B_\epsilon(x_j)$ in $\mathcal{F}$, which will be finite because $\mathcal{F}$ is finite, and call that set $C = \{x_1, \dots, x_n\}$.
+            Since the center of every open ball in $\mathcal{B}$ is in $K$ and $\mathcal{F}$ is a finite subset of $\mathcal{B}$ over $K$, the center of every open ball in $\mathcal{F}$ is in $K$.
+            Therefore, $C = \{x_1, \dots, x_n\}$ is a subset of $K$.
+
+            Since $\mathcal{F}$ is a cover of $K$, for every $y \in K$, there is an open ball of radius $\epsilon$ in $\mathcal{F}$ called $B_\epsilon(x_j)$ such that $y \in B_\epsilon(x_j)$.
+            Therefore, for every $y \in K$, $d(x_j, y) < \epsilon$.
+            Therefore, since the centers of all the open balls in $\mathcal{F}$ are all in $\{x_1, \dots, x_n\}$, each $y \in K$ is within distance $\epsilon$ of some $x_j$ in $\{x_1, \dots, x_n\}$.
+            Ergo, for every $\epsilon > 0$, there exists a finite set $\{x_1, \dots, x_n\} \subset K$ so that each $y \in K$ is within distance $\epsilon$ of some $x_j$.
         \end{proof}
 \end{document}
