@@ -117,18 +117,26 @@
     \subsection{Solution (b)}
     \begin{proof}
         Recall that the rational numbers are countable.
-        This means that if we can map the binary sequences onto the rational numbers, we can prove that they are countable.
+        This means that if we can inject the binary sequences into the rational numbers, we can prove that they are countable.
         
         Since only finitely many of $x_j$ are nonzero, there is a point $n > 0$ beyond which for all $j > n$, $x_j = 0$.
         Take any element $t$ in $T$ such that $t = (x_1, x_2, \dots)$.
-        We can define a number $N < 1$, turning every $x_j$ into a digit.
+        We can define a number $0 \leq N < 1$, turning every $x_j$ into a digit.
         Since for all $j > n$, $x_j = 0$, there is a terminal point in $N$ beyond which every subsequent digit would be $0$.
         \begin{equation}
             N = 0.x_1 x_2 x_3 \dots x_{n - 1} x_n 0000\dots
         \end{equation}
 
+        More formally, we can define the function from $T$ to $\mathbb{Q}$ as follows.
+        \begin{gather}
+            f: T \to \mathbb{Q}\\
+            f((x_1, x_2, \dots)) = 0.x_1 x_2 x_3 \dots
+        \end{gather}
+        Since $f$ has a trailing series of zeroes beyond a certain point, the decimal does terminate.
+        Note that the number that comes out of $f$ always uses the terminating point form of a number and never the repeating-$9$ expansion.
+
         We can multiply both sides of $N$ by $10^n$.
-        This allows us to shift the desimal point to just after $x_n$.
+        This allows us to shift the decimal point to just after $x_n$.
         \begin{align}
             N \times 10^n   &=  10^n \times 0.x_1 x_2 x_3 \dots x_{n - 1} x_n 0000\dots\\
                 &=  x_1 x_2 x_3 \dots x_{n - 1} x_n .0000\dots
@@ -146,7 +154,7 @@
         In order to establish that this is an injection, we must establish that for $s$ and $t$ in $T$ where $s \neq t$, then $N_s \neq N_t$.
         If $s \neq t$, then there is a smallest number $k$ where $s_k \neq t_k$.
         That leads to digit $k$ of $N_s$ not being equal to digit $k$ of $N_t$.
-        This means that $N_s \neq N_k$.
+        This means that $N_s \neq N_t$.
 
         This establishes an injection from the binary sequences into the rational numbers.
         Therefore, because the rational numbers are countable, $T$ is countable.
