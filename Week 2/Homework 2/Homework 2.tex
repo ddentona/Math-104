@@ -791,7 +791,8 @@
             Since $F$ is an open cover of $K$, is finite, and is a subset of $\mathcal{U}$, it is a finite open subcover of $\mathcal{U}$ over $K$.
             
             Therefore, every open cover of $K$ has a finite subcover.
-            Ergo, $K$ is compact.
+            This means $K$ is compact.
+            Ergo, a set $K \subset (X, d)$ is compact if every cover of $K$ consisting of open balls has a finite subcover.
         \end{proof}
 
         Next, we prove that if $K \subset (X,d)$ is compact, then every cover of $K$ consisting of open balls has a finite subcover.
@@ -800,6 +801,13 @@
             Take any open cover of $K$ consisting of only open balls.
             Since it is an open cover of $K$, it has an open subcover of $K$.
             Therefore, every cover of $K$ consisting of open balls has a finite subcover of $K$.
+        \end{proof}
+
+        Last, we consolidate it.
+        \begin{proof}
+            We know that if $K \subset (X,d)$ is compact, then every cover of $K$ consisting of open balls has a finite subcover.
+            We also know that if every cover of $K \subset (X,d)$ consisting of open balls has a finite subcover, then the set $K$ is compact.
+            Ergo, a set $K \subset (X, d)$ is compact if and only if every cover of $K$ consisting of open balls has a finite subcover.
         \end{proof}
 
     \subsection{Solution (c)}
