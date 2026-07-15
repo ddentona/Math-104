@@ -63,7 +63,7 @@
         \end{enumerate}
         
     \end{enumerate}
-    \pagebreak
+    % \pagebreak
     \subsection{Solution (a)}
         \textbf{Alexis's Proposition:}
             For any $a, b \in \mathbb{R}$ where $a < b$, there exists some $\frac{m}{n} \in \mathbb{Q}$ such that $a < \frac{m}{n} < b$.
@@ -100,6 +100,25 @@
             \end{proof}
     \pagebreak
     \subsection{Solution (b)}
+        First, we prove that if $E$ is dense in $X$, then $\closure{E} = X$.
+        \begin{proof}
+            Suppose that $E$ is dense in $X$.
+            Take any point $x \in X$.
+            Create an open ball of radius $r$ for any $r > 0$.
+            We can define the open ball as $B_r(x) = \left\{ y \in X \Big| \abs{y - x} < r \right\}$.
+            Since open balls are open and $E$ is dense in $X$, there is a point $p \in E \cap B_r(x)$.
+            Therefore, there is a point $p$ in $E$ in every open ball centered at any point in $X$.
+            Therefore, every point in $X$ is a limit point of $E$.
+            Therefore, $X$ is the set of limit points of $E$
+            Since \closure{E} is the union of $E$ and the set of its limit points and every point in $E$ is in $X$ (since $E$ is a subset of $X$), $X = \closure{E}$.
+        \end{proof}
+
+        Next we prove that $E$ is dense in $X$ if $\closure{E} = X$.
+        \begin{proof}
+            Let $\closure{E} = X$.
+            Take any open set $O \subset X$.
+            Since $\closure{E} = E \cup E'$, for any point $p \in X$, either $p \in E$ or $p \in E'$.
+        \end{proof}
     \pagebreak
     \subsection{Solution (c)}
 
