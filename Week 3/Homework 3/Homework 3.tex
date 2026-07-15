@@ -65,6 +65,39 @@
     \end{enumerate}
     \pagebreak
     \subsection{Solution (a)}
+        \textbf{Alexis's Proposition:}
+            For any $a, b \in \mathbb{R}$ where $a < b$, there exists some $\frac{m}{n} \in \mathbb{Q}$ such that $a < \frac{m}{n} < b$.
+            \begin{proof}
+                Let $a, b \in \mathbb{R}$ where $a < b$.
+                Since $a < b$, $b - a > 0$.
+                By the Archimedean property, there exists some $n \in \mathbb{N}$ such that $n(b-a)>1$.
+                Distribute and add $na$ to both sides to find $nb > na + 1$.
+                Also by the Archimedean property, there exists some natural numbers $m_1$ and $m_2$ such that $m_1 > na$ and $m_2 > -na$.
+                The latter means that $na > -m_2$.
+                Therefore, $m_1 > na > -m_2$.
+                Since $m_1$ and $-m_2$ are both integers, there exists some integer $m$ such that $-m_2 < m < m_1$ and $m - 1 \leq na < m$.
+                This is equivalent to $m \leq na + 1 < m + 1$.
+                Combine all of these and we find that $na < m \leq na + 1 < nb$.
+                Shortening this, $na < m < nb$.
+                Divide this all by $n$ to find $a < \frac{m}{n} < b$.
+                Since $n$ is a natural number and $m$ is an integer, $\frac{m}{n}$ is a rational number.
+                Ergo, if $a, b \in \mathbb{R}$ and $a < b$, there exists some $\frac{m}{n} \in \mathbb{Q}$ such that $a < \frac{m}{n} < b$.
+            \end{proof}
+
+            Now we prove $Q$ is dense in $\mathbb{R}$ with the usual metric.
+            \begin{proof}
+                Take any set $O$ open in $\mathbb{R}$.
+                This means that for any $o \in O$, there exists some $r > 0$ such that there exists an open ball $B_r(o)$ that is a subset of $O$.
+                We define this open ball as $B_r(o) = \left\{ x \in \mathbb{R} \Big| \abs{x - o} < r \right\}$.
+
+                Since $r > 0$, this means $r > -r$ and therefore $o + r > o - r$.
+                By Alexis's Proposition, there exists some rational number $\frac{m}{n}$ such that $o - r < \frac{m}{n} < o + r$.
+                Subtract $o$ from all sides to find $-r < \frac{m}{n} - o < r$.
+                By the definition of the absolute value, $\abs{\frac{m}{n} - o} < r$.
+                Therefore, $\frac{m}{n} \in B_r(o)$ and by extension $\frac{m}{n} \in O$.
+                Therefore, $\frac{m}{n} \in \mathbb{Q} \cap O$.
+                Therefore, 
+            \end{proof}
     \pagebreak
     \subsection{Solution (b)}
     \pagebreak
@@ -175,10 +208,35 @@
     \textit{Remark:} For $r < 0$ we then define $a^r = \frac{1}{a^{-r}}$, and for $0 < a < 1$ we define $a^r = \left(\frac{1}{a}\right)^{-r}$. It is then a matter of checking cases to verify that all the properties of exponentiation we want are indeed true.
     \pagebreak
     \subsection{Solution (a)}
+        \textbf{Billie's Proposition:}
+            If $\frac{p}{q} = \frac{r}{s}$ and $\frac{p}{q}$ is in lowest terms but $\frac{r}{s}$ is not, there exists some nonzero integer $t$ such that $r = pt$ and $s = qt$.
         \begin{proof}
-            Let $x = \sqrt[q]{a^p}$ and $y = \sqrt[s]{a^r}$.
+            Let $\frac{p}{q} = \frac{r}{s}$ and $\frac{p}{q}$ is in lowest terms but $\frac{r}{s}$ is not.
+            Multiply by to find that $ps = qr$.
+            
+            Divide by $p$ to find that $s = \frac{qr}{p}$.
+            Since $s$ is a nonzero integer, $p$ divides $qr$.
+            Since $\frac{p}{q}$ is in lowest terms, $p$ does not divide $q$, so $p$ must divide $r$.
+            Therefore, there is some nonzero integer $t$ such that $p = rt$.
+
+            Substitute in our value of $p$ into the result of the cross multiplication to find $rst = qr$.
+            Divide both sides by $r$ to find that $q = st$.
+        \end{proof}
+        \begin{proof}
+            Let $x = \sqrt[q]{a^p}$ and $y = \sqrt[s]{a^r}$, and suppose that $\frac{p}{q} = \frac{r}{s}$ and that $\frac{p}{q}$ is in lowest terms while $\frac{r}{s}$ is not.
             This would mean that $x = a^\frac{p}{q}$ and $y = a^\frac{r}{s}$.
             Take $x$ to the power of $q$ and $y$ to the power of $s$ to find $x^q = a^p$ and $y^s = a^r$.
+            Take the former to the power of $r$ and the latter to the power of $p$ to find $x^{qr} = a^{pr}$ and $y^{ps} = a^{pr}$.
+            Transistively, this means $x^{qr} = y^{sp}$.
+            
+            By Billie's Proposition, since $\frac{p}{q}$ is in lowest terms while $\frac{r}{s}$ is not, there exists some nonzero integer $t$ such that $r = pt$ and $s = qt$.
+            Substitute these into our equation to find that $x^{qpt} = y^{qpt}$.
+            \begin{gather}
+                x^{qr} = y^{sp}\\
+                x = y\\
+                (x^{qr})^{sp} = (y^{sp})^{qr}\\
+                x^{qr} = (y^{sp})^{\frac{q}{p} \cdot \frac{r}{s}}
+            \end{gather}
         \end{proof}
     \pagebreak
     \subsection{Solution (b)}
