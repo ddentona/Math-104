@@ -200,8 +200,51 @@
         $\displaystyle{\liminf_{n \to \infty} \left[\frac{1}{n} + (1 + (-1)^n)n\right] = 0}.$
         
     \end{enumerate}
-    \pagebreak
+    % \pagebreak
     \subsection{Solution (a)}
+        First we prove that for all $m, n \in \mathbb{N}$, if $m \geq n$, then $\frac{1}{2\sqrt{m}} < \frac{1}{2\sqrt{n}}$.
+        \begin{proof}
+            To begin, we know that $n \leq m$ for $m, n \in \mathbb{N}$.
+            Take the square root of both sides to find that $\sqrt{n} \leq \sqrt{m}$\footnote{Cite a source.}.
+            Double both sides to find $2 \sqrt{n} \leq 2 \sqrt{m}$.
+            Divide each side by what is on the other side to find $\frac{1}{2 \sqrt{m}} \leq \frac{1}{2 \sqrt{n}}$.
+        \end{proof}
+
+        By a similar logic, we prove that for all $n \in \mathbb{N}$, $\frac{1}{\sqrt{n + 1} + \sqrt{n}} < \frac{1}{2\sqrt{n}}$.
+        \begin{proof}
+            To begin, we know that $n < n + 1$ for $n \in \mathbb{N}$.
+            Take the square root of both sides to find that $\sqrt{n} < \sqrt{n + 1}$\footnote{Cite a source.}.
+            Add $\sqrt{n}$ to both sides to find $2 \sqrt{n} < \sqrt{n + 1} + \sqrt{n}$.
+            Divide each side by what is on the other side to find $\frac{1}{\sqrt{n + 1} + \sqrt{n}} < \frac{1}{2\sqrt{n}}$.
+        \end{proof}
+
+        \begin{proof}
+            We can start by rewriting the term within the limit.
+            \begin{equation}
+                \sqrt{n + 1} - \sqrt{n} = (\sqrt{n + 1} - \sqrt{n}) \frac{\sqrt{n + 1} + \sqrt{n}}{\sqrt{n + 1} + \sqrt{n}}
+                    =   \frac{n + 1 - n}{\sqrt{n + 1} + \sqrt{n}}
+                    =   \frac{1}{\sqrt{n + 1} + \sqrt{n}}
+            \end{equation}
+
+            Let $\varepsilon > 0$.
+            Choose a natural number $N$ such that $N > \frac{1}{4\varepsilon^2}$ and let $n \in \mathbb{N}$ such that $n \geq N$.
+            Take our inequality and multiply by $\varepsilon^2$ while dividing by $N$ to find that $\varepsilon^2 > \frac{1}{4N}$.
+            Take the square root of both sides to find $\varepsilon > \frac{1}{2\sqrt{N}}$.
+            Based on earlier statements and recalling $n \geq N$, we find $\frac{1}{2\sqrt{N}} \geq \frac{1}{2\sqrt{n}}$.
+            Also based on earlier, $\frac{1}{2\sqrt{n}} > \frac{1}{\sqrt{n + 1} + \sqrt{n}}$.
+            Transistively, this means $\varepsilon > \frac{1}{\sqrt{n + 1} + \sqrt{n}}$.
+
+            Since $n \in \mathbb{N}$, $n > 0$, and the same can be said about $n + 1$.
+            Therefore, $\sqrt{n} > 0$ and $\sqrt{n + 1} > 0$.
+            Collectively adding, that means $\sqrt{n + 1} + \sqrt{n} > 0$.
+            Multiplying everything by $(\sqrt{n + 1} + \sqrt{n})^{-1}$ twice, we find that $\frac{1}{\sqrt{n + 1} + \sqrt{n}} > 0$.
+            Therefore, $\abs{\frac{1}{\sqrt{n + 1} + \sqrt{n}}} = \frac{1}{\sqrt{n + 1} + \sqrt{n}}$.
+
+            We can therefore say that $\varepsilon > \abs{\frac{1}{\sqrt{n + 1} + \sqrt{n}}}$ for any $\varepsilon > 0$ and for any $n \geq N$ for some $N \in \mathbb{N}$.
+            Therefore, $\lim_{n \to \infty} \frac{1}{\sqrt{n + 1} + \sqrt{n}} = 0$.
+            Since $\frac{1}{\sqrt{n + 1} + \sqrt{n}} = \sqrt{n + 1} - \sqrt{n}$, $\lim_{n \to \infty} \left[ \sqrt{n + 1} - \sqrt{n} \right] = \lim_{n \to \infty} \frac{1}{\sqrt{n + 1} + \sqrt{n}}$.
+            Ergo, $\lim_{n \to \infty} \left[ \sqrt{n + 1} - \sqrt{n} \right] = 0$.
+        \end{proof}
     \pagebreak
     \subsection{Solution (b)}
     \pagebreak
