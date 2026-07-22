@@ -31,12 +31,85 @@
   }%
 }
 \newcommand{\mathif}{\text{if }}
-\newcommand{\seq}[2][n]{\ensuremath{(#2 _{#1})}}
+\newcommand{\seq}[2][n]{\ensuremath{\left\{ #2 _{#1} \right\}}}
 \newcommand{\zz}[1]{$\mathbb{Z}/ #1 \mathbb{Z}$}
 
 \maketitle
 
 \tableofcontents
+
+\pagebreak
+\setcounter{section}{-1}
+\section{Various Theorems}
+    Various theorems, propositions, and statements that will be useful in this problem set will be detailed here.
+    \subsection{Reverse Triangle Inequality}
+        In a metric space $(X,d)$ with elements $a, b, c \in X$, $\abs{d(a,b) - d(b,c)} \leq d(a,c)$.
+        \begin{proof}
+            Let $a, b, c \in X$.
+            By the triangle equality, we know $d(a,b) \leq d(a,c) + d(b,c)$ and $d(b,c) \leq d(a,c) + d(a,b)$.
+            Subtracting $d(a,b)$ from one and $d(b,c)$ from the other, we find $d(a,b) - d(b,c) \leq d(a,c)$ and $d(b,c) - d(a,b) \leq d(a,c)$.
+            Reversing the latter, we find $d(a,b) - d(b,c) \geq -d(a,c)$.
+            This means that $-d(a,c) \leq d(a,b) - d(b,c) \leq d(a,c)$.
+            Ergo, $\abs{d(a,b) - d(b,c)} \leq d(a,c)$.
+        \end{proof} 
+
+    \subsection{Specific for all means general exists}
+        Suppose $A \subset B$ and $A \neq \varnothing$ and $X$ refers to some statement that can be either true or false. If $X(a)$ is true for all $a \in A$, then there exists some $b \in B$ where $X(b)$ is true.
+        \begin{proof}
+            Let $X(a)$ be true for all $a \in A$.
+            Take any $a \in A$.
+            Since $A \subset B$, $a \in B$.
+            Therefore, there exists some $a \in B$ where $X(a)$ is true.
+        \end{proof}
+        Used in 3a.
+
+    \subsection{Monotone decreasing sequences converge to Infimum}
+        If a sequence is monononically decreasing, then it converges to its infimum.
+        \begin{proof}
+            Suppose a monotonically decreasing sequence $s_n$, so for all $n \in \mathbb{N}$, $s_n \geq s_{n + 1}$.
+            Suppose further that it is bounded below by $s = \inf\{s_n\}$, so for any $n \in \mathbb{N}$, $s_n > s$.
+
+            Let $\varepsilon > 0$.
+            There is $N \in \mathbb{N}$ such that $s_N < s + \varepsilon$.
+            Then, for all $n > N$, $s + \varepsilon > s_N \geq s_n > s$.
+            Therefore, $\varepsilon > s_n - s > 0$.
+            Therefore, $\varepsilon > \abs{s_n - s}$.
+            Ergo, $\{s_n\}$ converges to $\inf\{s_n\}$.
+        \end{proof}
+
+    \subsection{Minimum is Infimum}
+        If for all $x \in X$, $y \leq x$ and $y \in X$, then $y = \inf X$.
+        \begin{proof}
+            Since $y \leq x$ for all $x \in X$, $y$ is a lower bound of $X$.
+            Let $\varepsilon > 0$.
+            Therefore, $y + \varepsilon > y$.
+            Since $y \in X$, for all $\varepsilon > 0$, there exists some element in $x \in X$ such that $x < y + \varepsilon$.
+            Ergo, $y = \inf X$.
+        \end{proof}
+        A similar proof can be done to prove that if for all $x \in X$, $y \geq x$ and $y \in X$, then $y = \sup X$.\\
+        Used in 3c.
+    
+    \subsection{Floor and Ceiling Functions}
+        \textbf{Floor function ($\left\lfloor \right\rfloor$):}
+            $n = \left\lfloor x \right\rfloor$ is defined as the integer $n$ such that $n \leq x < n + 1$.\\
+        \textbf{Ceiling function ($\left\lceil \right\rceil$):}
+            $n = \left\rceil x \right\rceil$ is defined as the integer $n$ such that $n - 1 < x \leq n$.
+
+    \subsection{$2^n > n$}
+        If $n \in \mathbb{N}$, then $2^n > n$.
+        \begin{proof}[Proof by Induction]
+            \textbf{Base case:}
+                We know that $2^1 = 2 > 1$.
+
+            \textbf{Inductive step}
+                Suppose that $2^n > n$.
+                Furthermore, since $n \geq 1$, $2n \geq n + 1$.
+                Multiply both sides of the inequality by $2$ to find $2^{n+1} > 2n$.
+                Transistively, this means that $2^{n+1} > n + 1$.
+
+            Ergo, if $n \in \mathbb{N}$, then $2^n > n$.
+        \end{proof}
+        Used in 2c.
 
 \pagebreak
 \section{Problem 1}
@@ -205,7 +278,7 @@
         First we prove that for all $m, n \in \mathbb{N}$, if $m \geq n$, then $\frac{1}{2\sqrt{m}} < \frac{1}{2\sqrt{n}}$.
         \begin{proof}
             To begin, we know that $n \leq m$ for $m, n \in \mathbb{N}$.
-            Take the square root of both sides to find that $\sqrt{n} \leq \sqrt{m}$\footnote{Cite a source.}.
+            Take the square root of both sides to find that $\sqrt{n} \leq \sqrt{m}$.
             Double both sides to find $2 \sqrt{n} \leq 2 \sqrt{m}$.
             Divide each side by what is on the other side to find $\frac{1}{2 \sqrt{m}} \leq \frac{1}{2 \sqrt{n}}$.
         \end{proof}
@@ -213,7 +286,7 @@
         By a similar logic, we prove that for all $n \in \mathbb{N}$, $\frac{1}{\sqrt{n + 1} + \sqrt{n}} < \frac{1}{2\sqrt{n}}$.
         \begin{proof}
             To begin, we know that $n < n + 1$ for $n \in \mathbb{N}$.
-            Take the square root of both sides to find that $\sqrt{n} < \sqrt{n + 1}$\footnote{Cite a source.}.
+            Take the square root of both sides to find that $\sqrt{n} < \sqrt{n + 1}$.
             Add $\sqrt{n}$ to both sides to find $2 \sqrt{n} < \sqrt{n + 1} + \sqrt{n}$.
             Divide each side by what is on the other side to find $\frac{1}{\sqrt{n + 1} + \sqrt{n}} < \frac{1}{2\sqrt{n}}$.
         \end{proof}
@@ -247,10 +320,48 @@
         \end{proof}
     \pagebreak
     \subsection{Solution (b)}
-    \pagebreak
+        \begin{proof}
+            $\limsup_{n \to \infty} (-2)^n$ is defined as $\lim_{k \to \infty} \left[ \sup_{n \geq k} (-2)^n \right]$.
+            The definition of convergence to $\infty$ is that for all $M > 0$, there exists some $N \in \mathbb{N}$ so that for all $n \geq N$, $s_n > M$.
+
+            Let $C_M = \left\lceil M \right\rceil \geq M$.
+            If $C_M$ is odd, operate further on $C_M + 1$.
+            
+            $(-2)^n = (-1)^n \cdot 2^n$, so if $n$ is even, then $(-1)^n = 1$, so $(-2)^n = 2^n$ when $n$ is even.
+            Without loss of generality (between $C_M$ when $C_M$ is even and $C_M + 1$ when $C_M$ is odd), we furthermore know that $2^{C_M} > C_M$.
+            Therefore, we know that $2^{C_M} > M$.
+
+            Therefore, $\{(-2)^n\}$ is not bounded above.
+            Since $2^{n + 1} > 2^n$, and by extension $2^{n + 2} > 2^n$ and $(-2)^{n + 2} > (-2)^n$ for even $n$, the sequence is monotonically increasing.
+            Therefore, $\limsup_{n \to \infty} (-2)^n = \infty$.
+        \end{proof}
+    % \pagebreak
     \subsection{Solution (c)}
+        \begin{proof}
+            By the definition of $\limsup$, $\limsup_{n \to \infty} \left[-\sqrt{n}\right] = \lim_{k \to \infty} \sup_{n \geq k} \left[-\sqrt{n}\right]$.
+            By the definition of $\sup$, for all $n \geq k$, $\sup \left[-\sqrt{n}\right] \geq -\sqrt{n}$.
+
+            Let $M < 0$.
+            Let $N = \left\lceil M^2 \right\rceil$.
+            Since $M < 0$, $M^2 > \abs{M}$.
+            Therefore, $\left\lceil M^2 \right\rceil \geq \abs{M}$, so $N > M^2$.
+            Therefore, if $n \geq N$, $n > M^2$, so $-\sqrt{n} < -\sqrt{M^2} = M$ (because $M < 0$).
+
+            Therefore, for all $M < 0$, there exists $N \in \mathbb{N}$ such that for all $n \geq N$, $-\sqrt{n} < M$.
+            Ergo, $\limsup_{n \to \infty} \left[-\sqrt{n}\right] = -\infty$.
+        \end{proof}
     \pagebreak
     \subsection{Solution (d)}
+        \begin{proof}
+            By the definition of $\liminf$, 
+            \[ \liminf_{n \to \infty} \left[\frac{1}{n} + (1 + (-1)^n)n\right] = \lim_{k \to \infty} \left[ \inf_{n \geq k} \left[\frac{1}{n} + (1 + (-1)^n)n\right] \right] \]
+
+            Look at only the odd terms.
+            If $n$ is odd, then $(1 + (-1)^n)n = (1 - 1)n = 0n = 0$, so equivalently $\frac{1}{n} + (1 + (-1)^n)n = \frac{1}{n}$.
+            By the Archimedean Property, for any $\varepsilon > 0$, there are infinitely many (odd and even) $n$ such that $\varepsilon > \frac{1}{n}$.
+            Also, since $\frac{1}{n} > 0$, $\frac{1}{n} > -\varepsilon$, so $0$ is the greatest lower bound of $\frac{1}{n}$.
+            Therefore, $\liminf_{n \to \infty} \left[\frac{1}{n} + (1 + (-1)^n)n\right] = 0$.
+        \end{proof}
 
 \pagebreak
 \section{Problem 3}
@@ -277,16 +388,124 @@
         Show that $\displaystyle{\limsup_{n \to \infty} s_n = \sup E}$ and $\displaystyle{\liminf_{n \to \infty} s_n = \inf E}$.\\[5pt] \textit{Hint:} what happens to $\limsup$ and $\liminf$ on subsequences?\\
         
     \end{enumerate}
-    \pagebreak
+    % \pagebreak
     \subsection{Solution (a)}
-        First we prove the forward direction.
+        Assume that we are working within the real numbers.
+        First we prove the forward direction, starting with the first statement.
         \begin{proof}
             Suppose that $\limsup_{n \to \infty} s_n = s$.
+            Recall that $\limsup_{n \to \infty} s_n = \lim_{k \to \infty} \left[ \sup_{n > k} s_n \right]$.
+            Now recall the definition of the limit: for all $\varepsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $n \geq N$, $d(\sup\{s_m\}_{m \geq n}, s) < \varepsilon$.
+            In the standard metric, the latter term can be turned into $\abs{\sup\{s_m\}_{m \geq n} - s} < \varepsilon$.
+            
+            Recall the meaning of $\sup\{s_m\}_{m \geq n}$: that for all $m \geq n$, $s_m \leq \sup\{s_m\}_{m \geq n}$.
+            Let $\sup\{s_m\}_{m \geq n} = \sigma$, so for all $m \geq n$, $s_m \leq \sigma$.
+            Since $n \geq N$, $s_m \leq \sigma$ for all $m \geq N$.
+            This means that $\sigma - s_m \geq 0$, so $\sigma - s_m = \abs{\sigma - s_m}$.
+
+            We also know that $\abs{\sup\{s_m\}_{m \geq n} - s} < \varepsilon$, or equivalently that $\abs{\sigma - s} < \varepsilon$.
+            By the absolute value, $-\varepsilon < \sigma - s < \varepsilon$.
+            Add $s$ to all sides to find that $s - \varepsilon < \sigma < s + \varepsilon$.
+            Earlier we established that for all $m \geq N$, $s_m \leq \sigma$, so we can transistively say for all $m \geq N$, $s_m < s + \varepsilon$.
+
+            We earlier established $N \in \mathbb{N}$ as arbitrary (``There exists some''), and the only requirement of $\varepsilon$ is that $\varepsilon > 0$, so we can replace $\varepsilon = \epsilon$ and $m = n$.
+            Ergo, for all $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $n \geq N$, $s_n < s + \epsilon$.
+        \end{proof}
+
+        Now we prove the second statement.
+        \begin{proof}
+            As with earlier, suppose that $\limsup_{n \to \infty} s_n = s$.
+            For all $\varepsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $m \geq N$, $\abs{\sup\{s_k\}_{k \geq m} - s} < \varepsilon$.
+
+            Recall a theorem we proved on the homework about $\sup\{s_k\}_{k \geq m} = \sigma$.
+            We proved that for any $\epsilon > 0$, there exists some $s_n \in \{s_k\}_{k \geq m}$ where $n \geq m$ such that $s_n > \sigma - \epsilon$.
+            We said in class that $\sup\{s_k\}_{k \geq m}$ is monotonically decreasing, so $\sup\{s_k\}_{k \geq m} \geq s$.
+            Add $\epsilon$ to both sides of $s_n > \sigma - \epsilon$ and find $s_n + \epsilon > \sigma$, which transistively means $s_n + \epsilon > s$ and by extension $s_n > s - \epsilon$.
+
+            Since this appplies for all $m \geq N$ (transistively $n > N$) and $\{m \in \mathbb{N} \Big| m > N\} \subset \mathbb{N}$, then by the fact that specific for all implies general exists, for all $m \in \mathbb{N}$, there exists some $n \geq m$ such that $s_n + \epsilon > s$.
+            Ergo, renaming $m$ to $N$, for all $\epsilon > 0$ and for all $N \in \mathbb{N}$, there exists some $n \geq N$ such that $s_n > s - \epsilon$.
+        \end{proof}
+
+        Lastly, we prove the reverse.
+        \begin{proof}
+            Suppose that for all $\epsilon > 0$, there is $N \in \mathbb{N}$ so that $s_n < s + \epsilon$ for all $n \geq N$ and that for all $M \in \mathbb{N}$, there exists $n \geq M$ so that $s_n > s - \epsilon$.
+
+            Begin with the former, that for all $\epsilon > 0$, there is $N \in \mathbb{N}$ so that $s_n < s + \epsilon$ for all $n \geq N$.
+            By extension, for all $\frac{\epsilon}{2} > 0$, there is $N \in \mathbb{N}$ so that $s_n < s + \frac{\epsilon}{2}$ for all $n \geq N$.
+            This means that $\sup\{s_n\}_{n \geq N} \leq s + \frac{\epsilon}{2}$ and by extension $\sup\{s_n\}_{n \geq N} < s + \epsilon$.
+            Since if $A \subset B$ then $\sup A \leq \sup B$ and for all $m \geq N$, $\{s_n\}_{n \geq m} \subset \{s_n\}_{n \geq N}$, $\sup\{s_n\}_{n \geq m} \leq \sup\{s_n\}_{n \geq N}$.
+            By extension, for all $m \geq N$, $\sup\{s_n\}_{n \geq m} < s + \epsilon$.
+            Therefore, for all $\epsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $m \geq N$, $\sup\{s_n\}_{n \geq m} < s + \epsilon$.
+
+            Now the latter, that for all $\epsilon > 0$, for all $M \in \mathbb{N}$, there exists $n \geq M$ so that $s_n > s - \epsilon$.
+            Suppose we restrict $M$ so that $M \geq N$. 
+            Then for all $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that for all there exists $n \geq N$ so that $s_n > s - \epsilon$.
+            Since we are working in the extended real numbers, $\sup \{s_n\}$ exists, and by extension $\sup \{s_n\}_{n \geq M}$ exists.
+            Combining these, since $\sup \{s_n\}_{n \geq M} \geq s_n$ for all $n \geq M$, for all $M \in \mathbb{N}$, $\sup \{s_n\}_{n \geq M} > s - \epsilon$.
+            By extension, for all $N \in \mathbb{N}$, for all $M \geq N$, $\sup \{s_n\}_{n \geq M} > s - \epsilon$.
+            Renaming $M$ to $m$, for all $\epsilon > 0$ and for all $N \in \mathbb{N}$, for all $m \geq N$, $\sup \{s_n\}_{n \geq m} > s - \epsilon$.
+            This guarantees that for all $\epsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $m \geq N$, $\sup \{s_n\}_{n \geq m} > s - \epsilon$.
+
+            Combining the conclusions we came to in our previous two paragraphs, for all $\epsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $m \geq N$, $\sup\{s_n\}_{n \geq m} < s + \epsilon$ and $\sup \{s_n\}_{n \geq m} > s - \epsilon$.
+            This means transistively that $s - \epsilon < \sup\{s_n\}_{n \geq m} < s + \epsilon$.
+            Subtract $s$ form both sides to find $- \epsilon < \sup\{s_n\}_{n \geq m} - s < \epsilon$.
+            By the definition of the absolute value, $\abs{\sup\{s_n\}_{n \geq m} - s} < \epsilon$.
+            Summarizing, for all $\epsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $m \geq N$, $\abs{\sup\{s_n\}_{n \geq m} - s} < \epsilon$.
+            Therefore, $\sup\{s_n\}_{n \geq m}$ converges to $s$.
+            Ergo, $\limsup_{n \to \infty} s_n = s$.
+        \end{proof}
+
+        Last, we combine everything, which is a bit messy and tedious. 
+        \begin{proof}
+            We proved that if $\limsup_{n \to \infty} s_n = s$, then for all $\epsilon > 0$, there is $N \in \mathbb{N}$ so that $s_n < s + \epsilon$ for all $n \geq N$.
+            We proved that if $\limsup_{n \to \infty} s_n = s$, then for all $\epsilon > 0$ and for all $N \in \mathbb{N}$, there exists $n \geq N$ so that $s_n > s - \epsilon$.
+            We proved that if for all $\epsilon > 0$, there is $N \in \mathbb{N}$ so that $s_n < s + \epsilon$ for all $n \geq N$, and if for all $\epsilon > 0$ and for all $N \in \mathbb{N}$, there exists $n \geq N$ so that $s_n > s - \epsilon$, then $\limsup_{n \to \infty} s_n = s$.
+            Ergo, $\limsup_{n \to \infty} s_n = s$ if an only if for all $\epsilon > 0$, there is $N \in \mathbb{N}$ so that $s_n < s + \epsilon$ for all $n \geq N$ and for all $\epsilon > 0$ and for all $N \in \mathbb{N}$, there exists $n \geq N$ so that $s_n > s - \epsilon$.
         \end{proof}
     \pagebreak
     \subsection{Solution (b)}
-    \pagebreak
+        This will be done first for $\limsup$, then for $\liminf$.
+        \begin{proof}[Proof by Construction]
+            Suppose that \seq{s} is bounded above and define $a_n = \sup_{m \geq n} s_m$.
+            \seq{a} is decreasing and bounded below, so $a_n \to L$ where $L = \limsup_{n \to \infty} s_n$.
+            Let's create a subsequence of \seq{s} choosing each $n_k$ where $s_{n_k} > a_{n_k} - \frac{1}{k}$ and $n_k > n_{k - 1}$.
+            Since $a_{n_k} = \sup_{m \geq n_k} s_m$, and $\frac{1}{k} > 0$, this can be applied.
+            Furthermore, $a_{n_k} \geq s_{n_k}$.
+            $\frac{1}{k}$ converges to $0$, so $a_{n_k} - \frac{1}{k}$ converges to $L$ where $L = \limsup_{n \to \infty} s_n$.
+            We also know that $a_{n_k}$ converges to $L$.
+            Therefore, by the sequence squeeze theorem, since $a_{n_k} \geq s_{n_k} > a_{n_k} - \frac{1}{k}$, $s_{n_k}$ converges to $L$.
+            Therefore, there is a subsequence of \seq{s} that converges to $\limsup_{n \to \infty} s_n$.
+        \end{proof}
+
+        Now for $\liminf$, which is basically identical with some tweaks.
+        \begin{proof}[Proof by Construction]
+            Suppose that \seq{s} is bounded below and define $a_n = \inf_{m \geq n} s_m$.
+            \seq{a} is decreasing and bounded below, so $a_n \to L$ where $L = \liminf_{n \to \infty} s_n$.
+            Let's create a subsequence of \seq{s} choosing each $n_k$ where $s_{n_k} < a_{n_k} + \frac{1}{k}$ and $n_k > n_{k - 1}$.
+            Since $a_{n_k} = \inf_{m \geq n_k} s_m$, and $\frac{1}{k} > 0$, this can be applied.
+            Furthermore, $a_{n_k} \leq s_{n_k}$.
+            $\frac{1}{k}$ converges to $0$, so $a_{n_k} + \frac{1}{k}$ converges to $L$ where $L = \limsup_{n \to \infty} s_n$.
+            We also know that $a_{n_k}$ converges to $L$.
+            Therefore, by the sequence squeeze theorem, since $a_{n_k} \leq s_{n_k} < a_{n_k} - \frac{1}{k}$, $s_{n_k}$ converges to $L$.
+            Therefore, there is a subsequence of \seq{s} that converges to $\liminf_{n \to \infty} s_n$.
+        \end{proof}
+
+    % \pagebreak
     \subsection{Solution (c)}
+        First $\liminf$.
+        \begin{proof}
+            When you pass a subsequence to an infimum, you essentially pass an ordered subset to the infimum function.
+            Since the ordered subset is itself a subset and the infimum of a subset will be greater than or equal to the infimum of the original set, the infimum of the subsequence will be greater than or equal to the infimum of the original sequence, so $\inf\seq{s} \leq \inf\seq[n_k]{s}$.
+            Take subsets over the same span and find $\inf_{n \geq m}\seq{s} \leq \inf_{n_k \geq m}\seq[n_k]{s}$.
+            Take the limit of this and we find that for every subsequence \seq[n_k]{s}, $\lim_{n \to \infty} \inf_{n \geq m}\seq{s} \leq \lim_{n \to \infty} \inf_{n_k \geq m}\seq[n_k]{s}$.
+            Therefore, $\liminf_{n \to \infty}\seq{s} \leq \liminf_{n \to \infty}\seq[n_k]{s}$.
+            Since it is known that if the limit exists, then the limit infimum is equal to the limit, for any \seq[n_k]{s}, $\liminf_{n \to \infty}\seq{s} \leq \lim_{n \to \infty}\seq[n_k]{s}$.
+            Therefore, for any element $x \in E$, $\liminf_{n \to \infty}\seq{s} \leq x$.
+            From part (b), we know that there is a subsequence of \seq{s} that converges to $\liminf_{n \to \infty}\seq{s}$.
+            Therefore, $\liminf_{n \to \infty}\seq{s} \in E$.
+            Earlier in this docuent we proved that if for all $x \in X$, $y \leq x$ and $y \in X$, then $y = \inf X$.
+            Ergo by that proposition, $\liminf_{n \to \infty}\seq{s} = \inf E$.
+        \end{proof}
 
 \pagebreak
 \section{Problem 4}
@@ -357,22 +576,76 @@
             
             By Billie's Proposition, since $\frac{p}{q}$ is in lowest terms while $\frac{r}{s}$ is not, there exists some nonzero integer $t$ such that $r = pt$ and $s = qt$.
             Substitute these into our equation to find that $x^{qpt} = y^{qpt}$.
-            \begin{gather}
-                x^{qr} = y^{sp}\\
-                x = y\\
-                (x^{qr})^{sp} = (y^{sp})^{qr}\\
-                x^{qr} = (y^{sp})^{\frac{q}{p} \cdot \frac{r}{s}}
-            \end{gather}
+            Take the $qpt$th root of both sides to find that $\sqrt[qpt]{x^{qpt}} = \sqrt[qpt]{y^{qpt}}$
+            By the uniqueness of $q$th roots, there is only one possible positive value of $\sqrt[qpt]{x^{qpt}}$ and one possible positive value of $\sqrt[qpt]{y^{qpt}}$, which are $x$ and $y$ respectively.
+            
+            Therefore, $x = y$.
+            Ergo, $\sqrt[q]{a^p} = \sqrt[s]{a^r}$.
         \end{proof}
-    \pagebreak
+    % \pagebreak
     \subsection{Solution (b)}
+        \subsubsection{Property ($\Delta$)}
+            \begin{proof}
+                Let $\frac{p}{q}$ be a rational number.
+                Let $x = (ab)^\frac{p}{q}$ and let $y = a^\frac{p}{q} b^\frac{p}{q}$.
+                Raise both sides of both to the power of $q$ to find $x^q = (ab)^p$ and $y^q = \left( a^\frac{p}{q} b^\frac{p}{q} \right)^q$.
+                By property ($\Delta$) for integers, $x^p = a^p b^p$ and $y^p = a^p b^p$.
+                Transistively, this means $x^p = y^p$, which we can apply the uniqueness of $q$th roots to to find that $x = y$.
+                Therefore, $(ab)^\frac{p}{q} = a^\frac{p}{q} b^\frac{p}{q}$.
+            \end{proof}
+
+        \subsubsection{Property ($\ast$)}
+            \begin{proof}
+                Let $\frac{p}{q}$ and $\frac{r}{s}$ be rational numbers.
+                Let $x = a^{\frac{p}{q} + \frac{r}{s}}$ and $y = a^\frac{p}{q} a^\frac{r}{s}$.
+                Rewrite $x$ as $x = a^\frac{ps + qr}{qs}$.
+                Take both to the $qs$ power to find that $x^{qs} = a^{ps + qr}$ and $y^{qs} = \left( a^\frac{p}{q} a^\frac{r}{s} \right)^{qs}$.
+                Invoking property ($\Delta$) for integers, we find that $y^{qs} = a^{ps} a^{qr}$.
+                Invoking property ($\Delta$) for integers, we find that $y^{qs} = a^{ps + qr}$.
+                Transistively, this means $x^{qs} = y^{qs}$.
+                Take the unique positive $qs$th root to find that $x = y$.
+                Ergo, $a^{\frac{p}{q} + \frac{r}{s}} = a^\frac{p}{q} a^\frac{r}{s}$.
+            \end{proof}
     \pagebreak
     \subsection{Solution (c)}
-    \pagebreak
+        First the first half.
+        \begin{proof}
+            Start with $r < s$ where $r$ and $s$ are natural numbers.
+            Since $a > 1$, $a^r < a^s$.
+            This means that $a^s - a^r > 0$. 
+            Using properties proven in part (b), $a^s - a^r = a^r(a^{s - r} - a^{r - r}) = a^r(a^{s - r} - 1)$.
+        \end{proof}
+
+        Then the second half.
+        \begin{proof}
+            If $0 < r < s < t$, then $\abs{s - r} < t - r < t$.
+            
+            Suppose $r - s > 0$.
+            This means $a^r - a^s = \abs{a^r - a^s} = 0$.
+            As shown earlier, this means that $\abs{a^r - a^s} = a^s(a^{\abs{r - s}} - 1)$.
+            Since $s < t$, $a^s < a^t$, so $\abs{a^r - a^s} = a^s(a^{\abs{r - s}} - 1) < a^t(a^{\abs{r - s}} - 1)$.
+        \end{proof}
+    % \pagebreak
     \subsection{Solution (d)}
-    \pagebreak
-    \subsection{Solution (e)}
-    \pagebreak
-    \subsection{Solution (f)}
+        \begin{proof}
+            Rudin Thorem 3.20(b) says that if $a > 0$ (which we know because $a > 1$), then $\lim_{n \to \infty} \sqrt[n]{a} = 1$.
+            Therefore, $\lim_{n \to \infty} a^\frac{1}{n} = 1$.
+            This means that for all $\varepsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $n > N$, $\abs{a^\frac{1}{n} - 1} < \varepsilon$.
+
+            Since $a^r = \lim_{k \to \infty} a^{q_k}$, $r = \lim_{k \to \infty} q_k$, so $q_k$ is cauchy.
+            Therefore, if $\abs{q_k - q_\ell} < \frac{1}{m}$ for some $m \in \mathbb{N}$, $a^{\abs{q_k - q_\ell}} < a^{\frac{1}{m}}$ and $0 < a^{\abs{q_k - q_\ell}} - 1 < a^{\frac{1}{m}} - 1$.
+            Now suppose that we replace $\varepsilon$ with $\frac{\varepsilon}{a^t}$ since $a^t > 0$.
+            Therefore, $a^{\abs{q_k - q_\ell}} - 1 < a^{\frac{1}{m}} - 1 < \frac{\varepsilon}{a^t}$.
+            Multiply by $a^t$ to find $a^t(a^{\abs{q_k - q_\ell}} - 1) < \varepsilon$.
+            Therefore, by part (c), $\abs{a^{q_k} - a^{q_\ell}} < \varepsilon$.
+            Therefore, $\{a^{q_k}\}$ is Cauchy.
+
+            According to Rudin 3.11(c), in $\mathbb{R}^k$, every Cauchy sequence converges.
+            Therefore, since $\{a^{q_k}\} \in \mathbb{R}$ and is Cauchy, it converges, so $a^r$ exists.
+        \end{proof}
+    % \pagebreak
+    % \subsection{Solution (e)}
+    % \pagebreak
+    % \subsection{Solution (f)}
 
 \end{document}

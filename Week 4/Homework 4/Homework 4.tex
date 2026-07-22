@@ -1,0 +1,570 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{soul}
+\usepackage{tikz}
+
+% Load hyperref to automatically generate the PDF outline from structural tags
+\usepackage[pdftex, bookmarks=true, bookmarksnumbered=true]{hyperref}
+
+% Optional: Use the bookmark package for faster rendering and advanced control
+\usepackage{bookmark} 
+
+\newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
+\title{Homework \#2\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
+\date{July 10, 2026}
+\author{Donald Aingworth IV}
+
+\begin{document}
+\renewcommand\qedsymbol{OE$\Delta$}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\andtxt}{\text{ and }}
+\newcommand{\Ais}{\ensuremath{\overset{A}{=}}}
+\newcommand{\Cis}{\ensuremath{\overset{C}{=}}}
+\newcommand{\closure}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\encircle}[1]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle, draw, inner sep=1pt] (char) {#1};%
+  }%
+}
+\newcommand{\mathif}{\text{if }}
+\newcommand{\seq}[2][n]{\ensuremath{\left\{ #2 _{#1} \right\}}}
+\newcommand{\zz}[1]{$\mathbb{Z}/ #1 \mathbb{Z}$}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+\setcounter{section}{-1}
+\section{Various Theorems}
+    \subsection{Monotone Decrease I}
+        $a_n = \frac{1}{n(\log n)(\log \log n)^p}$ for $n \in \mathbb{N}$ is monotonically decreasing if $p > 0$.
+        \begin{proof}
+            Let $p > 0$.
+            We know $n > 0$ since $n \in \mathbb{N}$.
+            This also means $n \geq 1$.
+            Logarithms are monotone, as mentioned in Rudin (p.63).
+            % Rudin also mentions that $\frac{1}{n\log(n)}$ converges to $0$.
+            Therefore, $\log n$ and by extension $\log \log n$ and $(\log \log n)^p$ are monotonically increasing.
+            Therefore, $n (\log n) (\log \log n)^p$ is monotonically increasing.
+            On the other hand, this also means that $\frac{1}{n (\log n) (\log \log n)^p}$ is monotonically decreasing.
+        \end{proof}
+
+    \subsection{Monotone Decrease II}
+        $b_n = \frac{1}{n (\log 2) (\log (n) + \log (\log 2))^p}$ for $n \in \mathbb{N}$ is monotonically decreasing if $p > 0$.
+        \begin{proof}
+            This uses a lot of what was used in Monotone Decrease I.
+            $n$ is monotone increasing.
+            $\log(n)$ is monotone increasing and $\log(\log(2))$ is constant, so $\log(n) + \log(\log(2))$ and by extension $(\log(n) + \log(\log(2)))^p$ if $p > 0$ are monotone increasing.
+            $\log(2)$ is constant, so $n (\log 2) (\log (n) + \log (\log 2))^p$ is monotone increasing if $p > 0$.
+            Therefore, $\frac{1}{n (\log 2) (\log (n) + \log (\log 2))^p}$ is monotone decreasing if $p > 0$.
+        \end{proof}
+
+    \subsection{Inverese Triangle Inequality}
+        For $a, b, c \in (X,d)$, $\abs{d(p,q) - d(q,r)} \leq d(p,r)$.
+        \begin{proof}
+            From the triangle inequality, we have two equations.
+            \begin{gather}
+                d(p,q) \leq d(p,r) + d(q,r)\\
+                d(q,r) \leq d(p,r) + d(p,q)
+            \end{gather}
+
+            We can subtract $d(q,r)$ and $d(p,q)$ from them respectively.
+            \begin{gather}
+                d(p,q) - d(q,r) \leq d(p,r)\\
+                d(q,r) - d(p,q) \leq d(p,r)
+            \end{gather}
+
+            Reverse the latter.
+            \begin{gather}
+                d(p,q) - d(q,r) \geq -d(p,r)
+            \end{gather}
+
+            By the definition of the absolute value, we can say that $\abs{d(p,q) - d(q,r)} \leq d(p,r)$.
+        \end{proof}
+
+\pagebreak
+\section{Problem 1}
+    For which values of $p \in \mathbb{R}$ are the following series convergent or divergent? Prove your answers rigorously, using only tests we explicitly covered in class. \textit{Hint:} for both of these series you should use something with the name ``Cauchy" in it.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        $\displaystyle{\sum_{n = 3}^{\infty} \frac{1}{n(\log n)(\log \log n)^p}}$
+
+        \item 
+        $\displaystyle{\sum_{n = 1}^{\infty}} \frac{(-1)^{n - 1}}{n^p}$.
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+    % First we prove that $\sum_{n=1}^{\infty} \frac{1}{n(\log n)(\log \log n)^p}$ converges if and only if $\sum_{n=1}^{\infty} \frac{1}{(\log 2) (n \log (2) + \log (\log 2))^p}$ converges.
+    \begin{proof}
+        Since $2 < e$, $\log(2) < \log(e) = 1$.
+        Furthermore, through the use of a calculator, $\log 2 = 0.6931$ and $\log \log 2 = -0.3665$.
+
+        Let $p \leq 0$.
+        This means $a_n = \frac{(\log \log n)^q}{n (\log n)}$ for some $q \geq 0$ such that $q = -p$.
+        $\log n$ is monotonically increasing, so by extension so is $\log \log n$.
+        Therefore, since $\log n$ is monotonically increasing and unbounded, so is $\log \log n$ and so is $(\log \log n)^q$.
+        Therefore, for some $N_0 \in \mathbb{N}$, for all $n \geq N_0$, $\log \log n \geq 1$ and $(\log \log n)^q \geq 1$.
+        Therefore if $n \geq N_0$, $\frac{(\log \log n)^q}{n \log n} \geq \frac{1}{n \log n}$.
+        Recall that if $a_n \geq d_n \geq 0$ for $n \geq N_0$ and if $\sum d_n$ diverges, then $\sum a_n$ diverges (Rudin, p.60).
+        In Rudin (p.62), it is proven that $\sum_{n=2}^{\infty} \frac{1}{n\log n}$ diverges.
+        Therefore, $\sum_{n = 3}^{\infty} \frac{(\log \log n)^q}{n \log n}$ diverges.
+
+        Going forward, we will therefore only operate on cases where $p > 0$.
+        We established that if $p > 0$, there exists $N_0 \in \mathbb{N}$ such that for all $n \geq N_0$, $\frac{1}{n(\log n)(\log \log n)^p} > 0$\footnote{Might need further proof, but see prior paragraph.}.
+        Furthermore, it is established earlier in this document that $\frac{1}{n(\log n)(\log \log n)^p}$ is monotonically decreasing.
+
+        We will use the Cauchy Condensation Test, which says that for monotonically decreasing, positive $a_n$, $\sum_{n=1}^{\infty} a_n$ converges if and only if $\sum_{n=1}^{\infty} 2^n a_{2^n}$ converges.
+        Consider it in this case.
+        \begin{gather}
+            a_n =   \frac{1}{n(\log n)(\log \log n)^p}\\
+            b_n =   2^n a_{2^n} 
+                =   \frac{2^n}{2^n(\log 2^n)(\log \log 2^n)^p}
+                =   \frac{1}{n (\log 2) (\log (n \log 2))^p}
+                =   \frac{1}{n (\log 2) (\log (n) + \log (\log 2))^p}
+        \end{gather}
+
+        Now, we can use how $\frac{1}{n \log 2 (\log (n) + \log (\log 2))^p}$ is positive and monotonically decreasing to use the Cauchy Condensation Test again.
+        \begin{gather}
+            b_n =   \frac{1}{n (\log 2) (\log (n) + \log (\log 2))^p}\\
+            c_n =   2^n b_{2^n}
+                =   \frac{2^n}{2^n (\log 2) (\log (2^n) + \log (\log 2))^p}
+                =   \frac{1}{(\log 2) (n \log (2) + \log (\log 2))^p}
+        \end{gather}
+
+        Here, we have two cases: either $p > 1$ or $p \leq 1$.
+
+        First consider the case where $p \leq 1$, where $n \in \mathbb{N}$ and $n \geq 3$.
+        Now, we know that $\log(2) < 1$, so $n\log(2) < n$.
+        Therefore, since $\log\log 2 < 0$, $n\log(2) + \log \log (2) < n$ and by extension $(n\log(2) + \log \log (2))^p < n$.
+        Therefore, $\frac{1}{(n\log(2) + \log \log (2))^p} > \frac{1}{n}$.
+        If we sum this for $n \geq 3$, we find that $\sum_{n=3}^{\infty} \frac{1}{(n\log(2) + \log \log (2))^p} > \sum_{n=3}^{\infty} \frac{1}{n}$.
+        Since $\sum_{n=1}^{\infty} \frac{1}{n}$ diverges to $\infty$, we can equally say that $\sum_{n=3}^{\infty} \frac{1}{n}$ diverges to $\infty$.
+        By 
+
+        However, since $n$ is monotonically increasing and unbounded, for every $m \in \mathbb{N}$, there is an $N_1$ such that if $n > N_1$, $n\log(2) + \log \log (2) \geq m$.
+
+        \begin{gather}
+            \frac{1}{n^{p - 1}} > \frac{1}{(n\log 2 + \log \log 2)^p}\\
+            (n\log 2 + \log \log 2)^p > n^{p - 1}\\
+            n \log(2) + \log \log 2 > n \text{ if } n \geq 3\\
+            (n \log(2) + \log \log 2)^p > n^p > n^{p - 1} \text{ if } n \geq 3
+        \end{gather}
+    \end{proof}
+
+\pagebreak
+\section{Problem 2}
+    A series $\sum_{n = 1}^{\infty} a_n$ is said to be \textit{absolutely convergent} if $\sum_{n = 1}^{\infty} |a_n|$ is convergent. Prove that every absolutely convergent series is convergent. \textit{Hint:} use the Cauchy criterion.
+    \begin{proof}
+        Suppose that $\sum_{n=1}^{\infty} a_n$ is absolutely convergent.
+        This means that $\sum_{n=1}^{\infty} \abs{a_n}$ is convergent and by extension Cauchy.
+        By the Cauchy Criterion, this means that for all $\varepsilon > 0$, there exists some $N \in \mathbb{N}$ such that if $m \geq n \geq N$, $\abs{\sum_{k=n}^{m} \abs{a_k}} \leq \varepsilon$.
+
+        Recall the triangle inequality for the usual metric: if $a, b, c \in \mathbb{R}$, $\abs{a - c} \leq \abs{a - b} + \abs{b - c}$.
+        Since $\abs{a - c} = \abs{a - b + b - c}$, $\abs{a - b + b - c} \leq \abs{a - b} + \abs{b - c}$.
+        Suppose that for some $a_k = a - b$ and $a_{k+1} = b - c$.
+        Therefore, $\abs{a_k + a_{k + 1}} \leq \abs{a_k} + \abs{a_{k+1}}$.
+        Since $m - n$ is finite, we can extend this process to every $k \in [n,m-1] \cap \mathbb{N}$ to conclude that $\abs{\sum_{k=n}^{m} a_k} \leq \sum_{k=n}^{m} \abs{a_k}$.
+        By the absolute value, $\abs{\sum_{k=n}^{m} a_k} \geq 0$, meaning $\sum_{k=n}^{m} \abs{a_k} \geq 0$ and therefore $\sum_{k=n}^{m} \abs{a_k} = \abs{\sum_{k=n}^{m} \abs{a_k}}$.
+        This means that $\abs{\sum_{k=n}^{m} a_k} \leq \abs{\sum_{k=n}^{m} \abs{a_k}}$.
+
+        Transistively, we can say from our earlier convergence statement that for all $\varepsilon > 0$, there exists some $N \in \mathbb{N}$ such that if $m \geq n \geq N$, $\abs{\sum_{k=n}^{m} a_k} \leq \varepsilon$.
+        Therefore, by the Cauchy Criterion, $\sum_{n = 1}^{\infty} a_n$ is convergent.
+        Ergo, if a series is absolutely convergent, it is convergent.
+    \end{proof}
+
+\pagebreak
+\section{Problem 3}
+    Let $X, Y$ be sets and $f : X \to Y$ a function.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Show that, for $E, F \subset Y$ we have $f^{-1}(E \cup F) = f^{-1}(E) \cup f^{-1}(F)$ and $f^{-1}(E \cap F) = f^{-1}(E) \cap f^{-1}(F)$.
+
+        \item 
+        Show that, for $E, F \subset X$, we have $f(E \cup F) = f(E) \cup f(F)$. Is it also always true that $f(E \cap F) = f(E) \cap f(F)$? Prove or give a counterexample.
+
+        \item 
+        Let $E \subset X$. Show that $E \subset f^{-1}(f(E))$. Show that equality holds for all $E$ if and only if $f$ is injective.
+
+        \item 
+        Let $E \subset Y$. Show that $f(f^{-1}(E)) \subset E$. Show that equality holds for all $E$ if and only if $f$ is surjective.
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+        First we prove that $f^{-1}(E \cup F) = f^{-1}(E) \cup f^{-1}(F)$.
+        \begin{proof}
+            Begin with $f^{-1}(E \cup F)$.
+            If $x \in f^{-1}(E \cup F)$, then $f(x) \in E \cup F$.
+            Therefore, $f(x) \in E$ or $f(x) \in F$.
+            If $f(x) \in E$, then $x \in f^{-1}(E)$.
+            If $f(x) \in F$, then $x \in f^{-1}(F)$.
+            Therefore, since either $f(x) \in E$ or $f(x) \in F$, $x \in f^{-1}(E)$ or $x \in f^{-1}(F)$.
+            Therefore, $x \in f^{-1}(E) \cup f^{-1}(F)$.
+            This means $f^{-1}(E \cup F) \subset f^{-1}(E) \cup f^{-1}(F)$.
+
+            For the reverse direction, begin with $x \in f^{-1}(E) \cup f^{-1}(F)$.
+            This means that either $x \in f^{-1}(E)$ or $x \in f^{-1}(F)$.
+            Without loss of generality, suppose that $x \in f^{-1}(E)$.
+            This means that, $f(x) \in E$.
+            Quite logically, this means that $f(x) \in E$ or $f(x) \in F$.
+            Therefore, $f(x) \in E \cup F$.
+            Therefore, $x \in f^{-1}(E \cup F)$.
+            Concluding, $f^{-1}(E) \cup f^{-1}(F) \subset f^{-1}(E \cup F)$.
+
+            Since $f^{-1}(E \cup F) \subset f^{-1}(E) \cup f^{-1}(F)$ and $f^{-1}(E) \cup f^{-1}(F) \subset f^{-1}(E \cup F)$, $f^{-1}(E \cup F) = f^{-1}(E) \cup f^{-1}(F)$.
+        \end{proof}
+
+        Next, we prove that $f^{-1}(E \cap F) = f^{-1}(E) \cap f^{-1}(F)$.
+        \begin{proof}
+            Begin with $f^{-1}(E \cap F)$.
+            If $x \in f^{-1}(E \cap F)$, then $f(x) \in E \cap F$.
+            Therefore, $f(x) \in E$ and $f(x) \in F$.
+            Since $f(x) \in E$, $x \in f^{-1}(E)$.
+            Since $f(x) \in F$, $x \in f^{-1}(F)$.
+            Therefore, $x \in f^{-1}(E) \cap f^{-1}(E)$.
+            Therefore, $f^{-1}(E \cap F) \subset f^{-1}(E) \cap f^{-1}(F)$.
+
+            Suppose $x \in f^{-1}(E) \cap f^{-1}(F)$.
+            Then, $x \in f^{-1}(E)$ and $x \in f^{-1}(F)$.
+            Since $x \in f^{-1}(E)$, $f(x) \in E$.
+            Since $x \in f^{-1}(F)$, $f(x) \in F$.
+            Therefore, $f(x) \in E \cap F$.
+            Therefore, $x \in f^{-1}(E \cap F)$.
+            Therefore, $f^{-1}(E) \cap f^{-1}(F) \subset f^{-1}(E \cap F)$.
+
+            Since $f^{-1}(E \cap F) \subset f^{-1}(E) \cap f^{-1}(F)$ and $f^{-1}(E) \cap f^{-1}(F) \subset f^{-1}(E \cap F)$, $f^{-1}(E \cap F) = f^{-1}(E) \cap f^{-1}(F)$.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        First, we prove that $f(E \cup F) = f(E) \cup f(F)$.
+        \begin{proof}
+            Suppose that $x \in X$ and $f(x) \in f(E \cup F)$.
+            This means that $x \in E \cup F$.
+            Therefore, either $x \in E$ or $x \in F$.
+            Without loss of generality, suppose that $x \in E$.
+            Therefore, $f(x) \in f(E)$.
+            Using the same steps, we can show that $f(x) \in f(F)$.
+            Therefore, $f(x) \in f(E) \cup f(F)$.
+            This means that $f(E \cup F) \subset f(E) \cup f(F)$.
+
+            Suppose that $x \in X$ and $f(x) \in f(E) \cup f(F)$.
+            This means that either $f(x) \in f(E)$ or $f(x) \in f(F)$.
+            Therefore either $x \in E$ or $x \in F$.
+            This means that $x \in E \cup F$.
+            Therefore, $f(x) \in f(E \cup F)$.
+            This means that $f(E) \cup f(F) \subset f(E \cup F)$.
+
+            Since and $f(E \cup F) \subset f(E) \cup f(F)$ and $f(E) \cup f(F) \subset f(E \cup F)$, $f(E \cup F) = f(E) \cup f(F)$.
+        \end{proof}
+
+        Now we disprove that $f(E \cap F) = f(E) \cap f(F)$.
+        \begin{proof}[Proof by Counterexample]
+            Take the case of $E = (0,\infty)$ and $F = (-\infty, 0)$ where $f: \mathbb{R} \to \mathbb{R}$ and $f(x) = \abs{x}$.
+            Taking the intersection, $E \cap F = \varnothing$.
+            Therefore, $f(E \cap F) = \varnothing$.
+
+            Now, applying the function to $E$ and $F$, we find $f(E) = (0,\infty)$ and $f(F) = (0,\infty)$.
+            Taking the intersection of the two, we find $f(E) \cap f(F) = (0,\infty)$.
+            
+            Since $(0,\infty) \neq \varnothing$, $f(E \cap F) \neq f(E) \cap f(F)$.
+        \end{proof}
+
+    \subsection{Solution (c)}
+        First, we prove that $E \subset f^{-1}(f(E))$.
+        \begin{proof}
+            Let $x \in E$.
+            Therefore, $f(x) \in f(E)$.
+            Since $f(x) \in f(E)$ and $f^{-1}(f(E)) = \{x \in X \Big| f(x) \in f(E)\}$, $x \in f^{-1}(f(E))$.
+            Therefore, $E \subset f^{-1}(f(E))$.
+        \end{proof}
+
+        Next we prove that if $f$ is injective, then $E = f^{-1}(f(E))$.
+        \begin{proof}
+            Injective means that if $a, b \in E$, $f(a) = f(b)$ implies that $a = b$.
+            Suppose that $f$ is injective.
+            Recall the definitions that $f(E) = \left\{f(x) \Big| x \in E\right\}$ and $f^{-1}(f(E)) = \left\{ x \Big| f(x) \in f(E) \right\}$.
+
+            Take any element in $x \in f^{-1}(f(E))$.
+            By the definition of $f^{-1}(f(E))$, this means that $f(x) \in f(E)$.
+            By the definition of $f(E)$, there exists $y \in E$ such that $f(x) = f(y)$.
+            Since $f$ is injective, this means that $x = y$.
+            Therefore, since $y \in E$ and $x = y$, $x \in E$.
+            This means that if $x \in f^{-1}(f(E))$, $x \in E$.
+            Therefore, $f^{-1}(f(E)) \subset E$.
+
+            We proved earlier that $E \subset f^{-1}(f(E))$.
+            Therefore, $f^{-1}(f(E)) \subset E$ and $E \subset f^{-1}(f(E))$.
+            Combining them, that means $E = f^{-1}(f(E))$.
+        \end{proof}
+
+        Third, we prove that if $E = f^{-1}(f(E))$, then $f$ is injective.
+        \begin{proof}
+            Recall the definitions that $f(E) = \left\{f(x) \Big| x \in E\right\}$ and $f^{-1}(f(E)) = \left\{ x \Big| f(x) \in f(E) \right\}$.
+
+            Suppose that $E = f^{-1}(f(E))$ and $x,y \in X$.
+            Let $x \in E$ and $y \notin E$, so $x \neq y$.
+            Therefore, if $x \in f^{-1}(f(E))$ and $y \notin f^{-1}(f(E))$.
+            This also means that $f(x) \in f(E)$.
+            Additionally, $f(y) \notin f(E)$, because if $f(y) \in f(E)$, then by definition $y \in f^{-1}(f(E))$, which is a contradiction.
+            Therefore, $x \neq y$ implies $f(x) \neq f(y)$.
+            By contrapositive, this means that $f(x) = f(y)$ implies $x = y$.
+            Ergo, $f$ is injective.
+        \end{proof}
+
+        Last, we consolidate.
+        \begin{proof}
+            We know that if $f$ is injective, then $E = f^{-1}(f(E))$.
+            We also know that if $E = f^{-1}(f(E))$, then $f$ is injective.
+            Therefore, $f$ is injective if and only if $E = f^{-1}(f(E))$.
+        \end{proof}
+
+    \subsection{Solution (d)}
+        First we prove that $f(f^{-1}(E)) \subset E$.
+        \begin{proof}
+            Take $y \in f(f^{-1}(E))$.
+            Therefore, there exists some element $x \in f^{-1}(E)$ such that $f(x) = y$.
+            Since $x \in f^{-1}(E)$, then $f(x) \in E$.
+            Since $y = f(x)$, $y \in E$ for any $y \in f(f^{-1}(E))$.
+            Ergo, $f(f^{-1}(E)) \subset E$.
+        \end{proof}
+
+        Second, we prove that if $f$ is surjective, then $f(f^{-1}(E)) = E$.
+        \begin{proof}
+            Take any $x \in E$.
+            Since $f$ is surjective, for every element $z \in E$, there is an element $y \in X$ such that $f(y) = z$.
+            Therefore, there is and element $y \in X$ such that $f(y) = x$.
+            By the definition of $f^{-1}(E)$, this means that $y \in f^{-1}(E)$.
+            Furthermore, by the definition of $f(f^{-1}(E))$, since $y \in f^{-1}(E)$, $f(y) \in f(f^{-1}(E))$.
+            Since $f(y) = x$, $x \in f(f^{-1}(E))$.
+            Therefore, $x \in E$ implies $x \in f(f^{-1}(E))$.
+            Ergo, $E \subset f(f^{-1}(E))$.
+
+            We have established that $E \subset f(f^{-1}(E))$.
+            We have established that $f(f^{-1}(E)) \subset E$.
+            Ergo, $f(f^{-1}(E)) = E$.
+        \end{proof}
+
+        Third, we prove that if $f(f^{-1}(E)) = E$, then $f$ is surjective.
+        \begin{proof}
+            Suppose that for all $E$, $f(f^{-1}(E)) = E$.
+            This means that if $y \in E$ then $y \in f(f^{-1}(E))$.
+            Since $y \in f(f^{-1}(E))$, there exists $x \in f^{-1}(E)$ where $f(x) = y$.
+            Since $f^{-1}(E) \subset X$, $x \in X$.
+            Therefore, for any $y \in E$, there exists $x \in X$ such that $f(x) = y$.
+            Ergo, $f$ is surjective within $E$ for all $E \subset Y$.
+
+            Suppose that $E = Y$.
+            That would mean that $f$ is surjective in $E$ and as such surjective in $Y$.
+            Therefore, $f$ is surjective over $Y$.
+        \end{proof}
+
+        Last, we consolidate.
+        \begin{proof}
+            We know that if $f$ is surjective, then $E = f(f^{-1}(E))$.
+            We also know that if $E = f(f^{-1}(E))$, then $f$ is surjective.
+            Therefore, $f$ is surjective if and only if $E = f(f^{-1}(E))$.
+        \end{proof}
+
+\pagebreak
+\section{Problem 4}
+    Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        A function $f : X \to Y$ (not necessarily continuous) is said to be \textit{locally bounded} if, for each $p \in X$, there is an $r > 0$ so that $f(B_r(p))$ is a bounded set in $Y$. Show that every locally bounded function on a \textit{compact} metric space is bounded (i.e. $f(X)$ is a bounded set in $Y$).
+
+        \item 
+        A function $f : X \to Y$ is said to be \textit{locally constant} if, for each $p \in X$, there is an $r > 0$ so that $f$ is constant on $B_r(p)$. Show that every locally constant function on a \textit{connected} metric space is constant. \textit{Hint:} show that $f^{-1}(\{y\})$ is clopen in $X$ for any $y \in Y$
+        
+    \end{enumerate}
+    \subsection{Solution (a)}
+        \begin{proof}
+            Let $f: X \to Y$ be locally bounded and let $(X, d_X)$ be compact.
+            Since $(X, d_X)$ is compact, every open cover of $X$ has a finite subcover.
+            By the definition of a locally bounded function, for each $p \in X$, there is an $r_p > 0$ so that $f(B_{r_p}(p))$ is bounded in $Y$.
+            Create a collection out of every $B_{r_p}(p)$ and call it $P$.
+            Since every open ball contains its center and open balls are open, the collection is an open cover of $X$.
+            Since $X$ is compact, there is a cover of $X$ made up of a finite number of elements in $P$, which we can call $F$.
+            
+            Create a new set called $G$ defined as $G = \left\{ f(S) \right\}_{S \in F}$.
+            Since every element in $F$ is an open ball, applying $f$ to every open ball returns a bounded set in $Y$, and $F$ is finite, $G$ is a finite collection of bounded sets in $Y$.
+            Since the union of a finite number of bounded sets is bounded\footnote{Prove or cite a source.}, the union of all elements in $G$, $H = \bigcup_{S \in G} S$, is a bounded set.
+            Furthermore, since $H$ is a collection of bounded sets in $Y$, $H \subset Y$.
+
+            Now, we prove that if $f(x) \in f(X)$, then $f(x) \in H$.
+            Take any element $f(x) \in f(X)$.
+            By the definition of $f(X)$, $x \in X$.
+            Since $F$ is a cover of $X$, there exists $T \in F$ such that $x \in T$.
+            Therefore, $f(x) \in f(T)$.
+            Since $H = \bigcup_{S \in G} S = \bigcup_{S \in F} f(S)$, $f(T) \subset H$.
+            $f(x) \in f(T)$ and $f(T) \subset H$ means $f(x) \in H$.
+            Therefore, $f(x) \in f(X)$ implies $f(x) \in H$.
+            Therefore, $f(X) \subset H$.
+
+            Lastly, a few facts to put everything together.
+            Since $H$ is bounded and $f(X) \subset H$, $f(X)$ is bounded.
+            Since $H \subset Y$ and $f(X) \subset H$, $f(X) \subset Y$.
+            Therefore, $f(X)$ is a bounded set in $Y$.
+            Ergo, every locally bounded function on a compact metric space is bounded.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        \begin{proof}[Proof by Contradiction]
+            Let $f: X \to Y$ be locally constant and let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces.
+            Furthermore, let $(X, d_X)$ be connected, meaning the only clopen sets in $(X, d_X)$ are $\varnothing$ and $X$.
+            
+            Suppose for contradiction that $f$ is not constant. 
+            This means that there exists a set $V \subset Y$ with more than one element where $V = f(X)$.
+            For all $v \in V$, let $X_v$ be the set of elements $p \in X$ where $f(p) = v$.
+            Since $f$ is locally constant, for each $p \in X$, there is an $r > 0$ such that for all $q \in B_r(p)$, $f(p) = f(q)$.
+            If $p \in X_v$, then $q \in X_v$ and by extension $B_r(p) \subset X_v$.
+            Therefore, for all $v \in V$, $X_v$ is open.
+
+            Since $f$ is a well-defined function, for every $p \in X$, there exists $f(p) \in Y$.
+            Therefore, for every $p \in X$, there exists $v \in V$ where $f(p) = v$.
+            Therefore, for every $p \in X$, there exists $v \in V$ such that $p \in X_v$.
+            Therefore, $X = \bigcup_{v \in V} X_v$ and for any $w \in V$, $X_w^c = X \backslash X_w = \bigcup_{v \in V \backslash \{w\}} X_v$.
+
+            Take any $w \in V$.
+            Since $V = f(X)$, $w \in f(X)$, meaning there is some element $x \in X$ where $f(x) = w$.
+            Therefore, $X_w \neq \varnothing$.
+            Furthermore, $f$ is not constant, so $X_w \neq X$.
+            We already proved that for every $v \in V$, $X_v$ is open.
+            Therefore, since the union of open sets is open, $\bigcup_{v \in V \backslash \{w\}} X_v$ is also open.
+            This means that $X_w^c$ is open.
+            Since a set is closed if and only if its complement is open, $X_w$ is closed.
+            Therefore, $X_w$ is both open and closed, or clopen.
+            This contradicts the fact that $X$ is connected, since the only clopen subsets of connected set $X$ are $\varnothing$ and $X$.
+            Ergo, $f(X)$ is constant.
+        \end{proof}
+
+    \pagebreak
+\section{Problem 5}
+    Using the $\epsilon-\delta$ definition of continuity directly, prove that the following functions are continuous.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        $f : \mathbb{R} \to \mathbb{R}$; \quad $f(x) = 104x$.
+
+        \item 
+        $f : \mathbb{R} \to \mathbb{R}$; \quad $f(x) = x^2$.
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+        \begin{proof}
+            For a function to be continuous, it must be continuous at every point in its domain.
+            Recall the $\epsilon-\delta$ definition of continuous at a point: for all $\varepsilon > 0$, there exists some $\delta > 0$ such that $d_X(x,p) < \delta$ implies $d_Y(f(x),f(p)) < \varepsilon$.
+            In the real numbers and the usual metric, this means that $\abs{x - p} < \delta$ implies that $\abs{f(x) - f(p)} < \varepsilon$.
+
+            Let $\varepsilon > 0$ and $\delta = \frac{\varepsilon}{104} > 0$.
+            Suppose that $\abs{x - p} < \delta$.
+            This means that $\abs{x - p} < \frac{\varepsilon}{104}$.
+            Multiplying everything by $104$, we find that $\varepsilon > 104 \abs{x - p} = \abs{104x - 104p}$.
+            Since $f(x) = 104x$, $\abs{f(x) - f(p)} < \varepsilon$.
+            Putting things together, this means that for any $\varepsilon > 0$, there exists some $\delta > 0$ such that $\abs{x - p} < \delta$ implies $\abs{f(x) - f(p)} < \varepsilon$.
+            Ergo, $f(x) = 104x$ is continuous.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        \begin{proof}
+            Let $\varepsilon > 0$.
+            Take any $x, p \in \mathbb{R}$.
+            By the definition of the absolute value, $\abs{x + p} \geq 0$.
+            There are two conditions from here, that either $x = p$ or $x \neq p$.
+
+            Suppose $x = p$.
+            This means that $\abs{x - p} = 0$, so for any $\delta > 0$, $\delta > \abs{x - p}$.
+            Furthermore, since $\abs{f(x) - f(p)} = \abs{x^2 - p^2} = \abs{x - p} \abs{x + p}$, $\abs{x^2 - p^2} = \abs{x - p} \abs{x + p} = 0 \abs{x + p} = 0$.
+            Therefore, $\varepsilon > \abs{f(x) - f(p)}$, so if $x = p$, the $\epsilon-\delta$ definition is satisfied.
+
+            Suppose $x \neq p$, so $\abs{x + p} \neq 0$, so $\abs{x + p} > 0$ by the definition of the absolute value.
+            This means $\abs{x + p} > 0$.
+            Let $\delta = \frac{\varepsilon}{\abs{x + p}}$ and suppose that $\abs{x - p} < \delta$.
+            Therefore, $\abs{x - p} < \frac{\varepsilon}{\abs{x + p}}$
+            Multiply both sides by $\abs{x + p}$ to find that $\abs{x - p} \abs{x + p} < \varepsilon$.
+            Therefore, $\abs{(x - p)(x + p)} < \varepsilon$.
+            Therefore, $\abs{x^2 - p^2} < \varepsilon$.
+            This means $\abs{f(x) - f(p)} < \varepsilon$.
+            Therefore, the $\epsilon-\delta$ definition is satisfied.
+
+            The $\epsilon-\delta$ definition is satisfied in all cases.
+            Ergo, $f(x) = x^2$ is continuous.
+        \end{proof}
+
+    \pagebreak
+\section{Problem 6}
+    Let $f : \mathbb{R} \to \mathbb{R}$ be defined by $f(x) = \begin{cases} x, & \text{ if } x \in \mathbb{Q}\\ 0, &\text{ if } x \notin \mathbb{Q}\end{cases}.$ Using the $\epsilon-\delta$ definition of continuity,
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        prove that $f$ is not continuous at any point $x \neq 0$;
+        
+        \item
+        prove that $f$ \textit{is} continuous at $x = 0$.
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+        This is an altered version of Thomae's Function.
+        We consider this in two cases: $x \in \mathbb{Q} \backslash \{0\}$ and $x \neq \mathbb{Q}$.
+
+        First we prove that $f$ is not continuous at $x$ if $x \in \mathbb{Q} \backslash \{0\}$.
+        \begin{proof}
+            Take $\varepsilon = \frac{\abs{f(x)}}{2}$.
+            Take any $\delta > 0$ such that $\abs{x - p} < \delta$.
+            Since the irrational numbers are dense in the real numbers, between any two real numbers, there is an irrational number.
+            This means that there is an irrational number $p$ where $x - \delta < p < x + \delta$.
+            This means that $-\delta < p - x < \delta$, and by extension $\abs{p - x} = \abs{x - p} < \delta$.
+
+            Now take $\abs{f(x) - f(p)}$.
+            Since $x \in \mathbb{Q}$ and $p \notin \mathbb{Q}$.
+            Therefore, $\abs{f(x) - f(p)} = \abs{x - 0} = \abs{x}$.
+            Therefore, since $\varepsilon = \frac{\abs{f(x)}}{2} = \frac{\abs{x}}{2}$, $\abs{x} = \abs{f(x) - f(p)} \geq \varepsilon$.
+            Ergo, by the $\epsilon-\delta$ definition, $f$ is not continuous at $x \in \mathbb{Q} \backslash \{0\}$.
+        \end{proof}
+
+        Next, we prove that $f$ is not continuous at $x$ if $x \in \mathbb{Q}$.
+        \begin{proof}
+            Take any $\delta > 0$ such that $\abs{x - p} < \delta$.
+            Since the rational numbers are dense in the real numbers, there is a non-zero rational number $p$ where $x - \delta < p < x + \delta$.
+            Therefore, $\abs{x - p} < \delta$.
+
+            Now, look at the epsilon-side.
+            Since $p$ is rational but $x$ is irrational, $\abs{f(x) - f(p)} = \abs{p - 0} = \abs{p}$.
+            If $\varepsilon > \abs{p} > 0$, then $\varepsilon > \abs{f(x) - f(p)}$.
+            However, if $0 < \varepsilon \leq \abs{p}$, then $\varepsilon \leq \abs{f(x) - f(p)}$.
+            Ergo, by the $\epsilon-\delta$ definition of continuous, $f$ is not continuous at $x$ if $x \in \mathbb{Q}$.
+        \end{proof}
+
+        If necessary, we consolidate this.
+        \begin{proof}
+            We know that $f$ is not continuous at $x$ if $x \in \mathbb{Q}$.
+            We know $f$ is not continuous at $x$ if $x \in \mathbb{Q} \backslash \{0\}$.
+            Therefore, $f$ is not continuous at $x$ if $x \in \mathbb{R} \backslash \{0\}$.
+            Ergo, $f$ is not continuous at any point $x \neq 0$.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        \begin{proof}
+            Let $\varepsilon > 0$.
+            Suppose that $\delta = \varepsilon$.
+            Assume that $\abs{x - p} < \delta$.
+            This means that $\abs{p - x} < \delta$.
+            Since $x = 0$, $\abs{p} < \delta$.
+            Since  $\delta = \varepsilon$, this also means $\abs{p} < \varepsilon$.
+
+            Now, we apply this to the function.
+            Suppose that $p \notin \mathbb{Q}$.
+            This means that $\abs{x - p} = \abs{0 - 0} = \abs{0} = 0$.
+            By definition, we know that this works, since $\varepsilon > 0$.
+            Suppose that $p \in \mathbb{Q}$.
+            This means that $\abs{x - p} = \abs{p - 0} = \abs{p}$.
+            Earlier in the proof, we established that $\abs{p} < \varepsilon$, so it holds.
+
+            Ergo, $f$ is continuous at $x = 0$.
+        \end{proof}
+\end{document}

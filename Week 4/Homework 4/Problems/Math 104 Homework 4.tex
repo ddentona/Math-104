@@ -1,0 +1,139 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\setlength{\parindent}{0pt}
+
+%% code from mathabx.sty and mathabx.dcl
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+\DeclareMathAccent{\wideparen}{0}{mathx}{"75}
+
+\def\cs#1{\texttt{\char`\\#1}}
+
+\allowdisplaybreaks
+
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\im}{im}
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\0}{\mathbf{0}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\loc}{\text{loc}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\x}{\mathbf{x}}
+\DeclareMathOperator{\y}{\mathbf{y}}
+\DeclareMathOperator{\z}{\mathbf{z}}
+
+\title{Math 104 Homework 4}
+\author{Due Date: Friday, July 24 at 11:59pm}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Instructions:} Submit pdf solutions in LaTeX (preferred), or \textit{neatly} handwritten. Unless otherwise stated, you may cite any result from class or from Rudin's book, but all other assertions you make must be proved rigorously. At the top of your submission, please write down the names of the other students you collaborated with and any outside sources you consulted.
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item 
+    For which values of $p \in \mathbb{R}$ are the following series convergent or divergent? Prove your answers rigorously, using only tests we explicitly covered in class. \textit{Hint:} for both of these series you should use something with the name ``Cauchy" in it.
+    \begin{enumerate}
+        \item 
+        $\displaystyle{\sum_{n = 3}^{\infty} \frac{1}{n(\log n)(\log \log n)^p}}$\\
+
+        \item 
+        $\displaystyle{\sum_{n = 1}^{\infty}} \frac{(-1)^{n - 1}}{n^p}$.
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    A series $\sum_{n = 1}^{\infty} a_n$ is said to be \textit{absolutely convergent} if $\sum_{n = 1}^{\infty} |a_n|$ is convergent. Prove that every absolutely convergent series is convergent. \textit{Hint:} use the Cauchy criterion.
+    
+    \vspace{0.5cm}
+
+    \item 
+    Let $X, Y$ be sets and $f : X \to Y$ a function.
+    \begin{enumerate}
+        \item 
+        Show that, for $E, F \subset Y$ we have $f^{-1}(E \cup F) = f^{-1}(E) \cup f^{-1}(F)$ and $f^{-1}(E \cap F) = f^{-1}(E) \cap f^{-1}(F)$.
+
+        \item 
+        Show that, for $E, F \subset X$, we have $f(E \cup F) = f(E) \cup f(F)$. Is it also always true that $f(E \cap F) = f(E) \cap f(F)$? Prove or give a counterexample.
+
+        \item 
+        Let $E \subset X$. Show that $E \subset f^{-1}(f(E))$. Show that equality holds for all $E$ if and only if $f$ is injective.
+
+        \item 
+        Let $E \subset Y$. Show that $f(f^{-1}(E)) \subset E$. Show that equality holds for all $E$ if and only if $f$ is surjective.
+        
+    \end{enumerate}
+
+    \newpage
+
+    \item 
+    Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces.
+    \begin{enumerate}
+        \item 
+        A function $f : X \to Y$ (not necessarily continuous) is said to be \textit{locally bounded} if, for each $p \in X$, there is an $r > 0$ so that $f(B_r(p))$ is a bounded set in $Y$. Show that every locally bounded function on a \textit{compact} metric space is bounded (i.e. $f(X)$ is a bounded set in $Y$).\\
+
+        \item 
+        A function $f : X \to Y$ is said to be \textit{locally constant} if, for each $p \in X$, there is an $r > 0$ so that $f$ is constant on $B_r(p)$. Show that every locally constant function on a \textit{connected} metric space is constant. \textit{Hint:} show that $f^{-1}(\{y\})$ is clopen in $X$ for any $y \in Y$
+        
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    Using the $\epsilon-\delta$ definition of continuity directly, prove that the following functions are continuous.
+    \begin{enumerate}
+        \item 
+        $f : \mathbb{R} \to \mathbb{R}$; \quad $f(x) = 104x$.\\
+
+        \item 
+        $f : \mathbb{R} \to \mathbb{R}$; \quad $f(x) = x^2$.\\
+        
+    \end{enumerate}
+
+    \item 
+    Let $f : \mathbb{R} \to \mathbb{R}$ be defined by $f(x) = \begin{cases} x, & \text{ if } x \in \mathbb{Q}\\ 0, &\text{ if } x \notin \mathbb{Q}\end{cases}.$ Using the $\epsilon-\delta$ definition of continuity,
+    \begin{enumerate}
+        \item 
+        prove that $f$ is not continuous at any point $x \neq 0$;
+        
+        \item
+        prove that $f$ \textit{is} continuous at $x = 0$.
+        
+    \end{enumerate}
+    
+\end{enumerate}
+
+
+
+\end{document}     
