@@ -2,8 +2,10 @@
 \contentsline {subsection}{\numberline {0.1}Monotone Decrease I}{2}{subsection.0.1}%
 \contentsline {subsection}{\numberline {0.2}Monotone Decrease II}{2}{subsection.0.2}%
 \contentsline {subsection}{\numberline {0.3}Inverese Triangle Inequality}{2}{subsection.0.3}%
+\contentsline {subsection}{\numberline {0.4}Finite Times Natural is Finite}{2}{subsection.0.4}%
 \contentsline {section}{\numberline {1}Problem 1}{3}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Solution (a)}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Solution (b)}{4}{subsection.1.2}%
 \contentsline {section}{\numberline {2}Problem 2}{5}{section.2}%
 \contentsline {section}{\numberline {3}Problem 3}{6}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Solution (a)}{6}{subsection.3.1}%
