@@ -116,7 +116,7 @@
     \end{enumerate}
 
     \subsection{Solution (a)}
-    % First we prove that $\sum_{n=1}^{\infty} \frac{1}{n(\log n)(\log \log n)^p}$ converges if and only if $\sum_{n=1}^{\infty} \frac{1}{(\log 2) (n \log (2) + \log (\log 2))^p}$ converges.
+        It converges if $p > 1$ and diverges otherwise.
     \begin{proof}
         Since $2 < e$, $\log(2) < \log(e) = 1$.
         Furthermore, through the use of a calculator, $\log 2 = 0.6931$ and $\log \log 2 = -0.3665$.
@@ -188,7 +188,27 @@
     \end{proof}
 
     \subsection{Solution (b)}
+        Start with the case that $p > 1$.
+        \begin{proof}
+            If $p > 1$, then we take the absolute value of each term.
+            We find that $\abs{\frac{(-1)^{n - 1}}{n^p}} = \frac{1}{n^p}$.
+            In Problem 2, we prove that if $\sum_{n = 1}^{\infty} \abs{a_n}$ converges, then $\sum_{n = 1}^{\infty} a_n$ converges.
+            Since $\sum_{n = 1}^{\infty} \frac{1}{n^p}$ converges if $p > 1$, then so does $\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{n^p}$.
+        \end{proof}
 
+        Now the case that $p \leq 0$.
+        \begin{proof}
+            If $p \leq 0$, then for $q = -p$ (so $q \geq 0$), $\frac{1}{n^p} = n^q$.
+            Since $n \in \mathbb{N}$ and $q \geq 0$, $n^q \geq 1$, so the sequence does not converge to $0$.
+            Therefore, since a series converges only if its sequence converges to zero and $\frac{1}{n^p}$ does not converge to $0$, $\sum_{n = 1}^{\infty} \frac{1}{n^p}$ diverges if $p \leq 0$.
+        \end{proof}
+
+        Last, we consider the case where $0 < p \leq 1$.
+        \begin{proof}
+            Since $p > 0$ and $n + 1 > n$, $(n + 1)^p > n^p$ and by extension $\frac{1}{(n + 1)^p} < \frac{1}{n^p}$.
+            Since the only potentially negative term in $\frac{(-1)^{n - 1}}{n^p}$ is $(-1)^{n-1}$, and that is negative if and only if $n$ is even, $\frac{(-1)^{n - 1}}{n^p}$ is negative if and only if $n$ is even.
+            We can separate the terms added up in our series into the positive and negative terms.
+        \end{proof}
 \pagebreak
 \section{Problem 2}
     A series $\sum_{n = 1}^{\infty} a_n$ is said to be \textit{absolutely convergent} if $\sum_{n = 1}^{\infty} |a_n|$ is convergent. Prove that every absolutely convergent series is convergent. \textit{Hint:} use the Cauchy criterion.
