@@ -105,17 +105,49 @@
         \end{proof}
 
     \subsection{Decreasing Value is Greater than Alternating Partial Sums}
-        If $a_k \geq 0$ for all $k \in \mathbb{N}$ and $a_k$ is decreasing, then for all $m,N \in \mathbb{N}$ where $m > N$, $\abs{\sum_{k = N}^{m} (-1)^k a_k} \leq a_N$.
+        If $a_k \geq 0$ for all $k \in \mathbb{N}$ and $a_k$ is decreasing, then $\abs{\sum_{k = N}^{m} (-1)^{k-1} a_k} \leq a_N$ for all $m,N \in \mathbb{N}$ where $m > N$.
         \begin{proof}
-            Let $a_k \geq 0$ and $a_k \geq a_{k+1}$ for all $k \in \mathbb{N}$.
-            Let $m,N \in \mathbb{N}$ where $m > N$.
-            At this point, there are two cases: $m - N$ is odd or $m - N$ is even.
+            Let \(a_k \geq 0\) and \(a_k \geq a_{k+1}\) for every \(k\in\mathbb N\).
+            Let $N \in \mathbb{N}$, and define $T_r = \sum_{j=0}^{r} (-1)^j a_{N+j}$.
+            We will prove by induction that $0 \leq T_{2q+1} \leq T_{2q} \leq a_N$ for $q \geq 0$.
 
-            Consider first the case when $m - N$ is odd.
-            Without loss of generality, suppose that $k$ is even, so $(-1)^k = 1$.
-            Since $a_k$ is decreasing, for any $j \in \mathbb{N}$, $a_j \geq a_{j+1}$.
-            Therefore, for any $j \in \mathbb{N}$ where $N < 2j < 2j+1 \leq m$, $a_{2j} \geq a_{2j+1}$.
-            This means that $a_{2j} - a_{2j+1} \geq 0$ and $0 \geq a_{2j+1} - a_{2j}$.
+            Start with the base case.
+            $T_0 = a_N$, so $0 \leq T_0 \leq a_N$.
+            Since $a_k$ is decreasing, $a_N - a_{N+1} \geq 0$.
+            Since $a_k \geq 0$, $a_N \geq a_N - a_{N+1} \geq 0$, so $a_N = T_0 \geq T_1 \geq 0$.
+            Therefore, the base case is satisfied.
+
+            Now for the inductive step.
+            Suppose that for some \(q \geq 0\), $0\leq T_{2q+1}\leq T_{2q}\leq a_N$.
+            Start with $T_{2q+2}$.
+            Therefore, $T_{2q+2}=T_{2q}-(a_{N+2q+1}-a_{N+2q+2})$.
+            Since the sequence is decreasing, $a_{N+2q+1} \geq a_{N+2q+2}$, so $a_{N+2q+1} - a_{N+2q+2} \geq 0$, so $T_{2q} \geq T_{2q+2}$.
+            Also, since $T_{2q+1} \geq 0$ and $a_{N+2q+2} \geq 0$, $T_{2q+1} + a_{N+2q+2} = T_{2q+2} \geq 0$.
+
+            Next, $T_{2q+3}$.
+            Since $T_{2q + 3} = T_{2q + 2} - a_{N + 2q + 3}$ and $a_{N + 2q + 3} \geq 0$, $T_{2q + 3} \leq T_{2q + 2}$.
+            Furthermore, $T_{2q + 3} = T_{2q + 1} + a_{N + 2q + 2} - a_{N + 2q + 3}$.
+            Since $a_{N + 2q + 2} \geq a_{N + 2q + 3}$, $a_{N + 2q + 2} - a_{N + 2q + 3} \geq 0$.
+            Therefore, because $T_{2q + 1} \geq 0$, $T_{2q + 1} + a_{N + 2q + 2} - a_{N + 2q + 3} = T_{2q + 3} \geq 0$.
+
+            Consolidating, this means that $a_N \geq T_{2q + 3} \geq T_{2q + 4} \geq 0$.
+            This completes the induction and means that for all $m,N \in \mathbb{N}$ where $m \geq N$, $0 \leq T_m \leq a_N$.
+            By the definition of $T_m$, for all $m,N \in \mathbb{N}$ where $m \geq N$, $0 \leq \sum_{k = N}^{m} (-1)^{k-1} a_k \leq a_N$.
+            Ergo, since $a_N \geq 0$, $\abs{\sum_{k = N}^{m} (-1)^{k-1} a_k} \leq a_N$.
+        \end{proof}
+
+    \subsection{Union of Bounded Sets in Bounded}
+        The union of finitely many bounded sets is bounded.
+        \begin{proof}
+            Let $\{S_n\}_{n=1}^t$ be a finite collection of bounded sets.
+            Call the upper and lower bounds of set $S_n$, $U_n$ and $L_n$ respectively and call their sets $\{U_n\}$ and $\{L_n\}$.
+            Call $\max \{U_n\} = U$ and $\min \{L_n\} = L$.
+            Let $s \in \bigcup_{n=1}^t S_n$.
+            There exists a set $S_k \in \{S_n\}$, such that $s \in S_k$.
+            Therefore, $L_k \leq s \leq U_k$.
+            By the definition of the maximum and minimum of the set, $L \leq L_k$ and $U_k \leq U$.
+            Transistively, this means that for any $s \in \bigcup_{n=1}^t S_n$, $L \leq s \leq U$.
+            Ergo, the union $\bigcup_{n=1}^t S_n$ is bounded.
         \end{proof}
 
 \pagebreak
@@ -146,7 +178,7 @@
         Therefore, $\sum_{n = 3}^{\infty} \frac{(\log \log n)^q}{n \log n}$ diverges.
 
         Going forward, we will therefore only operate on cases where $p > 0$.
-        We established that if $p > 0$, there exists $N_0 \in \mathbb{N}$ such that for all $n \geq N_0$, $\frac{1}{n(\log n)(\log \log n)^p} > 0$\footnote{Might need further proof, but see prior paragraph.}.
+        If $p > 0$, there exists $N_0 \in \mathbb{N}$ such that for all $n \geq N_0$, all terms that make up $\frac{1}{n(\log n)(\log \log n)^p}$ are greater than $0$, so $\frac{1}{n(\log n)(\log \log n)^p} > 0$.
         Furthermore, it is established earlier in this document that $\frac{1}{n(\log n)(\log \log n)^p}$ is monotonically decreasing.
 
         We will use the Cauchy Condensation Test, which says that for monotonically decreasing, positive $a_n$, $\sum_{n=1}^{\infty} a_n$ converges if and only if $\sum_{n=1}^{\infty} 2^n a_{2^n}$ converges.
@@ -210,19 +242,32 @@
             Since $\sum_{n = 1}^{\infty} \frac{1}{n^p}$ converges if $p > 1$, then so does $\sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{n^p}$.
         \end{proof}
 
-        Now the case that $p \leq 0$.
+        Now the case that $p < 0$.
         \begin{proof}
-            If $p \leq 0$, then for $q = -p$ (so $q \geq 0$), $\frac{1}{n^p} = n^q$.
-            Since $n \in \mathbb{N}$ and $q \geq 0$, $n^q \geq 1$, so the sequence does not converge to $0$.
-            Therefore, since a series converges only if its sequence converges to zero and $\frac{1}{n^p}$ does not converge to $0$, $\sum_{n = 1}^{\infty} \frac{1}{n^p}$ diverges if $p \leq 0$.
+            If $p < 0$, then for $q = -p$ (so $q > 0$), $\frac{1}{n^p} = n^q$.
+            Since $n \in \mathbb{N}$ and $q > 0$, $n^q > 1$, so the sequence does not converge to $0$.
+            Therefore, since a series converges only if its sequence converges to zero and $\frac{1}{n^p}$ does not converge to $0$, $\sum_{n = 1}^{\infty} \frac{1}{n^p}$ diverges if $p < 0$.
+        \end{proof}
+
+        Now the case that $p = 0$.
+        \begin{proof}
+            If $p = 0$, then for all $p$, $\frac{1}{n^p} = 1$.
+            This turns the sequence $\frac{(-1)^{n - 1}}{n^p}$ into $(-1)^{n - 1}$, which does not converge to $0$ and whose limit does not exist.
+            Therefore, since a series converges only if its sequence converges to zero and $\frac{1}{n^p}$ does not converge to $0$, $\sum_{n = 1}^{\infty} \frac{1}{n^p}$ diverges if $p = 0$.
         \end{proof}
 
         Last, we consider the case where $0 < p \leq 1$.
         \begin{proof}
-            Since $p > 0$ and $n + 1 > n$, $(n + 1)^p > n^p$ and by extension $\frac{1}{(n + 1)^p} < \frac{1}{n^p}$.
-            Since the only potentially negative term in $\frac{(-1)^{n - 1}}{n^p}$ is $(-1)^{n-1}$, and that is negative if and only if $n$ is even, $\frac{(-1)^{n - 1}}{n^p}$ is negative if and only if $n$ is even.
-            We can separate the terms added up in our series into the positive and negative terms.
+            According the Rudin (p.57), $\frac{1}{n^p}$ converges to $0$ if $p > 0$.
+            Since $\frac{1}{n} > 0$ for all $n \in \mathbb{N}$, $\frac{1}{n^p} > 0$.
+            We proved earlier that if $a_k \geq 0$ for all $k \in \mathbb{N}$ and $a_k$ is decreasing, then $\abs{\sum_{k = N}^{m} (-1)^{k-1} a_k} \leq a_N$ for all $m,N \in \mathbb{N}$ where $m > N$.
+            Therefore, since $\frac{1}{n^p} > 0$ for all $n \in \mathbb{N}$ and $\frac{1}{n^p}$ is decreasing, $\abs{\sum_{k = N}^{m} \frac{(-1)^{k-1}}{k^p}} \leq a_n$ for all $m,n \in \mathbb{N}$ where $m > n$.
+            Since $\frac{1}{n^p}$ converges to $0$ if $p > 0$, for all $\varepsilon > 0$, there exists some $N \in \mathbb{N}$ such that for all $n \geq N$, $\abs{a_n} < \varepsilon$.
+            Since $\abs{\sum_{k = n}^{m} \frac{(-1)^{k-1}}{n^p}} \leq a_n$ for any $n \in \mathbb{N}$, $\abs{\sum_{k = n}^{m} \frac{(-1)^{k-1}}{n^p}} \leq \abs{a_n}$. 
+            By extension, from the convergence of $\frac{1}{n^p}$, for any $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for any $m \geq n \geq N$, $\abs{\sum_{k = n}^{m} \frac{(-1)^{k-1}}{n^p}} < \varepsilon$.
+            By the Cauchy Criterion, this means that the series converges.
         \end{proof}
+
 \pagebreak
 \section{Problem 2}
     A series $\sum_{n = 1}^{\infty} a_n$ is said to be \textit{absolutely convergent} if $\sum_{n = 1}^{\infty} |a_n|$ is convergent. Prove that every absolutely convergent series is convergent. \textit{Hint:} use the Cauchy criterion.
@@ -459,7 +504,7 @@
             
             Create a new set called $G$ defined as $G = \left\{ f(S) \right\}_{S \in F}$.
             Since every element in $F$ is an open ball, applying $f$ to every open ball returns a bounded set in $Y$, and $F$ is finite, $G$ is a finite collection of bounded sets in $Y$.
-            Since the union of a finite number of bounded sets is bounded\footnote{Prove or cite a source.}, the union of all elements in $G$, $H = \bigcup_{S \in G} S$, is a bounded set.
+            Since the union of a finite number of bounded sets is bounded, the union of all elements in $G$, $H = \bigcup_{S \in G} S$, is a bounded set.
             Furthermore, since $H$ is a collection of bounded sets in $Y$, $H \subset Y$.
 
             Now, we prove that if $f(x) \in f(X)$, then $f(x) \in H$.
