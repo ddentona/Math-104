@@ -1,0 +1,168 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\setlength{\parindent}{0pt}
+
+%% code from mathabx.sty and mathabx.dcl
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+\DeclareMathAccent{\wideparen}{0}{mathx}{"75}
+
+\def\cs#1{\texttt{\char`\\#1}}
+
+\allowdisplaybreaks
+
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\im}{im}
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\0}{\mathbf{0}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\loc}{\text{loc}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\x}{\mathbf{x}}
+\DeclareMathOperator{\y}{\mathbf{y}}
+\DeclareMathOperator{\z}{\mathbf{z}}
+
+\title{Math 104 Homework 5}
+\author{Due Date: Friday, July 31 at 11:59pm}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Instructions:} Submit pdf solutions in LaTeX (preferred), or \textit{neatly} handwritten. Unless otherwise stated, you may cite any result from class or from Rudin's book, but all other assertions you make must be proved rigorously. At the top of your submission, please write down the names of the other students you collaborated with and any outside sources you consulted.
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item 
+    Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : (X, d_X) \to (Y, d_Y)$ is called \textit{Lipschitz continuous} if there is a constant $L > 0$ so that
+    \begin{equation*}
+        d_Y(f(p), f(q)) \leq Ld_X(p, q)
+    \end{equation*}
+    for all $p, q \in X$. For $\alpha > 0$, we say $f$ is \textit{H\"older continuous (with exponent $\alpha$)} if there is a constant $C > 0$ so that
+    \begin{equation*}
+        d_Y(f(p), f(q)) \leq C d_X(p, q)^\alpha
+    \end{equation*}
+    for all $p, q \in X$. In particular, H\"older continuous with exponent $1$ means the same thing as Lipschitz.
+    \begin{enumerate}
+        \item 
+        Fix a point $p \in X$. Show that the map $g : X \to \mathbb{R}$ defined by $g(x) = d(x, p)$ is Lipschitz continuous, with constant $L = 1$.
+        
+        \item 
+        Prove that any H\"older continuous function (with any exponent $\alpha > 0$) is uniformly continuous.
+
+        \item 
+        Prove that if $f$ is Lipschitz continuous and bounded, then $f$ is H\"older continuous with exponent $\alpha$, for any $0 < \alpha \leq 1$.
+
+        \item 
+        Let $[a, b]$ be a closed interval, and suppose $f : [a, b] \to \mathbb{R}$ is $C^1$ (meaning its first derivative exists and is continuous on $[a, b]$). Show that $f$ is Lipschitz continuous.
+
+        \item 
+        Suppose $f : \mathbb{R} \to \mathbb{R}$ is H\"older continuous with exponent $\alpha > 1$. Show that $f$ is constant.
+        
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    On the interval $(100, \infty)$, define functions $f(x) = x + \sin(x)$, $g(x) = x$, $p(x) = x + \sin(x)\cos(x)$, and $q(x) = p(x)e^{\sin(x)}$.
+    \begin{enumerate}
+        \item 
+        Using facts we proved about limits and derivatives, prove that
+        \begin{equation*}
+            \lim_{x \to \infty} \frac{f(x)}{g(x)} = 1, \quad \lim_{x \to \infty} \frac{f'(x)}{g'(x)} \;\; \text{DNE}, \quad \lim_{x \to \infty} \frac{p(x)}{q(x)} \;\; \text{DNE}, \text{ and } \lim_{x \to \infty} \frac{p'(x)}{q'(x)} = 0.\\
+        \end{equation*}
+        \item 
+        For both scenarios $\frac{f(x)}{g(x)}$ and $\frac{p(x)}{q(x)}$, explain why these results do not contradict L'H\^opital's rule.
+        
+    \end{enumerate}
+
+    \textit{Note: even though we haven't learned about $\sin$ and $\cos$ yet, you are free to use any familiar properties of them you wish.}
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $f : (a, b) \to \mathbb{R}$ be continuous. Let $c \in (a, b)$, and suppose $f$ is differentiable on $(a, c)$ and $(c, b)$. Suppose that 
+    \begin{equation*}
+        \lim_{x \to c} f'(x)
+    \end{equation*}
+    exists and is a real number. Show that $f$ is differentiable at $c$. \textit{Hint:} Mean value theorem.
+    
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $f : \mathbb{R} \to \mathbb{R}$ be $C^2$ (meaning its second derivative exists and is continuous on $\mathbb{R}$).
+    \begin{enumerate}
+        \item 
+        Let $x \in \mathbb{R}$. For each $h > 0$, show there are numbers $\xi$ and $\eta$ with $x - h < \xi < x < \eta < x + h$ and
+        \begin{equation*}
+            \frac{f''(\xi) + f''(\eta)}{2} = \frac{f(x + h) + f(x - h) - 2f(x)}{h^2}.
+        \end{equation*}
+        
+        \item 
+        Show that, for each $x \in \mathbb{R}$,
+        \begin{equation*}
+            f''(x) = \lim_{h \to 0} \frac{f(x + h) + f(x - h) - 2f(x)}{h^2}.
+        \end{equation*}
+
+        \item 
+        A function $f : \mathbb{R} \to \mathbb{R}$ is called \textit{convex} if for all $x, y \in \mathbb{R}$ and $0 \leq \lambda \leq 1$, we have
+        \begin{equation*}
+            f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda) f(y).
+        \end{equation*}
+        Geometrically, this means the graph of $f$ lies \textit{below} all of its secant lines. Show that any $C^2$ convex function $f$ satisfies $f''(x) \geq 0$ for all $x$. \textit{Hint:} convexity tells you something about the numerator in part (b).
+
+        \item 
+        Conversely, if a twice-differentiable function $f$ satisfies $f''(x) \geq 0$ for all $x$, show that $f$ is convex. \textit{Hint:} For $\lambda \in (0, 1)$ and $x < y \in \mathbb{R}$, the number $z \coloneqq \lambda x + (1 - \lambda)y$ satisfies $x < z < y$. Apply the mean value theorem on $[x, z]$ and $[z, y]$ to get an expression for $\lambda f(x) + (1 - \lambda) f(y)$.
+        
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \item 
+    Let $f : [0, 1] \to \mathbb{R}$ be defined by
+    \begin{equation*}
+        f(x) = 
+        \begin{cases}
+            1, & \text{ if } x \in \mathbb{Q}\\
+            0, & \text{ if } x \notin \mathbb{Q}.
+        \end{cases}
+    \end{equation*}
+    Compute the upper and lower Riemann integrals of $f$. Is $f$ Riemann integrable?
+    
+    
+    
+    
+\end{enumerate}
+
+
+
+\end{document}     

@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{soul}
+\usepackage{tikz}
+
+% Load hyperref to automatically generate the PDF outline from structural tags
+\usepackage[pdftex, bookmarks=true, bookmarksnumbered=true]{hyperref}
+
+% Optional: Use the bookmark package for faster rendering and advanced control
+\usepackage{bookmark} 
+
+\newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
+\title{Homework \#4\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
+\date{July 24, 2026}
+\author{Donald Aingworth IV}
+
+\begin{document}
+\renewcommand\qedsymbol{OE$\Delta$}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\andtxt}{\text{ and }}
+\newcommand{\Ais}{\ensuremath{\overset{A}{=}}}
+\newcommand{\Cis}{\ensuremath{\overset{C}{=}}}
+\newcommand{\closure}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\encircle}[1]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle, draw, inner sep=1pt] (char) {#1};%
+  }%
+}
+\newcommand{\mathif}{\text{if }}
+\newcommand{\seq}[2][n]{\ensuremath{\left\{ #2 _{#1} \right\}}}
+\newcommand{\zz}[1]{$\mathbb{Z}/ #1 \mathbb{Z}$}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+\setcounter{section}{-1}
+\section{Various Theorems}
+
+\pagebreak
+\section{Problem 1}
+    Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : (X, d_X) \to (Y, d_Y)$ is called \textit{Lipschitz continuous} if there is a constant $L > 0$ so that
+    \begin{equation*}
+        d_Y(f(p), f(q)) \leq Ld_X(p, q)
+    \end{equation*}
+    for all $p, q \in X$. For $\alpha > 0$, we say $f$ is \textit{H\"older continuous (with exponent $\alpha$)} if there is a constant $C > 0$ so that
+    \begin{equation*}
+        d_Y(f(p), f(q)) \leq C d_X(p, q)^\alpha
+    \end{equation*}
+    for all $p, q \in X$. In particular, H\"older continuous with exponent $1$ means the same thing as Lipschitz.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Fix a point $p \in X$. Show that the map $g : X \to \mathbb{R}$ defined by $g(x) = d(x, p)$ is Lipschitz continuous, with constant $L = 1$.
+        
+        \item 
+        Prove that any H\"older continuous function (with any exponent $\alpha > 0$) is uniformly continuous.
+
+        \item 
+        Prove that if $f$ is Lipschitz continuous and bounded, then $f$ is H\"older continuous with exponent $\alpha$, for any $0 < \alpha \leq 1$.
+
+        \item 
+        Let $[a, b]$ be a closed interval, and suppose $f : [a, b] \to \mathbb{R}$ is $C^1$ (meaning its first derivative exists and is continuous on $[a, b]$). Show that $f$ is Lipschitz continuous.
+
+        \item 
+        Suppose $f : \mathbb{R} \to \mathbb{R}$ is H\"older continuous with exponent $\alpha > 1$. Show that $f$ is constant.
+        
+    \end{enumerate}
+
+\pagebreak
+\section{Problem 2}
+    On the interval $(100, \infty)$, define functions $f(x) = x + \sin(x)$, $g(x) = x$, $p(x) = x + \sin(x)\cos(x)$, and $q(x) = p(x)e^{\sin(x)}$.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Using facts we proved about limits and derivatives, prove that
+        \begin{equation*}
+            \lim_{x \to \infty} \frac{f(x)}{g(x)} = 1, \quad \lim_{x \to \infty} \frac{f'(x)}{g'(x)} \;\; \text{DNE}, \quad \lim_{x \to \infty} \frac{p(x)}{q(x)} \;\; \text{DNE}, \text{ and } \lim_{x \to \infty} \frac{p'(x)}{q'(x)} = 0.\\
+        \end{equation*}
+        \item 
+        For both scenarios $\frac{f(x)}{g(x)}$ and $\frac{p(x)}{q(x)}$, explain why these results do not contradict L'H\^opital's rule.
+        
+    \end{enumerate}
+
+    \textit{Note: even though we haven't learned about $\sin$ and $\cos$ yet, you are free to use any familiar properties of them you wish.}
+\end{document}
