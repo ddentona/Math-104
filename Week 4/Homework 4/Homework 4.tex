@@ -104,6 +104,20 @@
             Ergo, $(n + 1)x$ is finite.
         \end{proof}
 
+    \subsection{Decreasing Value is Greater than Alternating Partial Sums}
+        If $a_k \geq 0$ for all $k \in \mathbb{N}$ and $a_k$ is decreasing, then for all $m,N \in \mathbb{N}$ where $m > N$, $\abs{\sum_{k = N}^{m} (-1)^k a_k} \leq a_N$.
+        \begin{proof}
+            Let $a_k \geq 0$ and $a_k \geq a_{k+1}$ for all $k \in \mathbb{N}$.
+            Let $m,N \in \mathbb{N}$ where $m > N$.
+            At this point, there are two cases: $m - N$ is odd or $m - N$ is even.
+
+            Consider first the case when $m - N$ is odd.
+            Without loss of generality, suppose that $k$ is even, so $(-1)^k = 1$.
+            Since $a_k$ is decreasing, for any $j \in \mathbb{N}$, $a_j \geq a_{j+1}$.
+            Therefore, for any $j \in \mathbb{N}$ where $N < 2j < 2j+1 \leq m$, $a_{2j} \geq a_{2j+1}$.
+            This means that $a_{2j} - a_{2j+1} \geq 0$ and $0 \geq a_{2j+1} - a_{2j}$.
+        \end{proof}
+
 \pagebreak
 \section{Problem 1}
     For which values of $p \in \mathbb{R}$ are the following series convergent or divergent? Prove your answers rigorously, using only tests we explicitly covered in class. \textit{Hint:} for both of these series you should use something with the name ``Cauchy" in it.
