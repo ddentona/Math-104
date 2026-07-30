@@ -121,25 +121,31 @@
             \end{equation}
         \end{proof}
 
-        Let $f$ be a real, continuous function on $[x - h, x]$ which is differentiable in $(x - h, x)$, then there is a point $b \in (x - h, x)$ at which
+        Let $f$ be a real, continuous function on $[x - h, x]$ which is differentiable in $(x - h, x)$, then there is a point $c \in (x - h, x)$ at which
         \begin{equation}
             f(x) - f(x - h) = h f'(c).
         \end{equation}
         \begin{proof}
             This is very similar to the last.
             Recall the Mean Value Theorem.
-            If $f$ is a real continuous function on $[y, x]$ which is differentiable in $(y, x)$, then there is a point $b \in (y, x)$ at which
+            If $f$ is a real continuous function on $[y, x]$ which is differentiable in $(y, x)$, then there is a point $c \in (y, x)$ at which
             \begin{equation}
                 f(x) - f(y) = (x - y) f'(b)
             \end{equation}
 
             Let $h = x - y$.
             By extension, $y = x - h$.
-            Therefore, for $b \in (x - h, x)$,
+            Therefore, for $c \in (x - h, x)$,
             \begin{equation}
-                f(x) - f(x - h) = h f'(b)
+                f(x) - f(x - h) = h f'(c)
             \end{equation}
         \end{proof}
+
+        Note that these are respectively equivalent to:
+        \begin{gather}
+            f'(b) = \frac{f(x + h) - f(x)}{h}\\
+            f'(c) = \frac{f(x) - f(x - h)}{h}
+        \end{gather}
 
 \pagebreak
 \section{Problem 1}
@@ -468,6 +474,24 @@
             \begin{equation}
                 \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = \frac{f(x + h) - f(x)}{h^2} + \frac{f(x - h) - f(x)}{h^2}
             \end{equation}
+
+            By \textit{0.4: Alternate Mean Value Theorem}, there exists $\alpha \in (x - h, x)$ where $f'(\alpha) = \frac{f(x) - f(x - h)}{h}$ and there exists $\beta \in (x, x + h)$ where $f'(\beta) = \frac{f(x + h) - f(x)}{h}$.
+            We can put these in.
+            \begin{equation}
+                \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = \frac{f'(\beta)}{h} - \frac{f'(\alpha)}{h}
+                    =   \frac{f'(\beta) - f'(\alpha)}{h}
+            \end{equation}
+
+            Since $\alpha \in (x - h, x)$, either $\alpha - \frac{h}{2} \in [x - h, x]$ or $\alpha + \frac{h}{2} \in [x - h, x]$, or both.
+            Since $\beta \in (x, x + h)$, either $\beta - \frac{h}{2} \in [x, x + h]$ or $\beta + \frac{h}{2} \in [x, x + h]$, or both.
+            Without loss of generality, let $\alpha + \frac{h}{2} \in [x - h, x]$ and $\beta - \frac{h}{2} \in [x, x + h]$.
+            By the alternate mean value theorem, there exists $\xi \in \left( \alpha, \alpha + \frac{h}{2} \right)$ where $f''(\xi) = \frac{f'\left( \alpha + \frac{h}{2} \right) - f'(\alpha)}{\frac{h}{2}}$ and there exists $\eta \in \left( \beta - \frac{h}{2}, \beta \right)$ where $f''(\eta) = \frac{f'\left( \beta \right) - f'\left( \beta - \frac{h}{2} \right)}{\frac{h}{2}}$.
+            Add and subtracting $\frac{f'\left( \beta - \frac{h}{2} \right)}{h}$ and $\frac{f'\left( \alpha + \frac{h}{2} \right)}{h}$ from both sides of our earlier equation and apply our values of $f''(\xi)$ and $f''(\eta)$.
+            \begin{align}
+                \frac{f'(\beta) - f'(\alpha)}{h}    &=  \frac{f'(\beta) + f'\left( \beta - \frac{h}{2} \right) - f'\left( \beta - \frac{h}{2} \right) + f'\left( \alpha + \frac{h}{2} \right) - f'\left( \alpha + \frac{h}{2} \right) - f'(\alpha)}{h}\\
+                    &=  \frac{1}{2}\left( \frac{f'(\beta) - f'\left( \beta - \frac{h}{2}\right)}{\frac{h}{2}} + \frac{f'\left( \alpha + \frac{h}{2} \right) - f'\left( \alpha \right)}{\frac{h}{2}} \right) + \frac{f'\left( \beta - \frac{h}{2} \right) - f'\left( \alpha + \frac{h}{2} \right)}{h}\\
+                    &=  \frac{f''(\xi) + f''(\eta)}{2} + \frac{f'\left( \beta - \frac{h}{2} \right) - f'\left( \alpha + \frac{h}{2} \right)}{h}
+            \end{align}
         \end{proof}
 
 \pagebreak
