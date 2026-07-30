@@ -78,6 +78,69 @@
             Ergo, $\lim_{x \to \infty} \frac{1}{x} = 0$.
         \end{proof}
 
+    \subsection{Alternate Derivative Definition}
+        Let $f: \mathbb{R} \to \mathbb{R}$ be differentiable.
+        \begin{equation}
+            \diff{f(x)}{x} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+        \end{equation}
+        \begin{proof}
+            Recall the definition of $\diff{f(x)}{x}$.
+            \begin{equation}
+                \diff{f(x)}{x} = \lim_{c \to x} \frac{f(c) - f(x)}{c - x}
+            \end{equation}
+
+            This means that for all $\varepsilon > 0$, there exists $\delta > 0$ such that $\abs{c - x} < \delta$ implies $\abs{f(c) - f(x)} < \varepsilon$.
+            Let $h = c - x$.
+            Solving for $c$, $c = x + h$.
+            We can therefore conclude that $\abs{h} < \delta$ implies $\abs{f(x + h) - f(x)} < \varepsilon$.
+            This fits a definition of a new limit.
+            \begin{equation}
+                \diff{f(x)}{x} = \lim_{c \to x} \frac{f(c) - f(x)}{c - x} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+            \end{equation}
+            
+            This completes the proof.
+        \end{proof}
+
+    \subsection{Alternate Mean Value Theorem}
+        Let $f$ be a real, continuous function on $[x, x + h]$ which is differentiable in $(x, x + h)$, then there is a point $b \in (x, x + h)$ at which
+        \begin{equation}
+            f(x + h) - f(x) = h f'(b).
+        \end{equation}
+        \begin{proof}
+            Recall the Mean Value Theorem.
+            If $f$ is a real continuous function on $[x, y]$ which is differentiable in $(x, y)$, then there is a point $b \in (x, y)$ at which
+            \begin{equation}
+                f(y) - f(x) = (y - x) f'(b)
+            \end{equation}
+
+            Let $h = y - x$.
+            By extension, $y = x + h$.
+            Therefore, for $b \in (x, x + h)$,
+            \begin{equation}
+                f(x + h) - f(x) = h f'(b)
+            \end{equation}
+        \end{proof}
+
+        Let $f$ be a real, continuous function on $[x - h, x]$ which is differentiable in $(x - h, x)$, then there is a point $b \in (x - h, x)$ at which
+        \begin{equation}
+            f(x) - f(x - h) = h f'(c).
+        \end{equation}
+        \begin{proof}
+            This is very similar to the last.
+            Recall the Mean Value Theorem.
+            If $f$ is a real continuous function on $[y, x]$ which is differentiable in $(y, x)$, then there is a point $b \in (y, x)$ at which
+            \begin{equation}
+                f(x) - f(y) = (x - y) f'(b)
+            \end{equation}
+
+            Let $h = x - y$.
+            By extension, $y = x - h$.
+            Therefore, for $b \in (x - h, x)$,
+            \begin{equation}
+                f(x) - f(x - h) = h f'(b)
+            \end{equation}
+        \end{proof}
+
 \pagebreak
 \section{Problem 1}
     Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : (X, d_X) \to (Y, d_Y)$ is called \textit{Lipschitz continuous} if there is a constant $L > 0$ so that
@@ -398,6 +461,14 @@
         Conversely, if a twice-differentiable function $f$ satisfies $f''(x) \geq 0$ for all $x$, show that $f$ is convex. \textit{Hint:} For $\lambda \in (0, 1)$ and $x < y \in \mathbb{R}$, the number $z \coloneqq \lambda x + (1 - \lambda)y$ satisfies $x < z < y$. Apply the mean value theorem on $[x, z]$ and $[z, y]$ to get an expression for $\lambda f(x) + (1 - \lambda) f(y)$.
         
     \end{enumerate}
+    
+    \subsection{Solution (a)}
+        \begin{proof}
+            Take the latter term and separate it so each new term has only one $f(x)$.
+            \begin{equation}
+                \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = \frac{f(x + h) - f(x)}{h^2} + \frac{f(x - h) - f(x)}{h^2}
+            \end{equation}
+        \end{proof}
 
 \pagebreak
 \section{Problem 5}
