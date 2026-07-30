@@ -29,6 +29,8 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/esdiff/esdiff.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/esdiff/esdiff.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
@@ -37,6 +39,12 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mathtools.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mathtools.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mhsetup.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mhsetup.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/tools/multicol.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/tools/multicol.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/soul/soul.sty
@@ -269,24 +277,29 @@ INPUT ./Homework 5.toc
 INPUT ./Homework 5.toc
 INPUT Homework 5.toc
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-OUTPUT Homework 5.toc
-INPUT /usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+OUTPUT Homework 5.toc
+INPUT /usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT Homework 5.aux
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

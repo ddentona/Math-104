@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\begin{document}
+\newcommand{\seq}[2][n]{\ensuremath{\left\{ #2 _{#1} \right\}}}
+\section{Theorem 16.7}
+    Let $f: X \to Y$ be continuous and let $E \subset X$ be connected.
+    Then $f(E) \subset Y$ is connected.
+    \begin{proof}[Proof by Contradiction]
+        Suppose $E \subset X$ is connected but suppose for contradiction that $f(E) \subset Y$ is not connected.
+        We may write $f(E) = A \cup B$ with open, disjoine, nonempty sets $A$ and $B$ in $(f(E), d_Y)$.
+        By properties of images and preimages, we have $E \subset f^{-1}(f(E))$.
+        \begin{equation}
+            f^{-1}(f(E)) = f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B)
+        \end{equation}
+
+        Therefore, $E = (f^{-1}(A) \cap E) \cup (f^{-1}(B) \cap E)$.
+        Let $C = f^{-1}(A) \cap E$ and $D = f^{-1}(B) \cap E$.
+
+        \underline{$C$ and $D$ are disjoint.}
+            If they weren't disjoint, then there would be $x$ such that $x \in f^{-1}(A)$ and $x \in f^{-1}(B)$.
+            That would mean that $f(x) \in A$ and $f(x) \in B$, which would not be possible since $A$ and $B$ are disjoint.
+
+        \underline{$C$ and $D$ are nonempty.}
+            $A$ and $B$ are nonempty.
+            If $C = (f^{-1}(A) \cap E)$ were empty, then $E$ would be a subset of $f^{-1}(B)$.
+            This would imply $f(E) \subset B$, but we know $f(E) \subset B$, which would mean $f(E) = B$.
+            That would mean $A = \varnothing$, but we already established this is false.
+        
+        \underline{$C$ and $D$ are open in $(E,d_X)$.}
+            Since $A$ and $B$ are open, we know that for $U$ and $V$ open in $Y$, $A = U \cap f(E)$ and $B = V \cap f(E)$.
+            We can therefore say the following:
+            \begin{align}
+                f^{-1}(A)   &=  f^{-1}(U \cap f(E)) 
+                    =   f^{-1}(U) \cap f^{-1}(f(E))\\
+                f^{-1}(B)   &=  f^{-1}(V \cap f(E)) 
+                    =   f^{-1}(V) \cap f^{-1}(f(E))\\
+                f^{-1}(A) \cap E    &=  f^{-1}(U) \cap f^{-1}(f(E)) \cap E
+                    =   f^{-1}(U) \cap E\\
+                f^{-1}(B) \cap E    &=  f^{-1}(V) \cap f^{-1}(f(E)) \cap E
+                    =   f^{-1}(V) \cap E
+            \end{align}
+            Since by continuity $f^{-1}(U)$ and $f^{-1}(V)$ are open in $(X,d_X)$, $f^{-1}(A) \cap E$ is open in $(E,d_X)$ and $f^{-1}(B) \cap E$ is open in $(E,d_X)$, so $C$ and $D$ are open in $(E,d_X)$.
+
+        Therefore, $E = C \cup D$ for open, disjoint, nonempty $C$ and $D$.
+        Therefore, $E$ is separated, which is a contradiction.
+        Ergo, $f(E)$ is connected.
+    \end{proof}
+
+\section{Theorem 17.7}
+    Let $f: X \to Y$ be continuous between metric spaces.
+    Let $X$ be compact.
+    Then, $f$ is uniformly continuous.
+    \begin{proof}
+        Let $\varepsilon > 0$.
+        For all $p \in X$, there exists $\delta_p > 0$ (depending on $p$) such that if $d_X(p,q) < \delta_p$, then $d_Y(f(p),f(q)) < \frac{\varepsilon}{2}$.
+        Therefore, the open sets $\left\{ B_{\frac{\delta_p}{2}}(p) \right\}$ cover $X$.
+        Since $X$ is compact, there is a finite subcover $\left\{ B_{\frac{\delta_{p_k}}{2}}(p_k) \right\}_{k=1}^n$.
+        \begin{equation}\tag{$\star$} \label{eq:star}
+            X \subset \left\{ B_{\frac{\delta_{p_k}}{2}}(p_k) \right\}_{k=1}^n
+        \end{equation}
+
+        Let $\delta = \min_{k \in \mathbb{N} \leq n} \left\{ \frac{\delta_{p_k}}{2} \right\} > 0$.
+        Choose any $x,y \in X$ with $d_X(x,y) < \delta$.
+        Since (\ref{eq:star}) is true, there exists $j$ where $1 \leq j \leq n$ and $x \in B_{\frac{\delta_{p_j}}{2}}(p_j)$.
+        Therefore, we can say things about $d(x,p_j)$ and $d(y,p_j)$.
+        \begin{align}
+            d_X(x,p_j)  &<  \frac{\delta_{p_j}}{2}
+                <   \delta_{p_j}\\
+            d_X(y,p_j)  &\leq   d_X(x,y) + d_X(x,p_j)
+                \leq    \frac{\delta_{p_j}}{2} + \frac{\delta_{p_j}}{2}
+                =   \delta_{p_j}
+        \end{align}
+        
+        Since $f$ is continuous, 
+        \begin{equation}
+            d_Y(f(x),f(y)) \leq d_Y(f(x),f(p_j)) + d_Y(f(p_j),f(y)) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+        \end{equation}
+
+        Therefore, $f$ is uniformly continuous.
+    \end{proof}
+\end{document}

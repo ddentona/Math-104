@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\begin{document}
+\newcommand{\seq}[2][n]{\ensuremath{\left\{ #2 _{#1} \right\}}}
+\section{Thorem 10.2}
+    Let $(X,d)$ be a compact metric space. 
+    Then, every sequence in $(X,d)$ has a convergent subsequence.
+    \begin{proof}
+        Let $(X,d)$ be compact and let $\{x_n\}$ be any sequence in $X$.
+
+        \textbf{Case 1:} \textit{$\{x_n\}$ has only finitely many values.}
+
+            Then, by the pigeonhole principle, there exists $x \in X$ such that $x_n = x$ infinitely often.
+            This gives a subsequence $\{x_{n_k}\}$ that converges to $x$.
+
+        \textbf{Case 2:} \textit{$\{x_n\}$ has infinitely many values.}
+
+            By Lemma 10.4, $\{x_n\}$ has a limit point $x \in X$.
+            Since $x$ is a limit point in $\{x_n\}$, 
+            \begin{itemize}
+                \item   There exists $n_1 \in \mathbb{N}$ such that $d(x_{n_1},x) < 1$
+                \item   There exists $n_2 \in \mathbb{N}$ such that $d(x_{n_2},x) < \frac{1}{2}$ where $n_2 > n_1$ and $x_{n_1} \neq x$.
+                \item   For all $k \in \mathbb{N} \backslash \{1\}$, there exists $n_k \in \mathbb{N}$ such that $d(x_{n_k},x) < \frac{1}{k}$ where $n_k > n_{k-1}$ using $x_{n_k} \neq x$.
+            \end{itemize}
+            By construction, $\{x_{n_k}\}$ is a subsequence of $\{x_n\}$ and $x_{n_k}$ converges to $x$.
+    \end{proof}
+
+\section{Lemma 10.4}
+    Let $(X,d)$ be compact and let $E \subset X$ be infinite.
+    Then $E$ has a limit point in $X$.
+    \begin{proof}[Proof by Contradiction]
+        Suppose for contradiction that $E$ has no limit point in $X$.
+        Then, for all $x \in X$, $x$ is not a limit point of $E$.
+        This means that we can find $r_x > 0$ such that $B_{r_x}(x)$ contains no points of $E$ besides maybe $x$.
+        Therefore, each $B_{r_x}(x)$ contains at most one one point of $E$.
+        Since this is for all $x \in X$, $\left\{ B_{r_x}(x) \right\}_{x \in X}$ is an open cover of $X$.
+        Since $X$ is compact, $\left\{ B_{r_x}(x) \right\}_{x \in X}$ has a finite subcover containing at most one element of $X$ each and thereby at most one element of $E$ each.
+        Therefore, $E$ is finite.
+        This contradicts that the cardinality of $E$ is infinite.
+    \end{proof}
+
+\section{Theorem 10.8}
+    \begin{enumerate}[label=(\alph*)]
+        \item   Every compact metric space is complete
+        \item   $\mathbb{R}$ is complete
+    \end{enumerate}
+    \begin{proof}[Proof (a)]
+        A complete metric has every Cauchy sequence converge.
+        Let $(X,d)$ be compact and let \seq{x} be cauchy.
+        By Theorem 10.2, \seq{x} has a convergent subsequence.
+        By Lemma 10.9, \seq{x} converges.
+        Therefore, $X$ is complete.
+    \end{proof}
+    \begin{proof}[Proof (b)]
+        In $\mathbb{R}$, every convergent sequence \seq{x} is bounded, meaning it is contained in some $[a,b]$.
+        $[a,b]$ is compact and \seq{x} is bounded, so it has a convergent subsequence and converges, so $\mathbb{R}$ is complete.
+    \end{proof}
+
+\section{Lemma 10.9}
+    Let \seq{x} be cauchy.
+    If \seq{x} has a convergent subsequence, it converges.
+    \begin{proof}
+        Suppose that \seq[n_\ell]{x} is a subsequence of \seq{x} that converges to $x$.
+        Therefore, given $\varepsilon > 0$, there exists $K \in \mathbb{N}$ such that if $k \geq K$, $d(x_{n_k}, x) < \frac{\varepsilon}{2}$.
+        Similarly, since \seq{x} is cauchy, there exists some $N \in \mathbb{N}$ such that if $m \geq n \geq \mathbb{N}$, $d(x_m, x_n) < \frac{varepsilon}{2}$.
+        Pick $K$ big enough that $n_K \geq N$.
+        This means that if $m \geq n_K$, then $\frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon > d(x_{n_k}, x) + d(x_m, x_{n_k}) \geq d(x_m, x)$.
+        Therefore, \seq{x} converges to $x$.
+    \end{proof}
+\end{document}

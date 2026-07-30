@@ -3,7 +3,9 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{enumitem}
+\usepackage{esdiff}
 \usepackage[margin=1in]{geometry}
+\usepackage{mathtools}
 \usepackage{multicol}
 \usepackage{soul}
 \usepackage{tikz}
@@ -42,6 +44,39 @@
 \pagebreak
 \setcounter{section}{-1}
 \section{Various Theorems}
+    \subsection{Limit Proof I}
+        For $p,q,\alpha,C \in \mathbb{R}$ where $\alpha > 1$ and $C > 0$, $\lim_{q \to p} C\abs{p - q}^{\alpha - 1} = 0$.
+        \begin{proof}
+            Let $\varepsilon > 0$.
+            Let $\delta = \sqrt[\alpha - 1]{\frac{\varepsilon}{C}}$, which is greater than zero because $\alpha - 1 > 0$ and $C > 0$.
+            Suppose that $0 < \abs{p - q} < \delta$.
+            Substitute in our value of $\delta$ to find $0 < \abs{p - q} < \sqrt[\alpha - 1]{\frac{\varepsilon}{C}}$.
+            Now, raise all sides to the positive power $\alpha - 1$, then multiply by $C$.
+            \begin{gather}
+                0 < \abs{p - q} < \sqrt[\alpha - 1]{\frac{\varepsilon}{C}}\\
+                0 < \abs{p - q}^{\alpha - 1} < \frac{\varepsilon}{C}\\
+                0 < C \abs{p - q}^{\alpha - 1} < \varepsilon
+            \end{gather}
+            Since $0 < C \abs{p - q}^{\alpha - 1}$, $C \abs{p - q}^{\alpha - 1} = \abs{C \abs{p - q}^{\alpha - 1}}$.
+            Therefore, $\abs{C \abs{p - q}^{\alpha - 1}} < \varepsilon$.
+            Ergo, $\lim_{q \to p} C\abs{p - q}^{\alpha - 1} = 0$.
+        \end{proof}
+
+    \subsection{Limit Proof II}
+        \begin{equation}
+            \lim_{x \to \infty} \frac{1}{x} = 0
+        \end{equation}
+        \begin{proof}
+            Let $\varepsilon > 0$.
+            Let $\delta = \frac{1}{\varepsilon} > 0$.
+            Suppose that $x > \delta$.
+            Multiply both sides by the reciproals of $x$ and $\delta$ to find that $\frac{1}{\delta} > \frac{1}{x}$.
+            Substitute in the value of $\delta$ to find that $\frac{1}{\frac{1}{\varepsilon}} = \varepsilon > \frac{1}{x}$.
+            Since $\delta > 0$ and $x > \delta$, $x > 0$, meaning $\frac{1}{x} > 0$, so $\frac{1}{x} = \abs{\frac{1}{x}}$.
+            So $\varepsilon > \abs{\frac{1}{x}}$.
+            Therefore, $x > \delta$ implies $\varepsilon > \abs{\frac{1}{x}}$.
+            Ergo, $\lim_{x \to \infty} \frac{1}{x} = 0$.
+        \end{proof}
 
 \pagebreak
 \section{Problem 1}
@@ -72,6 +107,116 @@
         
     \end{enumerate}
 
+    \subsection{Solution (a)}
+        \begin{proof}
+            Since the codomain of $g$ is $\mathbb{R}$, we can use the standard metric as $d_Y$.
+            From the triangle inequality, we know that $d_X(x,y) + d_X(p,x) \geq d_X(p,y)$ and $d_X(x,y) + d_X(p,y) \geq d_X(p,x)$.
+            We can reorder both of these to find that $d_X(x,y) \geq d_X(p,y) - d_X(p,x)$ and $d_X(x,y) \geq d_X(p,x) - d_X(p,y)$.
+            Consolidating these, we can apply the absolute value to find that $d_X(x,y) \geq \abs{d_X(p,y) - d_X(p,x)}$.
+            This is also known as the inverse triangle inequality.
+            Since the absolute value is the usual metric over $\mathbb{R}$, this means that $d_X(x,y) \geq d_{\mathbb{R}}(d_X(p,y), d_X(p,x))$.
+            Since $g(x) = d_X(p,x)$, $d_X(x,y) \geq d_{\mathbb{R}}(g(y), g(x))$.
+            Therefore, $g$ is Lipschitz continuous with constant $L = 1$.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        \begin{proof}
+            Let $f$ be H\"older continuous with exponent $\alpha$ for $\alpha > 0$.
+            \begin{equation}
+                d_Y(f(p),f(q)) \leq C d_X(p,q)^\alpha
+            \end{equation}
+            Let $\varepsilon > 0$ and let $\delta = \sqrt[\alpha]{\frac{\varepsilon}{C}}$, which allows that $\delta > 0$ since $C > 0$.
+            Suppose that for some $p,q \in X$, $d_X(p,q) < \delta$.
+            We can substitute in our value of $\delta$ and isolate $\varepsilon$.
+            \begin{align}
+                d_X(p,q)    &<  \delta 
+                    =   \sqrt[\alpha]{\frac{\varepsilon}{C}}\\
+                d_X(p,q)^{\alpha}   &<  \frac{\varepsilon}{C}\\
+                C d_X(p,q)^{\alpha} &<  \varepsilon
+            \end{align}
+            Since $d_Y(f(p),f(q)) \leq C d_X(p,q)^\alpha$, this means $d_Y(f(p),f(q)) < \varepsilon$.
+            Therefore, $d_X(p,q) < \delta$ implies $d_Y(f(p),f(q)) < \varepsilon$.
+            Ergo, $f$ is uniformly continuous.
+        \end{proof}
+
+    \subsection{Solution (c)}
+        \begin{proof}
+            Let $0 < \alpha \leq 1$, and let $f$ be Lipschitz continuous.
+            Let $p,q \in X$.
+            \begin{equation}
+                d_Y(f(p),f(q)) \leq Ld_X(p,q)
+            \end{equation}
+            Since $f$ is bounded, then there exists a number $M \in \mathbb{R}$ and a point $f(q) \in Y$ for some $q \in X$ such that for all $p \in X$, $d_Y(f(p),f(q)) < M$.
+            Suppose we take three cases: $d_X(p,q) = 1$, $d_X(p,q) > 1$, and $d_X(p,q) < 1$.
+
+            \textbf{Case 1: $d_X(p,q) = 1$.}
+                Anything real to the power of $1$ is just $1$, so if we set $C = M$, then it will always be true that $d_Y(f(p),f(q)) \leq C d_X(p,q)^\alpha$.
+
+            \textbf{Case 2: $d_X(p,q) < 1$.}
+                If $d_X(p,q) < 1$, then for $0 < \alpha \leq 1$, $d_X(p,q) \leq d_X(p,q)^\alpha$.
+                Therefore, if we set $C = L$, then $L d_X(p,q) \leq L d_X(p,q)^\alpha$, and therefore $d_Y(f(p),f(q)) \leq C d_X(p,q)^\alpha$.
+
+            \textbf{Case 3: $d_X(p,q) > 1$.}
+                If $d_X(p,q) > 1$, then for all $0 < \alpha \leq 1$, $d_X(p,q)^\alpha > 1$.
+                Therefore, if we set $C = M$, then $C d_X(p,q)^\alpha > M$, and by extension it will always be true that $d_Y(f(p),f(q)) < C d_X(p,q)^\alpha$.
+
+            Therefore, depending on the value of our inserts, we can take $C = \max\{M,L\}$ as a constant and $f$ will be H\"older continuous.
+        \end{proof}
+
+    \subsection{Solution (d)}
+        \begin{proof}
+            $[a,b]$ is a subset of the real numbers, so we will be using the usual metric.
+            If $f$ is $C^1$, then its first derivative exists and is continuous on $[a,b]$.
+            Intervals are compact in the real numbers, so $[a,b]$ is compact.
+            Since continuous functions on compact sets are bounded, $f'([a,b])$ is bounded.
+            There exists $M \in \mathbb{R}$ such that for all $x \in [a,b]$, $\abs{f'(x)} < M$.
+            Without loss of generality, suppose $p \leq q$.
+            By the mean value theorem, there exists $c \in (p,q)$ so that $f'(c) = \frac{f(q) - f(p)}{q - p}$.
+            Since $c \in [a,b]$, $\abs{f'(x)} < M$, so $\abs{\frac{f(q) - f(p)}{q - p}} < M$.
+            By the limit laws, $\frac{\abs{f(q) - f(p)}}{\abs{q - p}} < M$.
+            Multiply both sides by $\abs{q - p}$ to find that $\abs{f(q) - f(p)} < M \abs{q - p}$.
+            Since $\mathbb{R}$ uses the usual metric, this means for any $x,p \in X$, $d_\mathbb{R} (f(p),f(q)) \leq Ld_{[a,b]}(p,q)$ for any $p,q \in [a,b]$.
+            Therefore, $f$ is Lipschitz continuous.
+        \end{proof}
+
+    \subsection{Solution (e)}
+        \begin{proof}
+            Let $f$ be H\"older continuous with exponent $\alpha > 1$.
+            There exists a constant $C$ such that for all $p,q \in \mathbb{R}$:
+            \begin{gather}
+                d_\mathbb{R}(f(p),f(q)) \leq C d_\mathbb{R}(p,q)^\alpha
+            \end{gather}
+            Note that $\mathbb{R}$ uses the usual metric.
+            \begin{equation}
+                \abs{f(p) - f(q)} \leq C \abs{p - q}^\alpha
+            \end{equation}
+            Divide both sies by $\abs{p - q}$.
+            \begin{gather}
+                \frac{\abs{f(p) - f(q)}}{\abs{p - q}}   =   \abs{\frac{f(p) - f(q)}{p - q}}
+                    \leq    C\abs{p - q}^{\alpha - 1}
+            \end{gather}
+            By the definition of the absolute value, $\abs{\frac{f(p) - f(q)}{p - q}} \geq 0$.
+            \begin{gather}
+                0   \leq    \abs{\frac{f(p) - f(q)}{p - q}}
+                    \leq    C\abs{p - q}^{\alpha - 1}
+            \end{gather}
+            Take the limit of all sides as $q$ approaches $p$.
+            \begin{gather}
+                \lim_{q \to p} 0  
+                    \leq    \lim_{q \to p} \abs{\frac{f(p) - f(q)}{p - q}}
+                    \leq    \lim_{q \to p} C\abs{p - q}^{\alpha - 1}
+            \end{gather}
+            We proved in \textit{0.1: Limit Proof I} that $\lim_{q \to p} C\abs{p - q}^{\alpha - 1} = 0$.
+            Since $0$ is constant and contains neither $p$ not $q$, $\lim_{q \to p} 0 = 0$.
+            Therefore, by the squeeze theorem, $\lim_{q \to p} \abs{\frac{f(p) - f(q)}{p - q}} = f(p)' = 0$ for all $p \in \mathbb{R}$.
+
+            Now, recall the mean value theorem: if $f$ is a real, continuous function on $[a,b]$ which is differentiable on $(a,b)$, there is a point $x \in (a,b)$ where $f(b) - f(a) = (b - a)f'(x)$.
+            Since our $f'(x) = 0$ for all $x \in \mathbb{R}$, fix $p$ and let $q \in \mathbb{R}$. 
+            The Mean Value Theorem tells us that for the interval $[p,q]$, there exists a point $x \in \mathbb{R}$ such that $f(q) - f(p) = (q - p)f'(x) = (q - p) * 0 = 0$.
+            Therefore, for any $q \in \mathbb{R}$, $f(p) = f(q)$.
+            Ergo, $f$ is constant.
+        \end{proof}
+
 \pagebreak
 \section{Problem 2}
     On the interval $(100, \infty)$, define functions $f(x) = x + \sin(x)$, $g(x) = x$, $p(x) = x + \sin(x)\cos(x)$, and $q(x) = p(x)e^{\sin(x)}$.
@@ -87,4 +232,231 @@
     \end{enumerate}
 
     \textit{Note: even though we haven't learned about $\sin$ and $\cos$ yet, you are free to use any familiar properties of them you wish.}
+
+    \subsection{Solution (a)}
+        We prove that $\lim_{x \to \infty} \frac{f(x)}{g(x)} = 1$.
+        \begin{proof}
+            First write out the limit.
+            \begin{equation}
+                \lim_{x \to \infty} \frac{f(x)}{g(x)} = \lim_{x \to \infty} \frac{x + \sin(x)}{x}
+                    =   \lim_{x \to \infty} \left[ 1 + \frac{\sin(x)}{x} \right]
+            \end{equation}
+            By limit laws, we can separated added up properties. 
+            \begin{equation}
+                \lim_{x \to \infty} \left[ 1 + \frac{\sin(x)}{x} \right] = \lim_{x \to \infty} 1 + \lim_{x \to \infty} \frac{\sin(x)}{x}
+            \end{equation}
+            Since $1$ is constant, $\lim_{x \to \infty} 1 = 1$.
+            My first assertion about $\sin$: it is bounded to $[-1,1]$ and is cyclical, so $-1 \leq \sin(x) \leq 1$.
+            Divide all sides by $x$ to find $-\frac{1}{x} \leq \frac{\sin(x)}{x} \leq \frac{1}{x}$.
+            Take the limit as $x$ approaches $\infty$ to get $-\lim_{x \to \infty} \frac{1}{x} = \lim_{x \to \infty} -\frac{1}{x} \leq \lim_{x \to \infty} \frac{\sin(x)}{x} \leq \lim_{x \to \infty} \frac{1}{x}$.
+            We proved earlier that $\lim_{x \to \infty} \frac{1}{x} = 0$, and by extension, $-\lim_{x \to \infty} \frac{1}{x} = 0$.
+            Therefore, by the sequence squeeze theorem, $\lim_{x \to \infty} \frac{\sin(x)}{x} = 0$.
+            Put this back into $\lim_{x \to \infty} \frac{f(x)}{g(x)}$.
+            \begin{equation}
+                \lim_{x \to \infty} \frac{f(x)}{g(x)} = \lim_{x \to \infty} 1 + \lim_{x \to \infty} \frac{\sin(x)}{x} = 1 + 0 = 1
+            \end{equation}
+        \end{proof}
+        
+        We prove that $\lim_{x \to \infty} \frac{f'(x)}{g'(x)}$ does not exist.
+        \begin{proof}
+            My second assertion is that if $f(x) = \sin(x)$, $f'(x) = \cos(x)$.
+            Since $(a + b)' = a' + b'$, $(x + \sin(x))' = (x') + (\sin(x))' = 1 + \cos(x)$.
+            \begin{equation}
+                \lim_{x \to \infty} \frac{f'(x)}{g'(x)} = \lim_{x \to \infty}\left[ 1 + \cos(x) \right]
+            \end{equation}
+
+            Create two sequences in terms of $n \in \mathbb{N}$ that diverge to $\infty$ as $n \to \infty$.
+            \begin{gather}
+                a_n = 2n\pi;
+                b_n = (2n+1)\pi
+            \end{gather}
+
+            Apply both $a_n$ and $b_n$ to $1 + \cos(x)$.
+            \begin{gather}
+                1 + \cos(a_n) = 1 + \cos(2n\pi) = 1 + 1 = 2\\
+                1 + \cos(b_n) = 1 + \cos((2n+1)\pi) = 1 - 1 = 0
+            \end{gather}
+
+            This gives us two subsequences that converge to two different values as $x \to \infty$.
+            Therefore, the limit does not exist.
+        \end{proof}
+        
+        We prove that $\lim_{x \to \infty} \frac{p(x)}{q(x)}$ does not exist.
+        \begin{proof}
+            \begin{equation}
+                \lim_{x \to \infty} \frac{p(x)}{q(x)} = \lim_{x \to \infty} \frac{p(x)}{p(x) e^{\sin(x)}}
+                    =   \lim_{x \to \infty} e^{-\sin(x)}
+            \end{equation}
+            Define two sequences as $n \to \infty$.
+            \begin{gather*}
+                a_n = \left(2n + \frac{1}{2}\right)\pi; b_n = \left(2n + \frac{3}{2}\right)\pi
+            \end{gather*}
+            Apply both $a_n$ and $b_n$ to $e^{-\sin(x)}$.
+            \begin{gather}
+                e^{-\sin(a_n)} = e^{-\sin(\left(2n + \frac{1}{2}\right)\pi)} = e^{-1}\\
+                e^{-\sin(b_n)} = e^{-\sin(\left(2n + \frac{3}{2}\right)\pi)} = e^{1} = e
+            \end{gather}
+            This gives us two subsequences that converge to two different values as $x \to \infty$.
+            Therefore, the limit does not exist.
+        \end{proof}
+        
+        We prove that $\lim_{x \to \infty} \frac{p'(x)}{q'(x)} = 0$.
+        \begin{proof}
+            First, we find the derivative of $p(x)$ and $q(x)$.
+            This involves the multiplication rule ($(fg)' = fg' + f'g$), the chain rule ($(f(g))' = g'f'(g)$), my assertion that $(\cos(x))' = -\sin(x)$, and the .
+            I was given verbal approval in Office Hours to assert that $\diff{}{x}e^x = e^x$.
+            \begin{align}
+                p'(x)   &=  \left( x + \sin(x)\cos(x) \right)'
+                    =   1 + \left( \sin(x)\cos(x) \right)'
+                    =   1 + \cos^2(x) - \sin^2(x)\\
+                    &=  1 + \cos(2x)
+                    =   2\cos^2(x)\\
+                q'(x)   &=  \left( p(x) e^{\sin(x)} \right)'
+                    =   p'(x)e^{\sin(x)} + p(x)\left( e^{\sin(x)} \right)'\\
+                    &=  p'(x)e^{\sin(x)} + p(x)\cos(x)e^{\sin(x)}\\
+                    &=  2\cos^2(x) e^{\sin(x)} + \left( x + \sin(x)\cos(x) \right)\cos(x)e^{\sin(x)}\\
+                    &=  e^{\sin(x)}\cos(x)\left( 2\cos(x) + x + \sin(x)\cos(x) \right)
+            \end{align}
+
+            Now, we compute $\frac{p'(x)}{q'(x)}$.
+            \begin{align}
+                \frac{p'(x)}{q'(x)} &=  \frac{2\cos^2(x)}{e^{\sin(x)}\cos(x)\left( 2\cos(x) + x + \sin(x)\cos(x) \right)}\\
+                    &=  \frac{2\cos(x)}{e^{\sin(x)}\left( 2\cos(x) + x + \sin(x)\cos(x) \right)}
+            \end{align}
+
+            Take a few inequalities based on the bounds of $\sin(x)$ and $\cos(x)$ being $-1 \leq \sin(x) \leq 1$ and $-1 \leq \cos(x) \leq 1$.
+            \begin{gather}
+                e^{-1} \leq e^{\sin(x)} \leq e\\
+                -2 \leq 2\cos(x) \leq 2\\
+                -1 \leq \sin(x) \cos(x) \leq 1\\
+                -3 \leq 2\cos(x) + \sin(x) \cos(x) \leq 3\\
+                x - 3 \leq 2\cos(x) + x + \sin(x) \cos(x) \leq x + 3\\
+                e^{-1} \left( x - 3 \right) \leq e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right) \leq e\left( x + 3 \right)\\
+                \frac{1}{e^{-1} \left( x - 3 \right)} \geq \frac{1}{e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right)} \geq \frac{1}{e\left( x + 3 \right)}
+            \end{gather}
+        \end{proof}
+
+\pagebreak
+\section{Problem 3}
+    Let $f : (a, b) \to \mathbb{R}$ be continuous. Let $c \in (a, b)$, and suppose $f$ is differentiable on $(a, c)$ and $(c, b)$. Suppose that 
+    \begin{equation*}
+        \lim_{x \to c} f'(x)
+    \end{equation*}
+    exists and is a real number. Show that $f$ is differentiable at $c$. \textit{Hint:} Mean value theorem.
+
+    \subsection{Solution}
+        % Use MVT and shrinking intervals like the difference quotient.
+        % f'(c) = \lim_{t \to c}\frac{f(t) - f(c)}{t - c}
+        % By MVT, for some $c$ and $t$, \lim_{t \to c}\frac{f(t) - f(c)}{t - c} = f'(d) for c \leq d \leq t.
+        % As t \to c, d \to c
+        % Show that as \lim_{t \to c}\frac{f(t) - f(c)}{t - c} approaches $L$, so does $f'(d)$ within the same interval \eps, so they're equal.
+        \begin{proof}
+            Let $\lim_{x \to c} f'(x) = L$.
+            Recall the definition of $f'(c)$.
+            \begin{equation}
+                f'(c) = \lim_{t \to c}\frac{f(t) - f(c)}{t - c}
+            \end{equation}
+
+            Without loss of generality, suppose that $t > c$.
+            By the Mean Value Theorem, there exists $d \in (c,t)$ where $\frac{f(t) - f(c)}{t - c} = f'(d)$.
+            Since $d \in (c,t)$, $c < d < t$, so $0 < d - c < t - c$ and therefore $0 < \abs{d - c} < \abs{t - c}$.
+
+            $f'(c) = \lim_{t \to c}\frac{f(t) - f(c)}{t - c}$ means that for all $\varepsilon > 0$, there exists $\delta > 0$ where $\abs{t - c} < \delta$ implies $\abs{\frac{f(x) - f(c)}{x - c} - f'(c)} < \varepsilon$.
+            Since $\abs{d - c} < \abs{t - c}$, $\abs{d - c} < \delta$.
+            Furthermore, since $\frac{f(t) - f(c)}{t - c} = f'(d)$, $\abs{f'(d) - f'(c)} < \varepsilon$.
+            Therefore, for all $\varepsilon > 0$, there exists $\delta > 0$ where $\abs{d - c} < \delta$ implies $\abs{f'(d) - f'(c)} < \varepsilon$.
+            This means $f'(c) = \lim_{d \to c} f'(d)$.
+            It is given that $\lim_{x \to c} f'(x)$ exists and is a real number.
+            Therefore $f'(c)$ exists and is a real number.
+            Ergo, $f$ is differentiable at $c$.
+        \end{proof}
+
+\pagebreak
+\section{Problem 4}
+    Let $f : \mathbb{R} \to \mathbb{R}$ be $C^2$ (meaning its second derivative exists and is continuous on $\mathbb{R}$).
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Let $x \in \mathbb{R}$. For each $h > 0$, show there are numbers $\xi$ and $\eta$ with $x - h < \xi < x < \eta < x + h$ and
+        \begin{equation*}
+            \frac{f''(\xi) + f''(\eta)}{2} = \frac{f(x + h) + f(x - h) - 2f(x)}{h^2}.
+        \end{equation*}
+        
+        \item 
+        Show that, for each $x \in \mathbb{R}$,
+        \begin{equation*}
+            f''(x) = \lim_{h \to 0} \frac{f(x + h) + f(x - h) - 2f(x)}{h^2}.
+        \end{equation*}
+
+        \item 
+        A function $f : \mathbb{R} \to \mathbb{R}$ is called \textit{convex} if for all $x, y \in \mathbb{R}$ and $0 \leq \lambda \leq 1$, we have
+        \begin{equation*}
+            f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda) f(y).
+        \end{equation*}
+        Geometrically, this means the graph of $f$ lies \textit{below} all of its secant lines. Show that any $C^2$ convex function $f$ satisfies $f''(x) \geq 0$ for all $x$. \textit{Hint:} convexity tells you something about the numerator in part (b).
+
+        \item 
+        Conversely, if a twice-differentiable function $f$ satisfies $f''(x) \geq 0$ for all $x$, show that $f$ is convex. \textit{Hint:} For $\lambda \in (0, 1)$ and $x < y \in \mathbb{R}$, the number $z \coloneqq \lambda x + (1 - \lambda)y$ satisfies $x < z < y$. Apply the mean value theorem on $[x, z]$ and $[z, y]$ to get an expression for $\lambda f(x) + (1 - \lambda) f(y)$.
+        
+    \end{enumerate}
+
+\pagebreak
+\section{Problem 5}
+    Let $f : [0, 1] \to \mathbb{R}$ be defined by
+    \begin{equation*}
+        f(x) = 
+        \begin{cases}
+            1, & \text{ if } x \in \mathbb{Q}\\
+            0, & \text{ if } x \notin \mathbb{Q}.
+        \end{cases}
+    \end{equation*}
+    Compute the upper and lower Riemann integrals of $f$. Is $f$ Riemann integrable?
+
+    \subsection{Solution}
+        The issue here is the density of the rationals in the reals.
+
+        First we prove the upper Riemann integral.
+        \begin{equation}
+            \overline{\int_{0}^{1}} f(x) dx = 1
+        \end{equation}
+        \begin{proof}
+            Let $P$ be any partition of $[0,1]$ with $n + 1$ elements.
+            Take any $j \in \mathbb{N}$ where $1 \leq j \leq n$.
+            By the density of the rationals in the reals, there exists $x \in [x_{j-1},x_j]$ where $x \in \mathbb{Q}$.
+            Since the only two possible values of $f(x)$ are $0$ and $1$, $\sup_{x \in [x_{j-1},x_j]} f(x) = 1$.
+            We can compute the upper sum of $f$ from here.
+            \begin{align}
+                U(P,f)  &=  \sum_{j = 1}^{n} \Delta x_j \sup_{t \in [x_{j-1},x_j]} f(t)
+                    =   \sum_{j = 1}^{n} \Delta x_j * 1
+                    =   \sum_{j = 1}^{n} \Delta x_j
+            \end{align}
+
+            Since the sum of $\Delta x_j$ telescopes, $\sum_{j = 1}^{n} \Delta x_j = x_n - x_0$.
+            Therefore, for any partition $P$ of $[0,1]$, $U(P,f) = 1 - 0 = 1$.
+            Since $U(P,f) = 1$ for every partition $P$ of $[0,1]$, $\inf \{ U(P,f) | \text{Partition } P \} = 1$.
+            Ergo, $\overline{\int_{0}^{1}} f(x) dx = \inf \{ U(P,f) | \text{Partition } P \} = 1$.
+        \end{proof}
+
+        Now we prove the lower Riemann integral.
+        \begin{equation}
+            \underline{\int_{0}^{1}} f(x) dx = 0
+        \end{equation}
+        \begin{proof}
+            Let $P$ be any partition of $[0,1]$ with $n + 1$ elements.
+            Take any $j \in \mathbb{N}$ where $1 \leq j \leq n$.
+            By the density of the irrationals in the reals, there exists $t \in [x_{j-1},x_j]$ where $t \notin \mathbb{Q}$.
+            Since the only two possible values of $f(x)$ are $0$ and $1$, $\inf_{t \in [x_{j-1},x_j]} f(t) = 0$.
+            We can compute the upper sum of $f$ from here.
+            \begin{align}
+                L(P,f)  &=  \sum_{j = 1}^{n} \Delta x_j \inf_{t \in [x_{j-1},x_j]} f(t)
+                    =   \sum_{j = 1}^{n} \Delta x_j * 0
+                    =   \sum_{j = 1}^{n} 0
+                    =   0
+            \end{align}
+
+            Therefore, for any partition $P$ of $[0,1]$, $L(P,f) = 0$.
+            Since $L(P,f) = 0$ for every partition $P$ of $[0,1]$, $\sup \{ U(P,f) | \text{Partition } P \} = 0$.
+            Ergo, $\underline{\int_{0}^{1}} f(x) dx = \sup \{ L(P,f) | \text{Partition } P \} = 0$.
+        \end{proof}
+
+        Since $\overline{\int_{0}^{1}} f(x) dx \neq \underline{\int_{0}^{1}} f(x) dx$, the function is not Riemann integrable on $[0,1]$.
 \end{document}
