@@ -166,6 +166,20 @@
             Ergo, by the transistive property, $a < \frac{a + b}{2} < b$.
         \end{proof}
 
+    \subsection{Lambda in the Middle}
+        \label{thm:0.6}
+        Let $0 < \lambda < 1$ and $x,y \in \mathbb{R}$ where $x < y$.
+        $x < \lambda x + (1 - \lambda)y < y$.
+        \begin{proof}
+            Since $y > x$, $(1 - \lambda)y > (1 - \lambda)x$.
+            Add $\lambda x$ to both sides and find $\lambda x + (1 - \lambda)y > \lambda x + (1 - \lambda)x = x$.
+
+            Since $y > x$, $\lambda y > \lambda x$.
+            Add $(1 - \lambda)y$ to both sides and find $y = \lambda y + (1 - \lambda)y > \lambda x + (1 - \lambda)y$
+            
+            Transistively, $x < \lambda x + (1 - \lambda)y < y$.
+        \end{proof}
+
 \pagebreak
 \section{Problem 1}
     Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : (X, d_X) \to (Y, d_Y)$ is called \textit{Lipschitz continuous} if there is a constant $L > 0$ so that
@@ -422,7 +436,21 @@
                 e^{-1} \left( x - 3 \right) \leq e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right) \leq e\left( x + 3 \right)\\
                 \frac{1}{e^{-1} \left( x - 3 \right)} \geq \frac{1}{e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right)} \geq \frac{1}{e\left( x + 3 \right)}
             \end{gather}
+
+            It can be proven that $\frac{1}{e^{-1} \left( x - 3 \right)}$ converges to $0$ and $\frac{1}{e\left( x + 3 \right)}$ converges to $0$, which would mean that $\frac{1}{e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right)}$ converges to $0$.
+            $-1 \leq \cos(x) \leq 1$, meaning $-2 \leq 2\cos(x) \leq 2$, meaning $-\frac{2}{e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right)} \leq \frac{2\cos(x)}{e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right)} \leq \frac{2}{e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right)}$.
+            Both of the side values converge to $0$ since multiplying by a constant does not change convergence to $0$.
+            Therefore, $\frac{2\cos(x)}{e^{\sin(x)} \left( 2\cos(x) + x + \sin(x) \cos(x) \right)}$ converges to $0$.
+            Ergo, $\lim_{x \to \infty} \frac{p'(x)}{q'(x)} = 0$.
         \end{proof}
+
+    \subsection{Solution (b)}
+        In the case of $\frac{f(x)}{g(x)}$, we do know the limit.
+        However, l'H\^otital's rule does not guarantee that the limit of the ratio of the derivatives exists if the limit of the ratio exists and fulfills the requirements, just that the limit of the ratio exists if the limit of the ratio of the derivaives exists and fulfills the requirements.
+        In short, the converse of l'H\^opital's rule does not apply.
+
+        In the case of $\frac{p(x)}{q(x)}$, the continuous cyclical nature of $\cos(x)$ between $-1$ and $1$, and since $q'(x)$ has $\cos(x)$ as a multiplicand, $q'(x)$ is equal to $0$ at infinite points on the interval $(100, \infty)$.
+        This goes against the requirement for l'H\^opital's rule that the denominator is not equal to $0$ at any point in the interval considered.
 
 \pagebreak
 \section{Problem 3}
@@ -541,6 +569,38 @@
             Using the same value of $h$ as before and using (\ref{eq:62}), we find that $\abs{h} < \delta$ implies that $\abs{\frac{f(x + h) + f(x - h) - 2f(x)}{h^2} - f''(x)} < \varepsilon$.
             
             Ergo, $\lim_{h \to 0} \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = f''(x)$.
+        \end{proof}
+
+    \subsection{Solution (c)}
+        \begin{proof}
+            Pick $m,h \in \mathbb{R}$ where $h > 0$ and let $x = m + h$ and $y = m - h$.
+            \begin{equation}
+                f(\lambda (m + h) + (1 - \lambda) (m - h)) \leq \lambda f(m + h) + (1 - \lambda) f(m - h)
+            \end{equation}
+
+            Since this holds for all $\lambda \in [0,1]$, choose $\lambda = \frac{1}{2}$, then multiply all sides by $2$.
+            \begin{gather}
+                f\left( \frac{m + h}{2} + \frac{m - h}{2}\right) \leq \frac{f(m + h)}{2} + \frac{f(m - h)}{2}\\
+                0 \leq f(m + h) + f(m - h) - 2f(m)
+            \end{gather}
+
+            Since $h > 0$, we can divide both sides by $h^2$.
+            \begin{equation}
+                0 \leq \frac{f(m + h) + f(m - h) - 2f(m)}{h^2}
+            \end{equation}
+
+            This applies for all $h > 0$.
+            Using what we proved in part (b), we can say that $f''(m) = \lim_{h \to 0} \frac{f(m + h) + f(m - h) - 2f(m)}{h^2}$.
+            Therefore, $0 \leq f''(m)$.
+        \end{proof}
+
+    \subsection{Solution (d)}
+        \begin{proof}
+            Let $f: \mathbb{R} \to \mathbb{R}$ satisfy $f''(x) \geq 0$ for all $x \in \mathbb{R}$.
+            To get it out of the way, if $\lambda = 0$ or $\lambda = 1$, the convexity equation would become $f(x) \leq f(x)$ or $f(y) \leq f(y)$ respectively, which are always true.
+            Therefore, let $0 < \lambda < 1$ and let $x < y$.
+            Let $z = \lambda x + (1 - \lambda)y$.
+            By \hyperref[thm:0.6]{\textit{0.6: Lambda in the Middle}}, $x < z < y$.
         \end{proof}
 
 \pagebreak
