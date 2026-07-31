@@ -3,6 +3,7 @@
 \contentsline {subsection}{\numberline {0.2}Limit Proof II}{2}{subsection.0.2}%
 \contentsline {subsection}{\numberline {0.3}Alternate Derivative Definition}{2}{subsection.0.3}%
 \contentsline {subsection}{\numberline {0.4}Alternate Mean Value Theorem}{3}{subsection.0.4}%
+\contentsline {subsection}{\numberline {0.5}Mean in the Middle}{3}{subsection.0.5}%
 \contentsline {section}{\numberline {1}Problem 1}{4}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Solution (a)}{4}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Solution (b)}{4}{subsection.1.2}%
