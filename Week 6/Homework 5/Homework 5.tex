@@ -45,6 +45,7 @@
 \setcounter{section}{-1}
 \section{Various Theorems}
     \subsection{Limit Proof I}
+        \label{thm:0.1}
         For $p,q,\alpha,C \in \mathbb{R}$ where $\alpha > 1$ and $C > 0$, $\lim_{q \to p} C\abs{p - q}^{\alpha - 1} = 0$.
         \begin{proof}
             Let $\varepsilon > 0$.
@@ -63,6 +64,7 @@
         \end{proof}
 
     \subsection{Limit Proof II}
+        \label{thm:0.2}
         \begin{equation}
             \lim_{x \to \infty} \frac{1}{x} = 0
         \end{equation}
@@ -79,6 +81,7 @@
         \end{proof}
 
     \subsection{Alternate Derivative Definition}
+        \label{thm:0.3}
         Let $f: \mathbb{R} \to \mathbb{R}$ be differentiable.
         \begin{equation}
             \diff{f(x)}{x} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
@@ -102,6 +105,7 @@
         \end{proof}
 
     \subsection{Alternate Mean Value Theorem}
+        \label{thm:0.4}
         Let $f$ be a real, continuous function on $[x, x + h]$ which is differentiable in $(x, x + h)$, then there is a point $b \in (x, x + h)$ at which
         \begin{equation}
             f(x + h) - f(x) = h f'(b).
@@ -148,6 +152,7 @@
         \end{gather}
     
     \subsection{Mean in the Middle}
+        \label{thm:0.5}
         For $a,b \in \mathbb{R}$, if $a < b$, then $a < \frac{a + b}{2} < b$.
         \begin{proof}
             Let $a,b \in \mathbb{R}$ where $a < b$.
@@ -484,28 +489,58 @@
     
     \subsection{Solution (a)}
         \begin{proof}
-            Take the latter term and separate it so each new term has only one $f(x)$.
-            \begin{equation}
-                \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = \frac{f(x + h) - f(x)}{h^2} + \frac{f(x - h) - f(x)}{h^2}
+            Recall Taylor's Theorem, for some $\gamma \in (\alpha, \beta)$ or $\gamma \in (\beta, \alpha)$.
+            \begin{gather}
+                P(t) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(\alpha)}{k!}(t - \alpha)^k\\
+                f(\beta) = P(\beta) + \frac{f^{(n)}(\gamma)}{n!}(\beta - \alpha)^n
+            \end{gather}
+
+            Let $n = 2$ and let $\alpha = x$ and $\beta = x + h$.
+            Some $\eta \in (x,x + h)$ will satisfy Taylor's Theorem for this.
+            \begin{gather}
+                P(t) = f(x) + f'(x) (t - x)\\
+                f(x + h) = f(x) + f'(x) h + \frac{f''(\eta) h^2}{2}
+            \end{gather}
+
+            Let $n = 2$ and let $\alpha = x$ and $\beta = x - h$.
+            Some $\xi \in (x - h,x)$ will satisfy Taylor's Theorem for this.
+            \begin{gather}
+                P(t) = f(x) + f'(x) (t - x)\\
+                f(x - h) = f(x) - f'(x) h + \frac{f''(\xi) h^2}{2}
+            \end{gather}
+
+            Add the latter two of each of these equalities together.
+            \begin{gather}
+                f(x + h) + f(x - h) = f(x) + f'(x) h + \frac{f''(\eta) h^2}{2} + f(x) - f'(x) h + \frac{f''(\xi) h^2}{2}
+            \end{gather}
+
+            Rearange this to isolate $\frac{(f''(\eta) + f''(\xi)) h^2}{2}$, then divide both sides by $h^2$.
+            \begin{gather}
+                f(x + h) + f(x - h) - f(x) - f(x) - f'(x) h + f'(x) h = \frac{f''(\eta) h^2}{2} + \frac{f''(\xi) h^2}{2}\\
+                f(x + h) + f(x - h) - 2f(x) = \frac{(f''(\eta) + f''(\xi)) h^2}{2}\\
+                \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = \frac{f''(\eta) + f''(\xi)}{2}
+            \end{gather}
+
+            This is the equation we were looking for.
+        \end{proof}
+
+    \subsection{Solution (b)}
+        \begin{proof}
+            We know that for each $h > 0$, show there are numbers $\xi$ and $\eta$ with $x - h < \xi < x < \eta < x + h$ and
+            \begin{equation}\label{eq:62}
+                \frac{f''(\xi) + f''(\eta)}{2} = \frac{f(x + h) + f(x - h) - 2f(x)}{h^2}.
             \end{equation}
 
-            By \textit{0.4: Alternate Mean Value Theorem}, there exists $\alpha \in (x - h, x)$ where $f'(\alpha) = \frac{f(x) - f(x - h)}{h}$ and there exists $\beta \in (x, x + h)$ where $f'(\beta) = \frac{f(x + h) - f(x)}{h}$.
-            We can put these in.
-            \begin{equation}
-                \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = \frac{f'(\beta)}{h} - \frac{f'(\alpha)}{h}
-                    =   \frac{f'(\beta) - f'(\alpha)}{h}
-            \end{equation}
-
-            Since $\alpha \in (x - h, x)$, either $\alpha - \frac{h}{2} \in [x - h, x]$ or $\alpha + \frac{h}{2} \in [x - h, x]$, or both.
-            Since $\beta \in (x, x + h)$, either $\beta - \frac{h}{2} \in [x, x + h]$ or $\beta + \frac{h}{2} \in [x, x + h]$, or both.
-            Without loss of generality, let $\alpha + \frac{h}{2} \in [x - h, x]$ and $\beta - \frac{h}{2} \in [x, x + h]$.
-            By the alternate mean value theorem, there exists $\xi \in \left( \alpha, \alpha + \frac{h}{2} \right)$ where $f''(\xi) = \frac{f'\left( \alpha + \frac{h}{2} \right) - f'(\alpha)}{\frac{h}{2}}$ and there exists $\eta \in \left( \beta - \frac{h}{2}, \beta \right)$ where $f''(\eta) = \frac{f'\left( \beta \right) - f'\left( \beta - \frac{h}{2} \right)}{\frac{h}{2}}$.
-            Add and subtracting $\frac{f'\left( \beta - \frac{h}{2} \right)}{h}$ and $\frac{f'\left( \alpha + \frac{h}{2} \right)}{h}$ from both sides of our earlier equation and apply our values of $f''(\xi)$ and $f''(\eta)$.
-            \begin{align}
-                \frac{f'(\beta) - f'(\alpha)}{h}    &=  \frac{f'(\beta) + f'\left( \beta - \frac{h}{2} \right) - f'\left( \beta - \frac{h}{2} \right) + f'\left( \alpha + \frac{h}{2} \right) - f'\left( \alpha + \frac{h}{2} \right) - f'(\alpha)}{h}\\
-                    &=  \frac{1}{2}\left( \frac{f'(\beta) - f'\left( \beta - \frac{h}{2}\right)}{\frac{h}{2}} + \frac{f'\left( \alpha + \frac{h}{2} \right) - f'\left( \alpha \right)}{\frac{h}{2}} \right) + \frac{f'\left( \beta - \frac{h}{2} \right) - f'\left( \alpha + \frac{h}{2} \right)}{h}\\
-                    &=  \frac{f''(\xi) + f''(\eta)}{2} + \frac{f'\left( \beta - \frac{h}{2} \right) - f'\left( \alpha + \frac{h}{2} \right)}{h}
-            \end{align}
+            $f: \mathbb{R} \to \mathbb{R}$ and $f'': \mathbb{R} \to \mathbb{R}$ are both continuous.
+            This means that for all $\varepsilon > 0$, there exists $\delta > 0$ where $0 < \abs{x + h - x} = \abs{h} < \delta$ (or $0 < \abs{x - h - x} = \abs{h} < \delta$) implies $\abs{f''(x + h) - f''(x)} < \varepsilon$ (or $\abs{f''(x + h) - f''(x)} < \varepsilon$).
+            Since $x - h < \xi < x$, $x - h - x < \xi - x < 0$ and therefore $\abs{\xi - x} < \abs{h}$ and therefore $\abs{f''(\xi) - f''(x)} < \varepsilon$.
+            Similarly, we can say that for the $\eta$ prior where $x < \eta < x + h$, $\abs{f''(\eta) - f''(x)} < \varepsilon$.
+            Add these together to find that $\abs{f''(\xi) - f''(x)} + \abs{f''(\eta) - f''(x)} < 2\varepsilon$.
+            By the triangle inequality, $\abs{f''(\xi) + f''(\eta) - 2f''(x)} < 2\varepsilon$.
+            Divide both sides by $2$ and find $\abs{\frac{f''(\xi) + f''(\eta)}{2} - f''(x)} < \varepsilon$.
+            Using the same value of $h$ as before and using (\ref{eq:62}), we find that $\abs{h} < \delta$ implies that $\abs{\frac{f(x + h) + f(x - h) - 2f(x)}{h^2} - f''(x)} < \varepsilon$.
+            
+            Ergo, $\lim_{h \to 0} \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = f''(x)$.
         \end{proof}
 
 \pagebreak
