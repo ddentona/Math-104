@@ -601,6 +601,45 @@
             Therefore, let $0 < \lambda < 1$ and let $x < y$.
             Let $z = \lambda x + (1 - \lambda)y$.
             By \hyperref[thm:0.6]{\textit{0.6: Lambda in the Middle}}, $x < z < y$.
+
+            Let's apply Taylor's Theorem here, first where $\alpha = z$ and $\beta = x$ for $n = 2$.
+            \begin{gather}
+                P(t) = f(z) + f'(z) (t - z)\\
+                f(x) = f(z) + f'(z) (x - z) + \frac{f''(\eta) (x - z)^2}{2}\\
+                f(x)   =   f(\lambda x + (1 - \lambda)y) + f'(\lambda x + (1 - \lambda)y) ((1 - \lambda) x + (\lambda - 1)y) + \frac{f''(\eta) ((\lambda - 1) x + (1 - \lambda)y)^2}{2}
+            \end{gather}
+            Apply the inequality that $f''(\eta) \geq 0$.
+            \begin{equation}
+                f(x)   \geq   f(z) + f'(z) (x - z) \label{eq:70}
+            \end{equation}
+
+            Now do so where $\alpha = z$ and $\beta = y$ for $n = 2$.
+            \begin{gather}
+                f(y) = f(z) + f'(z) (y - z) + \frac{f''(\xi) (y - z)^2}{2}\\
+                f(y)   =   f(z) + f'(z) (\lambda y - \lambda x) + \frac{f''(\xi) (\lambda y - \lambda x)^2}{2}
+            \end{gather}
+            Apply the inequality that $f''(\xi) \geq 0$.
+            \begin{equation}
+                f(y)   \geq   f(z) + f'(z) (y - z) \label{eq:73}
+            \end{equation}
+
+            Multiply (\ref{eq:70}) by $\lambda$ and (\ref{eq:73}) by $1 - \lambda$.
+            \begin{gather}
+                \lambda f(x)   \geq   \lambda f(z) + \lambda f'(z) (x - z) \label{eq:74}\\
+                (1 - \lambda) f(y)   \geq   (1 - \lambda) f(z) + (1 - \lambda) f'(z) (y - z) \label{eq:75}
+            \end{gather}
+
+            Now add (\ref{eq:74}) and (\ref{eq:75}) together.
+            From there, we can cancel things out.
+            \begin{align}
+                \lambda f(x) + (1 - \lambda) f(y)   &\geq   \lambda f(z) + (1 - \lambda) f(z) + \lambda f'(z) (x - z) + f'(z) (y - z) - \lambda f'(z) (y - z)\\
+                \lambda f(x) + (1 - \lambda) f(y)   &\geq   f(z) + \lambda f'(z) (x - y) + f'(z) (y - z)\\
+                \lambda f(x) + (1 - \lambda) f(y)   &\geq   f(z) + \lambda f'(z) (x - y) + f'(z) (y - (\lambda x + (1 - \lambda)y))\\
+                \lambda f(x) + (1 - \lambda) f(y)   &\geq   f(z) + \lambda f'(z) (x - y) + f'(z) (\lambda y - \lambda x)\\
+                \lambda f(x) + (1 - \lambda) f(y)   &\geq   f(z)
+            \end{align}
+
+            Ergo, $f$ is convex.
         \end{proof}
 
 \pagebreak
