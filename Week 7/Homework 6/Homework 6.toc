@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {0}Various Theorems}{2}{section.0}%
+\contentsline {subsection}{\numberline {0.1}Supremum Infimum Comparium}{2}{subsection.0.1}%
+\contentsline {subsection}{\numberline {0.2}Supremum Infimum Negatium}{2}{subsection.0.2}%
+\contentsline {subsection}{\numberline {0.3}Absolutely Integratable}{2}{subsection.0.3}%
+\contentsline {subsection}{\numberline {0.4}Reverse Triangle Inequality (in the Reals)}{2}{subsection.0.4}%
+\contentsline {subsection}{\numberline {0.5}Rudin's Theorem 6.12(b)}{3}{subsection.0.5}%
+\contentsline {subsection}{\numberline {0.6}Cauchy Criterion for Real Limits at Infinity}{3}{subsection.0.6}%
+\contentsline {section}{\numberline {1}Problem 1}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Solution (a)}{4}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Problem 2}{6}{section.2}%
+\contentsline {section}{\numberline {3}Problem 3}{6}{section.3}%
+\contentsline {section}{\numberline {4}Problem 4}{7}{section.4}%

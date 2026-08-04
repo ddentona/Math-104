@@ -1,0 +1,338 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{esdiff}
+\usepackage[margin=1in]{geometry}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{soul}
+\usepackage{tikz}
+
+% Load hyperref to automatically generate the PDF outline from structural tags
+\usepackage[pdftex, bookmarks=true, bookmarksnumbered=true]{hyperref}
+
+% Optional: Use the bookmark package for faster rendering and advanced control
+\usepackage{bookmark} 
+
+\newenvironment{case}[2]{\par\textbf{Case #1: #2.}}{}
+\title{Homework \#6\\{\large Math 104: Intro to Analysis \\ Summer 2026} \\ {\normalsize UC Berkeley}}
+\date{August 10, 2026}
+\author{Donald Aingworth IV}
+
+\begin{document}
+\renewcommand\qedsymbol{OE$\Delta$}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\andtxt}{\text{ and }}
+\newcommand{\Ais}{\ensuremath{\overset{A}{=}}}
+\newcommand{\Cis}{\ensuremath{\overset{C}{=}}}
+\newcommand{\closure}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\encircle}[1]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle, draw, inner sep=1pt] (char) {#1};%
+  }%
+}
+\newcommand{\mathif}{\text{if }}
+\newcommand{\seq}[2][n]{\ensuremath{\left\{ #2 _{#1} \right\}}}
+\newcommand{\zz}[1]{$\mathbb{Z}/ #1 \mathbb{Z}$}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+\setcounter{section}{-1}
+\section{Various Theorems}
+    \subsection{Supremum Infimum Comparium}
+        \label{thm:1}
+        For two sets $A$ and $B$.
+        \begin{enumerate}[label=(\alph*)]
+            \item   If for all $a \in A$ there exists some $b \in B$ where $a \leq b$, then $\sup(A) \leq \sup(B)$.
+            \item   If for all $b \in B$ there exists some $a \in A$ where $a \leq b$, then $\inf(A) \leq \inf(B)$.
+        \end{enumerate}
+        \begin{proof}[Proof (a) by contradiction]
+            Let $\sup(A) = \alpha$ and $\sup(B) = \beta$ and let $\alpha > \beta$.
+            Therefore, $\alpha - \beta > 0$.
+            Therefore, there exists $a \in A$ where $\alpha - (\alpha - \beta) = \beta < a$.
+            Since $\beta = \sup(B)$, for all $b \in B$, $b \leq \beta < a$.
+            Therefore, there does not exist $b \in B$ where $a < b$, a contradiction.
+            Ergo, $\sup(A) \leq \sup(B)$.
+        \end{proof}
+        \begin{proof}[Proof (b) by contradiction]
+            Let $\sup(A) = \alpha$ and $\sup(B) = \beta$ and let $\alpha > \beta$.
+            Therefore, $\alpha - \beta > 0$.
+            By the infimum definition, there exists $b \in B$ where $\beta + (\alpha - \beta) = \alpha > b$.
+            Since $\alpha = \sup(A)$, for all $a \in A$, $a \geq \alpha > b$.
+            Therefore, there does not exist $a \in A$ where $a \leq b$, a contradiction.
+            Ergo, $\inf(A) \leq \inf(B)$.
+        \end{proof}
+
+    \subsection{Supremum Infimum Negatium}
+        \label{thm:2}
+        For a set $A$ in an ordered metric field where $-A = \left\{ -a \Big| a \in A \right\}$, $\inf(-A) = -\sup(A)$.
+        \begin{proof}
+            Let $\alpha = \sup(A)$.
+            If we prove that for any $\varepsilon > 0$, there is $b \in -A$ where $-\alpha + \varepsilon > b$, we will complete the proof.
+            By the supremum, for any $\varepsilon > 0$, there exists $a \in A$ so that $\alpha - \varepsilon < a$.
+            We can multiply this all by $-1$ to find $-\alpha + \varepsilon > -a$.
+            Since $a \in A$, there exists $b \in -A$ so that $b = -a$.
+            Therefore, for any $\varepsilon > 0$, there exists $b \in -A$ where $-\alpha + \varepsilon > b$.
+            Therfore, $-\alpha = \inf(-A)$.
+            Ergo, $\inf(-A) = -\sup(A)$.
+        \end{proof}
+
+    \subsection{Absolutely Integratable}
+        \label{thm:3}
+        If $f: \mathbb{R} \to \mathbb{R}$ is integratable, then $\abs{f}: \mathbb{R} \to \mathbb{R}$ is integratable.
+        \begin{proof}
+            First, we establish that the absolute value is continuous.
+            Let $\varepsilon > 0$ and let $\delta = \varepsilon$.
+            Suppose For any $x$, suppose $\abs{x - p} < \delta$.
+            Therefore, $\abs{x - p} < \varepsilon$.
+            By the \hyperref[thm:4]{0.4: Reverse Triangle Inequality} reverse triangle inequality, $\abs{\abs{x} - \abs{p}} \leq \abs{x - p} < \varepsilon$.
+            Therefore, $\abs{x - p} < \delta$ implies $\abs{\abs{x} - \abs{p}} < \varepsilon$.
+            The absolute value function is continuous.
+
+            We already know that if $f: X \to Y$ is differentiable and $\phi: Y \to Z$ is continuous, then $\phi \circ f: X \to Z$ is differentiable.
+            Ergo, since the absolute value is continuous and $f$ is integratable, $\abs{f}: \mathbb{R} \to \mathbb{R}$ is integratable.
+        \end{proof}
+
+    \subsection{Reverse Triangle Inequality (in the Reals)}
+        \label{thm:4}
+        If $a,b \in \mathbb{R}$, then $\abs{\abs{a} - \abs{b}} \leq \abs{a - b}$.
+        \begin{proof}
+            The triangle inequality tells us that $\abs{a - 0} \leq \abs{a - b} + \abs{b - 0}$ and that $\abs{b - 0} \leq \abs{a - b} + \abs{a - 0}$.
+            Therefore, $\abs{a} - \abs{b} \leq \abs{a - b}$ and $\abs{b} - \abs{a} \leq \abs{a - b}$.
+            Ergo, $\abs{\abs{a} - \abs{b}} \leq \abs{a - b}$.
+        \end{proof}
+
+    \subsection{Rudin's Theorem 6.12(b)}
+        \label{thm:5}
+        Let $f,g: [a,b] \to \mathbb{R}$ be Riemann integrable functions.
+        If for all $x \in [a,b]$, $f(x) \leq g(x)$, then $\int_{a}^{b} f(x)\,dx \leq \int_{a}^{b} g(x)\,dx$.
+        \begin{proof}
+            Let $f,g: [a,b] \to \mathbb{R}$ be Riemann integrable functions and let $f(x) \leq g(x)$ for all $x \in [a,b]$.
+            Take any partition $P$ of $[a,b]$.
+            Since $f(x) \leq g(x)$ for all $x \in [a,b]$, by \hyperref[thm:1]{0.1: Supremum Infimum Comparium}, 
+            \begin{gather}
+                \sup_{x \in [x_{i-1},x_i]} f(x) \leq \sup_{x \in [x_{i-1},x_i]} g(x)\\
+                \sum_{i = 1}^{n} \Delta x_i \sup_{x \in [x_{i-1},x_i]} f(x) \leq \sum_{i = 1}^{n} \Delta x_i \sup_{x \in [x_{i-1},x_i]} g(x)
+            \end{gather}
+            That means that for any partition $P$, $U(P,f) \leq U(P,g)$.
+            Therefore, making sets, for every $M \in \{U(P,g) | P \text{ partition of } [a,b]\}$, there exists $N \in \{U(P,f) | P \text{ partition of } [a,b]\}$ where $N \leq M$.
+            Ergo, $\overline{\int}_{a}^{b} f(x)\,dx \leq \overline{\int}_{a}^{b} g(x)\,dx$, meaning $\int_{a}^{b} f(x)\,dx \leq \int_{a}^{b} g(x)\,dx$, since $f$ and $g$ being Riemann integratable means that $\overline{\int}_{a}^{b} f(x)\,dx = \int_{a}^{b} f(x)\,dx$ and the same for $g$.
+        \end{proof}
+
+    \subsection{Cauchy Criterion for Real Limits at Infinity}
+        \label{thm:6}
+        Let $f: \mathbb{R} \to \mathbb{R}$.
+        If for all $\varepsilon > 0$, there exists $M > 0$ so that $b \geq a \geq M$ implies $\abs{f(b) - f(a)} < \varepsilon$, then $\lim_{x \to \infty} f(a)$ converges.
+        \begin{proof}
+            Let $f: \mathbb{R} \to \mathbb{R}$ and suppose that for all $\varepsilon > 0$, there exists $M > 0$ so that $b \geq a \geq M$ implies $\abs{f(b) - f(a)} < \varepsilon$.
+            Take any arbitrary sequence $\seq{x} \subset \mathbb{R}$ that diverges to $\infty$.
+            Therefore, for all $M > 0$, there exists some $N \in \mathbb{N}$ so that $m \geq n \geq N$ implies $x_m \geq x_n \geq M$.
+            By extension and transistively, this means that for all $\varepsilon > 0$, there exists $N \in \mathbb{N}$ so that $m \geq n \geq N$ implies $\abs{f(x_m) - f(x_n)} < \varepsilon$.
+            Therefore, the sequence \seq[]{f(x_n)} is Cauchy.
+            Since $\mathbb{R}$ is complete, $\seq[]{f(x_n)}$ is convergent to some $L \in \mathbb{R}$.
+
+            Now we prove that it can only converge to one value.
+            Suppose that there exists another sequence $\seq[]{f(y_n)}$ in $\mathbb{R}$ where the sequence \seq{y} diverges to infinity.
+            Since \seq[]{f(x_n)} is convergent as $x_n$ approaches infinity, for all $\varepsilon > 0$, there exists some $M > 0$ so that there exists some $N \in \mathbb{N}$ so that for all $n \geq N$, $x_n \geq M$, and therefore $\abs{f(x_n) - L} < \frac{\varepsilon}{2}$.
+            Since \seq{y} diverges to infinity, for all $K > 0$, there exists some $N_y \in \mathbb{N}$ so that for all $n_y \geq N_y$, $y_{n_y} \geq K$.
+            By the statement we made at the start of this proof, for all $\varepsilon > 0$, there exists $G > 0$ so that if $x_n, y_n \geq G$, then $\abs{f(y_n) - f(x_n)} < \frac{\varepsilon}{2}$.
+            Pick $x_n$ and $y_n$ so that $x_n, y_n \geq \max\{G,M\}$.
+            Either way, $x_n, y_n \geq M$.
+            Adding our two earlier inequalities together, we find $\abs{f(y_n) - f(x_n)} + \abs{f(x_n) - L} < \varepsilon$.
+            By the triangle inequality, $\abs{f(y_n) - f(x_n) + f(x_n) - L} \leq \abs{f(y_n) - f(x_n)} + \abs{f(x_n) - L}$, so $\abs{f(y_n) - f(x_n) + f(x_n) - L} = \abs{f(y_n) - L} < \varepsilon$.
+            Collectively, this means that for all $\varepsilon > 0$, there exists some $M > 0$ so that for all $n \in \mathbb{N}$, $\abs{f(y_n) - L} < \varepsilon$.
+            Therefore, for any sequence \seq{x} in $\mathbb{R}$ that diverges to infinity, $f(x_n) \to L$.
+        \end{proof}
+
+\pagebreak
+\section{Problem 1}
+    Let $a \in \mathbb{R}$, and suppose $f : \mathbb{R} \to \mathbb{R}$ is Riemann integrable on $[a, b]$ for all $b > a$. We define
+    \begin{equation*}
+        \int_{a}^{\infty} f(x)\,dx = \lim_{b \to \infty} \int_{a}^{b} f(x)\,dx.
+    \end{equation*}
+    if the limit exists. We call this an \textit{improper integral} of $f$. We say the improper integral \textit{converges} if this limit exists and \textit{diverges} otherwise. 
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Suppose $\int_{a}^{\infty} |f(x)|\,dx$ converges. Prove that $\int_{a}^{\infty} f(x)\,dx$ also converges (this is called \textit{absolute convergence}).
+        
+        \item 
+        Suppose further that $a = 1$ and $f(x)$ is nonnegative and monotonically decreasing on $[1, \infty)$. Prove that
+        \begin{equation*}
+            \int_{1}^{\infty} f(x)\,dx \quad \text{ converges if and only if } \quad \sum_{n = 1}^{\infty} f(n) \quad \text{ converges }.
+        \end{equation*}
+        This is the \textit{integral test}. \textit{Hint:} draw a picture.
+
+        \item 
+        Find an example of a function $g : [1, \infty) \to \mathbb{R}$, integrable on $[1, b]$ for all $b > 1$, so that
+        \begin{equation*}
+            \int_{1}^{\infty} g(x)\,dx
+        \end{equation*}
+        is convergent but not absolutely convergent. Prove your assertions.
+        
+    \end{enumerate}
+
+    \subsection{Solution (a)}
+        \begin{proof}
+            Suppose that $\int_{1}^{\infty} \abs{f(x)}\,dx$ converges, and suppose $f : \mathbb{R} \to \mathbb{R}$ is Riemann integrable on $[a, b]$ for all $b > a$.
+            By \hyperref[thm:3]{0.3: Absolutely Integrable}, this means that $\abs{f}: \mathbb{R} \to \mathbb{R}$ is Riemann integrable.
+            $\int_{a}^{\infty} \abs{f(x)}\,dx = \lim_{b \to \infty} \int_{a}^{b} \abs{f(x)}\,dx$, so we also say $\lim_{b \to \infty} \int_{a}^{b} \abs{f(x)}\,dx$ converges.
+            Let $\lim_{b \to \infty} \int_{a}^{b} \abs{f(x)}\,dx$ converge to $L$.
+            Therefore, for all $\varepsilon > 0$, there exists some $M > 0$ such that $b \geq M$ implies $\abs{\int_{a}^{b} \abs{f(x)}\,dx - L} < \frac{\varepsilon}{2}$.
+
+            Let $c \in \mathbb{R}$ where $a < c \leq b$.
+            For all $\varepsilon > 0$, there exists some $M > 0$ such that $c \geq M$ implies $\abs{L - \int_{a}^{c} \abs{f(x)}\,dx} < \frac{\varepsilon}{2}$.
+            Add the two above inequalities together.
+            \begin{equation}
+                \abs{\int_{a}^{b} \abs{f(x)}\,dx - L} + \abs{L - \int_{a}^{c} \abs{f(x)}\,dx} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+            \end{equation}
+            Apply the triangle inequality.
+            \begin{equation}
+                \abs{\int_{a}^{b} \abs{f(x)}\,dx - \int_{a}^{c} \abs{f(x)}\,dx} \leq \abs{\int_{a}^{b} \abs{f(x)}\,dx - L} + \abs{L - \int_{a}^{c} \abs{f(x)}\,dx} < \varepsilon
+            \end{equation}
+            Since $\abs{f(x)}$ is integratable, we can use the second Fundamental Theorem of Calculus to call its antiderivative $F_\alpha$ meaning $F_\alpha' = f$.
+            By the second Fundamental Theorem of Calculus, $\int_{a}^{b} \abs{f(x)}\,dx = F_\alpha(b) - F_\alpha(a)$ and $\int_{a}^{c} \abs{f(x)}\,dx = F_\alpha(c) - F_\alpha(a)$.
+            \begin{equation}
+                \abs{F_\alpha(b) - F_\alpha(a) - (F_\alpha(c) - F_\alpha(a))} = \abs{F_\alpha(b) - F_\alpha(c)} < \varepsilon
+            \end{equation}
+            Apply the second Fundamental Theorem of Calculus now in the other direction, meaning $F_\alpha(b) - F_\alpha(c) = \int_{c}^{b} \abs{f(x)}\,dx$.
+            \begin{equation}
+                \abs{\int_{c}^{b} \abs{f(x)}\,dx} < \varepsilon
+            \end{equation}
+            Therefore, in this Cauchy sort of way, for all $\varepsilon > 0$, there exists some $M > 0$ such that $b \geq c \geq M$ implies $\abs{\int_{c}^{b} \abs{f(x)}\,dx} < \varepsilon$.
+
+            By the definition of the absolute value, $-\abs{f(x)} \leq f(x)$ and $f(x) \leq \abs{f(x)}$ for all $x \in [a,b]$ and therefore for all $x \in [c,b]$ since $[c,b] \subset [a,b]$.
+            By \hyperref[thm:5]{0.5: Rudin's Theorem 6.12(b)} (and secondarily by the linearity of integrals), this means that $\int_{c}^{b} -\abs{f(x)}\,dx = -\int_{c}^{b} \abs{f(x)}\,dx \leq \int_{c}^{b} f(x)\,dx$ and $\int_{c}^{b} f(x)\,dx \leq \int_{c}^{b} \abs{f(x)}\,dx$.
+            Therefore, $\abs{\int_{c}^{b} f(x)\,dx} \leq \int_{c}^{b} \abs{f(x)}\,dx = \abs{\int_{c}^{b} \abs{f(x)}\,dx}$.
+            By our earlier Cauchy-like convergence, $\abs{\int_{c}^{b} f(x)\,dx} < \varepsilon$.
+            For all $\varepsilon > 0$, there exists some $M > 0$ such that $b \geq c \geq M$ implies $\abs{\int_{c}^{b} f(x)\,dx} < \varepsilon$.
+
+            For all $\varepsilon > 0$, there exists some $M > 0$ such that $b \geq c \geq M$ implies $\abs{\int_{c}^{b} f(x)\,dx} < \varepsilon$.
+            This therefore means that $\abs{\int_{c}^{b} f(x)\,dx + \int_{a}^{c} f(x)\,dx - \int_{a}^{c} f(x)\,dx} < \varepsilon$.
+            We can follow similar steps to earlier using the second Fundamental Theorem of Calculus again, labeling $F(x)$ as the antiderivative of $f(x)$ (meaning $\diff{F(x)}{x} = f(x)$).
+            \begin{gather}
+                \abs{\int_{c}^{b} f(x)\,dx + \int_{a}^{c} f(x)\,dx - \int_{a}^{c} f(x)\,dx} < \varepsilon\\
+                \abs{F(b) - F(c) + F(c) - F(a) - \int_{a}^{c} f(x)\,dx} < \varepsilon\\
+                \abs{F(b) - F(a) - \int_{a}^{c} f(x)\,dx} < \varepsilon\\
+                \abs{\int_{a}^{b} f(x)\,dx - \int_{a}^{c} f(x)\,dx} < \varepsilon
+            \end{gather}
+            Therefore, for all $\varepsilon > 0$, there exists $M > 0$ such that $b \geq c \geq M$ implies $\abs{\int_{a}^{b} f(x)\,dx - \int_{a}^{c} f(x)\,dx} < \varepsilon$.
+            If we treat these integrals as a function $g: \mathbb{R} \to \mathbb{R}$ where $g(x) = \int_{a}^{x} f(x)\,dx$, then for all $\varepsilon > 0$, there exists $M > 0$ such that $b \geq c \geq M$ implies $\abs{g(b) - g(c)} < \varepsilon$.
+            Therefore, by \hyperref[thm:6]{0.6: Cauchy Criterion for Real Limits at Infinity}, $\lim_{x \to \infty} g(x)$ exists, so it converges.
+            Ergo, $\lim_{x \to \infty} \int_{a}^{x} f(x)\,dx$ exists, so the improper integral converges.
+        \end{proof}
+
+\pagebreak
+\section{Problem 2}
+    Let $(X, d_X)$ be a metric space. Suppose $\{f_n\}$ and $\{g_n\}$ are sequences of functions $X \to \mathbb{R}$ that converge uniformly to $f$ and $g$ respectively.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Show that the sequence $\{f_n + g_n\}$ converges uniformly to $f + g$.
+
+        \item 
+        Suppose further that, for every $n \in \mathbb{N}$, the functions $f_n$ and $g_n$ are bounded.
+        \begin{enumerate}
+            \item 
+            Show that $f$ and $g$ (and hence $fg$) are bounded.
+        
+            \item 
+            Show that the sequences $\{f_n\}$ and $\{g_n\}$ are \textit{uniformly bounded}, in that there is $M > 0$ so that $|f_n(x)| \leq M$ and $|g_n(x)| \leq M$ for all $n \in \mathbb{N}$ and for all $x \in X$.
+
+            \item 
+            Show that $f_ng_n \to fg$ uniformly.
+
+        \end{enumerate}
+
+        \item 
+        If we drop the assumption that every $f_n$ is bounded (but keep the assumptions that every $g_n$ is bounded and $f_n \to f$ and $g_n \to g$ uniformly), is it still true that $f_ng_n \to fg$ uniformly? Prove or give a counterexample.
+            
+    \end{enumerate}
+
+\section{Problem 3}
+    The purpose of this problem is to define the natural logarithm. You are not allowed to use any properties of this function you might know already (i.e. do not take anything for granted). However, you are allowed to use all of the facts we proved about the exponential function in class.
+    
+    Define a function $f : (0, \infty) \to \mathbb{R}$ via
+    \begin{equation*}
+        f(x) = \int_{1}^{x} \frac{1}{t}\,dt.\\[5pt]
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        Using the change of variables theorem, prove that
+        \begin{equation*}
+            f(ab) = f(a) + f(b)
+        \end{equation*}
+        for all $a, b > 0$.
+
+        \item 
+        Prove that
+        \begin{equation*}
+            \lim_{x \to \infty} f(x) = \infty.\\[5pt]
+        \end{equation*}
+
+        \item 
+        Prove that $f$ is differentiable with
+        \begin{equation*}
+            f'(x) = \frac{1}{x}
+        \end{equation*}
+        for all $x \in (0, \infty)$.
+
+        \item 
+        Prove that $f(e^x) = x$ for all $x \in \mathbb{R}$. \textit{Hint:} differentiate both sides.
+
+        \item 
+        Prove that $e^{f(x)} = x$ for all $x \in (0, \infty)$ \textit{Hint:} differentiate $\frac{e^{f(x)}}{x}$.
+
+        \item 
+        Prove that
+        \begin{equation*}
+            f(x) = \sum_{n = 1}^{\infty} \frac{(-1)^{n + 1}}{n} (x - 1)^n
+        \end{equation*}
+        for all $x \in (0, 2)$. \textit{Hint:} write $\frac{1}{x}$ as a geometric series.
+
+        \item 
+        Prove that
+        \begin{equation*}
+            f(2) = \sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{n}.
+        \end{equation*}
+        \textit{Hint:} you cannot just plug $2$ into part (e) as we do not yet know whether the formula from (e) is valid for $x = 2$ (or whether this series even converges). There is a theorem that will help you here.
+        
+    \end{enumerate}
+
+\section{Problem 4}
+    For $\alpha \in \mathbb{R}$ and $k \in \{0, 1, 2, \dots\}$, define the \textit{generalized binomial coefficient}
+    \begin{equation*}
+        \binom{\alpha}{k} = \frac{\alpha(\alpha - 1)(\alpha - 2) \cdots (\alpha - k + 1)}{k!}.
+    \end{equation*}
+    By convention, we always have $\binom{\alpha}{0} = 1$. The \textit{binomial series} is the power series
+    \begin{equation*}
+        \sum_{k = 0}^{\infty} \binom{\alpha}{k} x^k.
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        If $\alpha \in \{0, 1, 2, \dots\}$, show that the binomial series converges to $(1 + x)^\alpha$ for all $x \in \mathbb{R}$.
+
+        \item 
+        If $\alpha \notin \{0, 1, 2, \dots\}$ (which we will assume for the rest of this problem), show that the binomial series has radius of convergence $1$. \textit{Hint:} Ratio test.
+
+        \item 
+        Let $f : (-1, 1) \to \mathbb{R}$ be defined by $f(x) = \sum_{k = 0}^{\infty} \binom{\alpha}{k} x^k$. Show that $f$ is differentiable and satisfies
+        \begin{equation*}
+            (1 + x)f'(x)  = \alpha f(x)
+        \end{equation*}
+        for all $x \in (-1, 1)$.
+        
+        \item 
+        Show that $f(x) = (1 + x)^\alpha$ for all $x \in (-1, 1)$ \textit{Hint:} differentiate the function $g(x) = (1 + x)^{-\alpha}f(x)$.
+
+        \item 
+        Show that 
+        \begin{equation*}
+            \sqrt{2} = \sum_{k = 0}^{\infty} \binom{1/2}{k}.
+        \end{equation*}
+        \textit{Hint:}  you cannot just plug in $1$ into the binomial series; the same comments from problem 3 part (f) apply.
+    \end{enumerate}
+\end{document}
